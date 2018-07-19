@@ -211,6 +211,9 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Mapper\IMapperFactoryWEB.cs" />
     <Compile Include="Mapper\MapperFactoryWEB.cs" />
+    <Compile Include="Models\CityDistrictView.cs" />
+    <Compile Include="Models\DataForRealtorView.cs" />
+    <Compile Include="Models\SearchParametrsForRealtorSave.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSubSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SpecifyingSkillsViewModel.cs" />

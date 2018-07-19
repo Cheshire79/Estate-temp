@@ -15,11 +15,11 @@ namespace WebUI.Controllers
 {
     public class ManagerSkillController : Controller
     {
-        private ISubSkillService<SubSkillDTO> _subSkillService;
-        private ISkillService<SkillDTO> _skillService;
+        private ISubSkillService _subSkillService;
+        private ISkillService _skillService;
         private IMapper _mapper;
 
-        public ManagerSkillController(ISubSkillService<SubSkillDTO> subSkillService, ISkillService<SkillDTO> skillService, IMapperFactoryWEB mapperFactory)
+        public ManagerSkillController(ISubSkillService subSkillService, ISkillService skillService, IMapperFactoryWEB mapperFactory)
         {
             _subSkillService = subSkillService;
             _skillService = skillService;

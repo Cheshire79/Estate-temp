@@ -2,6 +2,7 @@
 using AutoMapper;
 using Identity.BLL.Interface.Data;
 using KnowledgeManagement.BLL.Interface.Date;
+using WebUI.Models;
 using WebUI.Models.KnowledgeManagement;
 using WebUI.Models.UsersAndRoles;
 using WebUI.Models.UsersSearch;
@@ -34,7 +35,11 @@ namespace WebUI.Mapper
                 cfg.CreateMap<SubSkillViewModel, SubSkillDTO>();
 
                 cfg.CreateMap<LevelViewModel,LevelDTO>();
-                
+
+                cfg.CreateMap<CityDistrictView, CityDistrictDTO>();
+                cfg.CreateMap<CityDistrictDTO, CityDistrictView>();
+
+
             });
             _mapper = config.CreateMapper();
         }

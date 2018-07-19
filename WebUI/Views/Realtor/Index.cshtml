@@ -1,68 +1,80 @@
-﻿
+﻿@using WebUI.Models
+@model WebUI.Models.DataForRealtorView
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm())
+{
+    SearchParametersForRealtorSave searchParametersForRealtorSave = new SearchParametersForRealtorSave();
+    var selected = Model.Districts.FirstOrDefault();
+    SelectList levels = new SelectList(Model.Districts, "Id", "Name", selected);
 
-<div class="realtor-searchArea">
-    <div class="title-right">
-        <span class="bold_orange">125</span> ads found (<span class="bold_orange">4</span> pages)
-    </div>
-    <div class="title-main">
-        Search parameters
-    </div>
-    <div class="content01">
-        Index
-        <div class="group01">
-            <div class="span5">
-                <label class="input-mini-text">Disrict</label>
-                <select name="distr" class="input-large">
-                    <option value="0">Не имеет значения</option>
-                    <option value="1">Голосеевский р-н. Киев</option>
-                </select>
+    <div class="realtor-searchArea">
+        <div class="title-right">
+            <span class="bold_orange">125</span> ads found (<span class="bold_orange">4</span> pages)
+        </div>
+        <div class="title-main">
+            Search parameters
+        </div>
+        <div class="content01">
+            Index
+            <div class="group01">
+                <div class="span5">
+                    <label class="input-mini-text">Disrict</label>
+
+                        @Html.DropDownListFor(model => searchParametersForRealtorSave.DistrictsId, levels as SelectList, new { @class = "input-large" })
+                    
+                    @{
+                        //   <select name="distr" class="input-large">
+                        //      <option value="0">Не имеет значения</option>
+                        //      <option value="1">Голосеевский р-н. Киев</option>
+                        //  </select>
+                    }
+                </div>
+                <div class="span5">
+                    <label class="input-mini-text">Rooms amount</label>
+                    <select name="distr" class="input-large">
+                        <option value="0">Не имеет значения</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
             </div>
-            <div class="span5">
-                <label class="input-mini-text">Rooms amount</label>
-                <select name="distr" class="input-large">
-                    <option value="0">Не имеет значения</option>
-                    <option value="1">1</option>
-                </select>
+            <div class="group02">
+                <div class="span3">
+                    <label class="input-mini-text">Area</label>
+                    <input name="flrfrom" value="" class="input-mini" type="text">
+                    <input name="flrto" value="" class="input-mini" type="text">
+                </div>
+                <div class="span3">
+                    <label class="input-mini-text">Price</label>
+                    <input name="flrfrom" value="" class="input-mini" type="text">
+                    <input name="flrto" value="" class="input-mini" type="text">
+                </div>
+                <div class="span3">
+                    <label class="input-mini-text">Floor</label>
+                    <input name="flrfrom" value="" class="input-mini" type="text">
+                    <input name="flrto" value="" class="input-mini" type="text">
+                </div>
+                <div class="span3">
+                    <label class="input-mini-text">Height</label>
+                    <input name="flrfrom" value="" class="input-mini" type="text">
+                    <input name="flrto" value="" class="input-mini" type="text">
+                </div>
             </div>
         </div>
-        <div class="group02">
-            <div class="span3">
-                <label class="input-mini-text">Area</label>
-                <input name="flrfrom" value="" class="input-mini" type="text">
-                <input name="flrto" value="" class="input-mini" type="text">
-            </div>
-            <div class="span3">
-                <label class="input-mini-text">Price</label>
-                <input name="flrfrom" value="" class="input-mini" type="text">
-                <input name="flrto" value="" class="input-mini" type="text">
-            </div>
-            <div class="span3">
-                <label class="input-mini-text">Floor</label>
-                <input name="flrfrom" value="" class="input-mini" type="text">
-                <input name="flrto" value="" class="input-mini" type="text">
-            </div>
-            <div class="span3">
-                <label class="input-mini-text">Height</label>
-                <input name="flrfrom" value="" class="input-mini" type="text">
-                <input name="flrto" value="" class="input-mini" type="text">
-            </div>
-        </div>
     </div>
-</div>
-<div class="realtor-sortArea">
-    <label>Sort </label>
-    <select name="distr" class="input-large">
-        <option value="0">Не имеет значения</option>
-        <option value="1">Голосеевский р-н. Киев</option>
-    </select>
-</div>
-<div class="realtor-ItemsArea">
-    For list
-</div>
+    <div class="realtor-sortArea">
+        <label>Sort </label>
+        <select name="distr" class="input-large">
+            <option value="0">Не имеет значения</option>
+            <option value="1">Голосеевский р-н. Киев</option>
+        </select>
+    </div>
+    <div class="realtor-ItemsArea">
+        For list
+    </div>
 
+}

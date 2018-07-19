@@ -26,15 +26,15 @@ namespace KnowledgeManagement.DAL.Repository
             get { return _realEstateRepository ?? (_realEstateRepository = _factoryRepository.CreateRealEstateRepository(_db)); }
         }
 
-        public IReadOnlyRepository<City> CityRepository
+        public IReadOnlyRepository<City> Cities
         {
             get { return _cityRepository ?? (_cityRepository = _factoryRepository.CreateCityRepository(_db)); }
         }
-        public IReadOnlyRepository<CityDistrict> CityDistrictRepository
+        public IReadOnlyRepository<CityDistrict> CityDistricts
         {
             get { return _cityDistrictRepository ?? (_cityDistrictRepository = _factoryRepository.CreateCityDistrictRepository(_db)); }
         }
-        public IReadOnlyRepository<Street> StreetRepository
+        public IReadOnlyRepository<Street> Streets
         {
             get { return _streetRepository ?? (_streetRepository = _factoryRepository.CreateStreetRepository(_db)); }
         }

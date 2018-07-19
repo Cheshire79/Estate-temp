@@ -33,7 +33,7 @@ namespace KnowledgeManagement.DAL.EF
 
             db.Cities.Add(new City() { Name = "Киев" });
             db.Cities.Add(new City() { Name = "Черкассы" });
-
+            db.SaveChanges();
             var city1 = db.Cities.FirstOrDefault(x => x.Name == "Киев");
             if (city1 != null)
             {
@@ -48,6 +48,7 @@ namespace KnowledgeManagement.DAL.EF
                     Name = "Шевченковский р-н"
                 });
             }
+            db.SaveChanges();
             var сityDistrict1 = db.CityDistricts.FirstOrDefault(x => x.Name == "Шевченковский р-н");
             if (сityDistrict1 != null)
             {
@@ -77,6 +78,7 @@ namespace KnowledgeManagement.DAL.EF
                     Name = "Сосновский"
                 });
             }
+            db.SaveChanges();
             db.Skills.Add(new Skill() { Name = "Nokia Lumia 630" });
 
             db.Skills.Add(new Skill() { Name = "Nokia Lumia 630" });

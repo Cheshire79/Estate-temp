@@ -8,7 +8,6 @@ using Identity.DAL.Repositories;
 using Identity.BLL.Services;
 using Identity.DAL.Interface;
 using KnowledgeManagement.BLL.Interface;
-using KnowledgeManagement.BLL.Interface.Date;
 using KnowledgeManagement.BLL.Services;
 using KnowledgeManagement.DAL.EF;
 using KnowledgeManagement.DAL.Infrastructure;
@@ -66,8 +65,10 @@ namespace WebUI.Infrastructure
 
         private void AddBindingsForKnowledgeManagementBLL()
         {
-            _ninjectKernel.Bind<ISubSkillService<SubSkillDTO>>().To<SubSkillService>();
-            _ninjectKernel.Bind<ISkillService<SkillDTO>>().To<SkillService>();
+            _ninjectKernel.Bind<IRealtorService>().To<RealtorService>();
+
+            _ninjectKernel.Bind<ISubSkillService>().To<SubSkillService>();
+            _ninjectKernel.Bind<ISkillService>().To<SkillService>();
             _ninjectKernel.Bind<IUserService>()
                 .To<UserService>();
             _ninjectKernel.Bind<KnowledgeManagement.BLL.Interface.IMapperFactory>().To<KnowledgeManagement.BLL.Mapper.MapperFactory > ().InSingletonScope();

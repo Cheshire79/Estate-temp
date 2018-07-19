@@ -11,7 +11,7 @@ using KnowledgeManagement.DAL.Interface.Date;
 namespace KnowledgeManagement.BLL.Services
 {
 
-    public class SubSkillService : ISubSkillService<SubSkillDTO>
+    public class SubSkillService : ISubSkillService
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;

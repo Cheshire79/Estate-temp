@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using KnowledgeManagement.BLL.Interface.Date;
 
 namespace KnowledgeManagement.BLL.Interface
 {
-    public interface ISubSkillService<T> : IDisposable where T : class 
+    public interface ISubSkillService : IDisposable 
     {
-        IQueryable<T> GetAll();
-        Task<T> GetByIdAsync(int id);
-        Task Create(T skillDTO);
-        Task Update(T skillDTO);
+        IQueryable<SubSkillDTO> GetAll();
+        Task<SubSkillDTO> GetByIdAsync(int id);
+        Task Create(SubSkillDTO subSkillDTO);
+        Task Update(SubSkillDTO subSkillDTO);
         Task Delete(int id);
-        Task<IQueryable<T>> GetSubSkillBySkillsId(int id);
+        Task<IQueryable<SubSkillDTO>> GetSubSkillBySkillsId(int id);
     }
 }

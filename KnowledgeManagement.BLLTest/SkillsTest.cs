@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using KnowledgeManagement.BLL.Interface;
-using KnowledgeManagement.BLL.Interface.Date;
 using KnowledgeManagement.BLL.Mapper;
 using KnowledgeManagement.BLL.Services;
 using KnowledgeManagement.DAL.Interface;
@@ -15,8 +14,8 @@ namespace KnowledgeManagement.BLLTest
     [TestFixture]
     public class SkillsTest
     {
-        private ISkillService<SkillDTO> _skillService;
-        private ISubSkillService<SubSkillDTO> _subSkillService;
+        private ISkillService _skillService;
+        private ISubSkillService _subSkillService;
         [SetUp]
         public void SetUp()
         {

@@ -19,6 +19,17 @@ namespace KnowledgeManagement.BLL.Mapper
                 cfg.CreateMap<SkillDTO, Skill>();
                 cfg.CreateMap<SubSkill, SubSkillDTO>();
                 cfg.CreateMap<SubSkillDTO, SubSkill>();
+
+
+                cfg.CreateMap<City, CityDTO>();
+                cfg.CreateMap<CityDTO, City>();
+                cfg.CreateMap<CityDistrict, CityDistrictDTO>();
+                cfg.CreateMap<CityDistrictDTO, CityDistrict>();
+                cfg.CreateMap<Street, StreetDTO>();
+                cfg.CreateMap<StreetDTO, Street>();
+                cfg.CreateMap<RealEstate, RealEstateDTO>();
+                cfg.CreateMap<RealEstateDTO, RealEstate>();
+
             });
             _mapper = config.CreateMapper();
         }
