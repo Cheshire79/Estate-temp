@@ -1,0 +1,57 @@
+﻿@model WebUI.Models.UsersSearch.UsersSearchResultViewModel
+
+<div class="user-search-result">
+    <div class="title">Users list</div>
+
+    <div class="form-horizontal">
+        @foreach (var item in Model.UserSearchListResultViewModel)
+        {
+            <div class="user-item">
+                <div class="user-info">User name: <b>@item.User.Name</b></div>
+
+                @foreach (var specifyingSkill in item.SpecifyingSkills)
+                {
+                    if (specifyingSkill.SpecifyingSubSkills.Any())
+                    {
+                        <div class="subtitle">@specifyingSkill.Skill.Name</div>
+                        <div class="skill-scope">
+
+                            @foreach (var specifyingsubSkill in specifyingSkill.SpecifyingSubSkills)
+                            {
+
+                                <div class="skill-title">
+                                    @if (Model.SpecifyingSkillsForSearchSaveModel.Any(x => x.OrHigher == false
+                                                                                           && x.SubSkillId == specifyingsubSkill.SubSkill.Id))
+                                    {
+                                        <div class="strong-match">
+                                            @specifyingsubSkill.SubSkill.Name
+                                        </div>
+                                    }
+                                    else
+                                        if (Model.SpecifyingSkillsForSearchSaveModel.Any(x => x.OrHigher == true && x.SubSkillId == specifyingsubSkill.SubSkill.Id))
+                                    {
+                                        <div class="soft-match">
+                                            @specifyingsubSkill.SubSkill.Name
+                                        </div>
+                                    }
+                                    else
+                                    { <div class="the-rest-match">
+                                            @specifyingsubSkill.SubSkill.Name
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="skill-Rating">@specifyingsubSkill.LevelId</div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        }
+    </div>
+    <div>
+        <a class="preview-strong-match">strong match</a><a class="preview-soft-match">soft match</a><a class="preview-the-rest-match">and the skills which do not match the criteria</a>
+
+    </div>
+</div>
+
