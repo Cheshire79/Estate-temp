@@ -111,8 +111,6 @@ namespace KnowledgeManagement.BLL.Services
             {
                 throw new ArgumentException("Cannot find Kiev. Working just for area of Kiev city.");
             }
-
-            var c = _unitOfWork.CityDistricts.GetAll().ToList();
             return _unitOfWork.CityDistricts.GetAll().Where(x => x.CityId == _cityKievId).ProjectTo<CityDistrictDTO>(_mapper.ConfigurationProvider);
         }
         public IQueryable<RealEstateDTO> GetRealEstates()
@@ -122,6 +120,13 @@ namespace KnowledgeManagement.BLL.Services
                 throw new ArgumentException("Cannot find Kiev. Working just for area of Kiev city.");
             }
             return _unitOfWork.RealEstates.GetAll().ProjectTo<RealEstateDTO>(_mapper.ConfigurationProvider);
+        }
+        public async Task Create(RealEstateDTO realEstateDTO)
+        {
+            var realEstate = _mapper.Map<RealEstateDTO, RealEstate>(realEstateDTO);
+            realEstate.Id = new RealEstate().Id;
+            _unitOfWork.RealEstates.Create(realEstate); 
+            await _unitOfWork.SaveAsync();
         }
     }
 }

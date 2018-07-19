@@ -212,6 +212,7 @@
     <Compile Include="Mapper\IMapperFactoryWEB.cs" />
     <Compile Include="Mapper\MapperFactoryWEB.cs" />
     <Compile Include="Models\CityDistrictView.cs" />
+    <Compile Include="Models\CreateRealEstateView.cs" />
     <Compile Include="Models\DataForRealtorView.cs" />
     <Compile Include="Models\SearchParametrsForRealtorSave.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillSaveViewModel.cs" />
@@ -302,7 +303,8 @@
     <Content Include="Views\SearchForUsers\Index.cshtml" />
     <Content Include="Views\SearchForUsers\SearchResult.cshtml" />
     <Content Include="Views\SearchForUsers\_SearchResultPartial.cshtml" />
-    <Content Include="Views\Realtor\Index.cshtml" />
+    <Content Include="Views\Realtor\RealEstates.cshtml" />
+    <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

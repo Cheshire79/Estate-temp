@@ -21,14 +21,16 @@ namespace WebUI.Controllers
         {
             _realtorService = realtorService;
             _mapper = mapperFactory.CreateMapperWEB();
+           
+        }
+        // GET: Realtor
+        public async Task<ActionResult> RealEstates()
+        {
             if (!_realtorService.GetRealEstates().Any())
             {
                 _realtorService.SetInitialData(HttpContext.User.Identity.GetUserId());
             }
-        }
-        // GET: Realtor
-        public async Task<ActionResult> Index()
-        {
+
             DataForRealtorView dataForRealtorView = new DataForRealtorView();
             dataForRealtorView.Districts =
 
@@ -36,5 +38,27 @@ namespace WebUI.Controllers
                 (await _realtorService.GetKievDistricts().OrderBy(x => x.Name).ToListAsync());
             return View(dataForRealtorView);
         }
+
+        
+        
+        public ActionResult CreateRealEstate(string returnUrl)
+        {
+            CreateRealEstateView skillViewModel = new CreateRealEstateView();
+            return View(skillViewModel);
+        }
+
+        [HttpPost]
+        
+        public async Task<ActionResult> CreateRealEstate(CreateRealEstateView model)
+        {
+            if (ModelState.IsValid)
+            {
+                var skillDTO = _mapper.Map<CreateRealEstateView, RealEstateDTO>(model);
+             //   skillDTO.Id = new RealEstateDTO().Id;
+                await _realtorService.Create(skillDTO);
+            }
+            return RedirectToAction("RealEstates"); // todo  returnUrl
+        }
+
     }
 }
