@@ -17,13 +17,13 @@ namespace KnowledgeManagement.DAL.Interface.Date
         [Required]
         public Int16 Height { get; set; }
         [Required]
-        public float Area { get; set; }
+        public Int16 Area { get; set; }
         [Required]
         public Decimal Price { get; set; }
         [Required]
         public byte RoomNumber { get; set; }
         public DateTime CreationDate { get; set; }
-        [MaxLength(150)]
+
         public string Description { get; set; }
         public byte[] Image { get; set; }
         [Required]

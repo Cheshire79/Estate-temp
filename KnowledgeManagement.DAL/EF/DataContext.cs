@@ -47,7 +47,18 @@ namespace KnowledgeManagement.DAL.EF
                     CityId = city1.Id,
                     Name = "Шевченковский р-н"
                 });
+                db.CityDistricts.Add(new CityDistrict()
+                {
+                    CityId = city1.Id,
+                    Name = "Голосеевский р-н"
+                });
+                db.CityDistricts.Add(new CityDistrict()
+                {
+                    CityId = city1.Id,
+                    Name = "Днепровский р-н"
+                });
             }
+            
             db.SaveChanges();
             var сityDistrict1 = db.CityDistricts.FirstOrDefault(x => x.Name == "Шевченковский р-н");
             if (сityDistrict1 != null)
@@ -55,14 +66,48 @@ namespace KnowledgeManagement.DAL.EF
                 db.Streets.Add(new Street()
                 {
                     CityDistrictId = сityDistrict1.Id,
-                    Name = "Чорновола"
+                    Name = "Чорновола ул."
                 });
                 db.Streets.Add(new Street()
                 {
                     CityDistrictId = сityDistrict1.Id,
-                    Name = "Саксаганского"
+                    Name = "Саксаганского ул."
                 });
+                db.Streets.Add(new Street()
+                {
+                    CityDistrictId = сityDistrict1.Id,
+                    Name = "Ружинская ул."
+                });
+                db.Streets.Add(new Street()
+                {
+                    CityDistrictId = сityDistrict1.Id,
+                    Name = "Стеценко ул."
+                });
+                db.Streets.Add(new Street()
+                {
+                    CityDistrictId = сityDistrict1.Id,
+                    Name = "Победы просп."
+                });
+            }
 
+            сityDistrict1 = db.CityDistricts.FirstOrDefault(x => x.Name == "Днепровский р-н");
+            if (сityDistrict1 != null)
+            {
+                db.Streets.Add(new Street()
+                {
+                    CityDistrictId = сityDistrict1.Id,
+                    Name = "Жмаченко генерала ул."
+                });
+                db.Streets.Add(new Street()
+                {
+                    CityDistrictId = сityDistrict1.Id,
+                    Name = "Строителей ул."
+                });
+                db.Streets.Add(new Street()
+                {
+                    CityDistrictId = сityDistrict1.Id,
+                    Name = "Тампере ул."
+                });
             }
             var city2 = db.Cities.FirstOrDefault(x => x.Name == "Черкассы");
             if (city2 != null)

@@ -9,6 +9,7 @@ namespace KnowledgeManagement.BLL.Interface
         Task SetInitialData(string realtorId);
         IQueryable<RealEstateDTO> GetRealEstates();
         IQueryable<CityDistrictDTO> GetKievDistricts();
+        IQueryable<StreetDTO> GetStreets();
         Task Create(RealEstateDTO realEstateDTO);
     }
 }

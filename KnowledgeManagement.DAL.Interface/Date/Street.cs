@@ -7,7 +7,7 @@ namespace KnowledgeManagement.DAL.Interface.Date
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(30)]
         public string Name { get; set; }
         public int CityDistrictId { get; set; }
         public ICollection<RealEstate> RealEstates { get; set; }
