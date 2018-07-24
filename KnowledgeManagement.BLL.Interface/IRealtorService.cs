@@ -8,8 +8,11 @@ namespace KnowledgeManagement.BLL.Interface
     {
         Task SetInitialData(string realtorId);
         IQueryable<RealEstateDTO> GetRealEstates();
+        IQueryable<RealEstateDTO> GetRealEstates(ChoosenSearchParametersForRealtorDTO parameters);
         IQueryable<CityDistrictDTO> GetKievDistricts();
         IQueryable<StreetDTO> GetStreets();
         Task Create(RealEstateDTO realEstateDTO);
+        IQueryable<RealEstateForRealtor> GetRealEstates(string userId, ChoosenSearchParametersForRealtorDTO parameters);
+        Task<DataForSearchParametersDTO> InitiateSearchParameters();
     }
 }

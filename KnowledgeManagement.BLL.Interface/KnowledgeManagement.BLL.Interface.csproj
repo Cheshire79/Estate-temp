@@ -44,21 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Date\ChoosenSearchParametersForRealtorDTO.cs" />
     <Compile Include="Date\CityDistrictDTO.cs" />
     <Compile Include="Date\CityDTO.cs" />
+    <Compile Include="Date\DataForSearchParametersDTO.cs" />
     <Compile Include="Date\LevelDTO.cs" />
     <Compile Include="Date\RealEstateDTO.cs" />
+    <Compile Include="Date\RealEstateForRealtor.cs" />
+    <Compile Include="Date\RoomNumberDTO.cs" />
     <Compile Include="Date\SkillDTO.cs" />
+    <Compile Include="Date\SortOrderDTO.cs" />
     <Compile Include="Date\SpecifyingSkillDTO.cs" />
     <Compile Include="Date\SpecifyingSkillForSearchDTO.cs" />
     <Compile Include="Date\StreetDTO.cs" />
     <Compile Include="Date\SubSkillDTO.cs" />
+    <Compile Include="IFactoryRealeEstateOrder.cs" />
     <Compile Include="IMapperFactory.cs" />
     <Compile Include="IRealtorService.cs" />
     <Compile Include="ISkillService.cs" />
     <Compile Include="ISubSkillService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Date\RealeEstateOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -58,7 +58,7 @@ namespace KnowledgeManagement.DAL.EF
                     Name = "Днепровский р-н"
                 });
             }
-            
+
             db.SaveChanges();
             var сityDistrict1 = db.CityDistricts.FirstOrDefault(x => x.Name == "Шевченковский р-н");
             if (сityDistrict1 != null)

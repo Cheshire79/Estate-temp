@@ -413,7 +413,7 @@ DIV#categoriesRoles a {
     .realtor-searchArea .title-right {
         margin: 15px;
         float: right;
-        width: 170px;
+        width: 270px;
         background-color: #add;
         margin-right: 100px;
     }
@@ -472,7 +472,7 @@ DIV#categoriesRoles a {
         margin-bottom: 9px;
         line-height: 30px;
         border-radius: 3px;
-        width: 210px;
+        max-width: 250px;
         margin-left: 0;
         vertical-align: middle;
         outline: 0 none;
@@ -499,17 +499,19 @@ DIV#categoriesRoles a {
         box-sizing: border-box;
         outline: 0 none;
     }
-.realtor-searchArea .span-half-center {
-    margin-left: 0;
-    width: 55.42553191489362%;
-    display: block;
-    float: left;
-    min-height: 30px;
-    margin-left: 2.127659574468085%;
-    box-sizing: border-box;
-    outline: 0 none;
-    padding-left: 20%;
-}
+
+    .realtor-searchArea .span-half-center {
+        margin-left: 0;
+        width: 55.42553191489362%;
+        display: block;
+        float: left;
+        min-height: 30px;
+        margin-left: 2.127659574468085%;
+        box-sizing: border-box;
+        outline: 0 none;
+        padding-left: 20%;
+    }
+
 .realtor-sortArea {
     margin: 15px;
 }
@@ -518,7 +520,7 @@ DIV#categoriesRoles a {
     margin: 45px;
 }
 
-searchParametersForRealtorSave_DistrictsId
+
 .bold_orange {
     color: #ff9000;
     display: inline;
@@ -625,7 +627,7 @@ searchParametersForRealtorSave_DistrictsId
 
 .input-mini {
     font-size: 13px !important;
-     border: 1px solid #ccc;
+    border: 1px solid #ccc;
     display: inline-block;
     height: 25px;
     padding: 4px 6px;
@@ -637,9 +639,10 @@ searchParametersForRealtorSave_DistrictsId
     vertical-align: middle;
     outline: 0 none;
 }
+
 .input-mini-price {
     font-size: 13px !important;
-     border: 1px solid #ccc;
+    border: 1px solid #ccc;
     display: inline-block;
     height: 25px;
     padding: 4px 6px;
@@ -679,6 +682,7 @@ searchParametersForRealtorSave_DistrictsId
         outline: 0 none;
         padding-left: 10%
     }
+
 .info .item-description {
     /*max-height: 100px;
     overflow: hidden;
@@ -697,16 +701,15 @@ searchParametersForRealtorSave_DistrictsId
     background-color: #fffee1;
     margin-left: 185px;
     min-height: 162px;
-
 }
 
-    .realtor-itemAreaView-content .image {
-        margin: 15px;
-        background-color: #ddd;
-        float: left;
-        width: 163px;
-        height: 163px;
-    }
+.realtor-itemAreaView-content .image {
+    margin: 15px;
+    background-color: #ddd;
+    float: left;
+    width: 163px;
+    height: 163px;
+}
 
 .column1_3 {
     margin-left: 0;
@@ -730,9 +733,11 @@ searchParametersForRealtorSave_DistrictsId
 .column1_3 .item-price {
     margin-right: 15px
 }
+
 .info .item-realtor {
     font-weight: bold;
 }
+
 .column2_3 {
     color: #2774c9;
     font-size: 13px;

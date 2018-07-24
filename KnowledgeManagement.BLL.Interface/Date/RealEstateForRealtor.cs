@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace WebUI.Models
+namespace KnowledgeManagement.BLL.Interface.Date
 {
-    public class RealEstateForRealtorView
+    public class RealEstateForRealtor
     {
         public int Id { get; set; }
         public string Building { get; set; }
@@ -18,7 +18,7 @@ namespace WebUI.Models
         public bool IsSold { get; set; }
         public int StreetId { get; set; }
         public string StreetName { get; set; }
-        public int DistrictId { get; set; }//todo
+        public int DistrictId { get; set; }
         public string DistrictName { get; set; }
         public string RealtorId { get; set; }
         public string RealtorName { get; set; }
@@ -26,3 +26,4 @@ namespace WebUI.Models
         public bool IsOwner;
     }
 }
+

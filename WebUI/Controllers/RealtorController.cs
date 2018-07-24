@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,92 +33,33 @@ namespace WebUI.Controllers
         // GET: Realtor
         public async Task<ActionResult> RealEstates()
         {
-
-            string userId = HttpContext.User.Identity.GetUserId();
-            if (!_realtorService.GetRealEstates().Any())
-            {
-                await _realtorService.SetInitialData(userId);
-            }
-
-            DataForRealtorView dataForRealtorView =
-                new DataForRealtorView
-                {
-                    SearchParameters = new SearchParametersRealtorView(),
-                    SearchParametersForRealtorSave =
-                        new SearchParametersForRealtorSave() {DistrictId = -1, RoomNumber = -1}
-                };
-            dataForRealtorView.SearchParameters.Districts = new List<CityDistrictView>(){new CityDistrictView(){Id = -1,Name="No matter"}};
-            dataForRealtorView.SearchParameters.Districts.AddRange(
-            _mapper.Map<IEnumerable<CityDistrictDTO>, IEnumerable<CityDistrictView>>
-                (await _realtorService.GetKievDistricts().OrderBy(x => x.Name).ToListAsync()));
-            dataForRealtorView.SearchParameters.RoomNumber = new List<RoomNumberView>()
-            { new RoomNumberView() { Id = -1, Name = "No matter" },
-                new RoomNumberView(){Id=1,Name = "1"},
-                new RoomNumberView(){Id=2,Name = "2"},
-                new RoomNumberView(){Id=3,Name = "3"},
-                new RoomNumberView(){Id=4,Name = "4"},
-                new RoomNumberView(){Id=5,Name = "5"}
-            };
-            var users = await (from u in _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider) select u).ToListAsync();
-            IEnumerable<RealEstateForRealtorView> realEstates = await GetRealEstates(userId);
-
-            realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
-            {
-                r.RealtorName = u.Name;
-                r.RealtorEmail = u.Email;
-                return r;
-            }).ToList();
-
-            dataForRealtorView.RealEstates = realEstates;
+            ChoosenSearchParametrsForRealtorView searchParameters = new ChoosenSearchParametrsForRealtorView();
+            DataForRealtorView dataForRealtorView = await PreparedRealEstates(searchParameters);
             return View(dataForRealtorView);
         }
 
-    
-
-             [HttpPost]
-        public async Task<ActionResult> RealEstates(SearchParametersForRealtorSave searchParametersForRealtorSave)
+        [HttpPost]
+        public async Task<ActionResult> RealEstates(ChoosenSearchParametrsForRealtorView searchParametersForRealtor)
         {
-           
+            DataForRealtorView dataForRealtorView;
+
             if (ModelState.IsValid)
             {
-
-                string userId = HttpContext.User.Identity.GetUserId();
-                if (!_realtorService.GetRealEstates().Any())
+                try
                 {
-                    await _realtorService.SetInitialData(userId);
+                    dataForRealtorView = await PreparedRealEstates(searchParametersForRealtor);
+                    return View(dataForRealtorView);
                 }
-
-                DataForRealtorView dataForRealtorView = new DataForRealtorView();
-                dataForRealtorView.SearchParametersForRealtorSave = searchParametersForRealtorSave;
-                dataForRealtorView.SearchParameters = new SearchParametersRealtorView();
-                dataForRealtorView.SearchParameters.Districts = new List<CityDistrictView>() { new CityDistrictView() { Id = -1, Name = "No matter" } };
-                dataForRealtorView.SearchParameters.Districts.AddRange(
-                    _mapper.Map<IEnumerable<CityDistrictDTO>, IEnumerable<CityDistrictView>>
-                        (await _realtorService.GetKievDistricts().OrderBy(x => x.Name).ToListAsync()));
-                dataForRealtorView.SearchParameters.RoomNumber = new List<RoomNumberView>()
-                { new RoomNumberView() { Id = -1, Name = "No matter" },
-                    new RoomNumberView(){Id=1,Name = "1"},
-                    new RoomNumberView(){Id=2,Name = "2"},
-                    new RoomNumberView(){Id=3,Name = "3"},
-                    new RoomNumberView(){Id=4,Name = "4"},
-                    new RoomNumberView(){Id=5,Name = "5"}
-                };
-                var users = await (from u in _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider) select u).ToListAsync();
-                IEnumerable<RealEstateForRealtorView> realEstates = await GetRealEstates(userId);
-
-                realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
+                catch (Exception ex)
                 {
-                    r.RealtorName = u.Name;
-                    r.RealtorEmail = u.Email;
-                    return r;
-                }).ToList();
-
-                dataForRealtorView.RealEstates = realEstates;
-                return View(dataForRealtorView);
+                    //todo
+                }
             }
 
-           
-            return View();
+            searchParametersForRealtor = new ChoosenSearchParametrsForRealtorView();
+            dataForRealtorView = await PreparedRealEstates(searchParametersForRealtor);
+
+            return View(dataForRealtorView);
         }
 
 
@@ -139,37 +81,37 @@ namespace WebUI.Controllers
             }
             return RedirectToAction("RealEstates"); // todo  returnUrl
         }
-
-        private async Task<IEnumerable<RealEstateForRealtorView>> GetRealEstates(string userId)
+        private async Task<DataForRealtorView> PreparedRealEstates(ChoosenSearchParametrsForRealtorView choosenSearchParameters)
         {
-            IEnumerable<RealEstateForRealtorView> realEstates =
+            ChoosenSearchParametersForRealtorDTO choosenSearchParametersDTO = _mapper.Map<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>
+                       (choosenSearchParameters);
 
-                await (from realEstate in _realtorService.GetRealEstates()
-                    join street in _realtorService.GetStreets() on realEstate.StreetId equals street.Id
-                    join district in _realtorService.GetKievDistricts() on street.CityDistrictId equals district.Id
-                    //join user in user1 on realEstate.RealtorId equals user.Id
-                    select new RealEstateForRealtorView
-                    {
-                        Id = realEstate.Id,
-                        Building = realEstate.Building,
-                        Appartment = realEstate.Appartment,
-                        Floor = realEstate.Floor,
-                        Height = realEstate.Height,
-                        Area = realEstate.Area,
-                        Price = realEstate.Price,
-                        RoomNumber = realEstate.RoomNumber,
-                        CreationDate = realEstate.CreationDate,
-                        Description = realEstate.Description,
-                        //Image { get; set; }
-                        IsSold = realEstate.IsSold,
-                        RealtorId = realEstate.RealtorId,
-                        // RealtorName = user.Name,
-                        //  RealtorEmail = user.Email
-                        StreetName = street.Name,
-                        DistrictName = district.Name,
-                        IsOwner = (userId == realEstate.RealtorId)
-                    }).ToListAsync();
-            return realEstates;
+            string userId = HttpContext.User.Identity.GetUserId();
+            if (!_realtorService.GetRealEstates().Any())
+            {
+                await _realtorService.SetInitialData(userId);
+            }
+
+            var users = await (from u in _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider) select u).ToListAsync();
+
+            List<RealEstateForRealtorView> realEstates = _mapper.Map<List<RealEstateForRealtor>, List<RealEstateForRealtorView>>(
+                await (_realtorService.GetRealEstates(userId, choosenSearchParametersDTO)).ToListAsync());
+
+            realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
+            {
+                r.RealtorName = u.Name;
+                r.RealtorEmail = u.Email;
+                return r;
+            });
+
+            DataForRealtorView dataForRealtorView = new DataForRealtorView
+            {
+                ChoosenSearchParametersForRealtor = choosenSearchParameters,
+                RealEstates = realEstates,
+                SearchParameters = _mapper.Map<DataForSearchParametersDTO, DataForSearchParametersRealtorView>(await _realtorService.InitiateSearchParameters())
+            };
+            return dataForRealtorView;
         }
+
     }
 }

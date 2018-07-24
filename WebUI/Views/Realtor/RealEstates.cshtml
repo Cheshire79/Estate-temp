@@ -9,13 +9,14 @@
 <h2>Index</h2>
 @using (Html.BeginForm())
 {
-    SearchParametersForRealtorSave searchParametersForRealtorSave = new SearchParametersForRealtorSave();
+    ChoosenSearchParametrsForRealtorView searchParametersForRealtor = new ChoosenSearchParametrsForRealtorView();
     //var selected = Model.SearchParameters.Districts.FirstOrDefault();
-    SelectList districts = new SelectList(Model.SearchParameters.Districts, "Id", "Name", Model.SearchParametersForRealtorSave.DistrictId);
-    SelectList roomsNumber = new SelectList(Model.SearchParameters.RoomNumber, "Id", "Name", Model.SearchParametersForRealtorSave.RoomNumber);
+    SelectList districts = new SelectList(Model.SearchParameters.Districts, "Id", "Name", Model.ChoosenSearchParametersForRealtor.DistrictId);
+    SelectList roomsNumber = new SelectList(Model.SearchParameters.RoomNumbers, "Id", "Name", Model.ChoosenSearchParametersForRealtor.RoomNumber);
+    SelectList sortedOrders = new SelectList(Model.SearchParameters.SortOrders, "Id", "Name", Model.ChoosenSearchParametersForRealtor.SortOrder);
     <div class="realtor-searchArea">
         <div class="title-right">
-            <span class="bold_orange">125</span> ads found (<span class="bold_orange">4</span> pages)
+            Available  <span class="bold_orange">@Model.RealEstates.Count</span> apartments (<span class="bold_orange">4</span> pages)
         </div>
         <div class="title-main">
             Search parameters
@@ -24,39 +25,39 @@
             <div class="group01">
                 <div class="span5">
                     <label class="input-mini-text">District</label>
-                    @Html.DropDownListFor(model => searchParametersForRealtorSave.DistrictId, districts as SelectList, new { @class = "input-large" })
+                    @Html.DropDownListFor(model => searchParametersForRealtor.DistrictId, districts as SelectList, new { @class = "input-large" })
                 </div>
                 <div class="span5">
                     <label class="input-mini-text">Rooms amount</label>
-                    @Html.DropDownListFor(model => searchParametersForRealtorSave.RoomNumber, roomsNumber as SelectList, new { @class = "input-large" })
+                    @Html.DropDownListFor(model => searchParametersForRealtor.RoomNumber, roomsNumber as SelectList, new { @class = "input-large" })
                 </div>
                 <div class="span5-3">
                     <label>My own</label>
-                    @Html.CheckBoxFor(model => searchParametersForRealtorSave.ShowOnlyMyOwn, new { @class = "input-mini" })
+                    @Html.CheckBoxFor(model => searchParametersForRealtor.ShowOnlyMyOwn, new { @class = "input-mini" })
                 </div>
             </div>
             <div class="group02">
                 <div class="span3">
                     <label class="input-mini-text">Area</label>
                     <!--input name="flrfrom" value="" class="input-mini" type="text"-->
-                    @Html.TextBoxFor(model => searchParametersForRealtorSave.AreaFrom, new { @class = "input-mini" })
+                    @Html.TextBoxFor(model => searchParametersForRealtor.AreaFrom, new { @class = "input-mini" })
                     <!--input name="flrto" value="" class="input-mini" type="text"-->
-                    @Html.TextBoxFor(model => searchParametersForRealtorSave.AreaTo, new { @class = "input-mini" })
+                    @Html.TextBoxFor(model => searchParametersForRealtor.AreaTo, new { @class = "input-mini" })
                 </div>
                 <div class="span3">
                     <label class="input-mini-text">Price</label>
-                        @Html.TextBoxFor(model => searchParametersForRealtorSave.PriceFrom, new { @class = "input-mini-price" })
-                        @Html.TextBoxFor(model => searchParametersForRealtorSave.PriceTo, new { @class = "input-mini-price" } )
+                    @Html.TextBoxFor(model => searchParametersForRealtor.PriceFrom, "{0:#.#}", new { @class = "input-mini-price" })
+                    @Html.TextBoxFor(model => searchParametersForRealtor.PriceTo, new { @class = "input-mini-price" })
                 </div>
                 <div class="span3">
                     <label class="input-mini-text">Floor</label>
-                    @Html.TextBoxFor(model => searchParametersForRealtorSave.FloorFrom, new { @class = "input-mini" })
-                    @Html.TextBoxFor(model => searchParametersForRealtorSave.FloorTo, new { @class = "input-mini"} )
+                    @Html.TextBoxFor(model => searchParametersForRealtor.FloorFrom, new { @class = "input-mini" })
+                    @Html.TextBoxFor(model => searchParametersForRealtor.FloorTo, new { @class = "input-mini" })
                 </div>
                 <div class="span3">
                     <label class="input-mini-text">Height</label>
-                    @Html.TextBoxFor(model => searchParametersForRealtorSave.HeightFrom, new { @class = "input-mini" })
-                    @Html.TextBoxFor(model => searchParametersForRealtorSave.HeightTo, new { @class = "input-mini"} )
+                    @Html.TextBoxFor(model => searchParametersForRealtor.HeightFrom, new { @class = "input-mini" })
+                    @Html.TextBoxFor(model => searchParametersForRealtor.HeightTo, new { @class = "input-mini" })
                 </div>
             </div>
         </div>
@@ -64,14 +65,11 @@
         <div class="realtor-sortArea">
             <div class="span5">
                 <label>Sort </label>
-                <select name="distr" class="input-large">
-                    <option value="0">Не имеет значения</option>
-                    <option value="1">Голосеевский р-н. Киев</option>
-                </select>
+                @Html.DropDownListFor(model => searchParametersForRealtor.SortOrder, sortedOrders as SelectList,  new { @class = "input-large",onchange = @"form.submit();"  })
             </div>
             <div class="span-half-center">
                 <p class="createTitle">
-                    @Html.ActionLink("Reset filter", "CreateRealEstate", new { ReturnUrl = Request.Url.PathAndQuery })
+                    @Html.ActionLink("Reset filter", "RealEstates", new { ReturnUrl = Request.Url.PathAndQuery })
                 </p>
             </div>
         </div>
@@ -118,8 +116,7 @@
                 площа @realEstate.Area м²
             </div>
             <div class="item-description">
-                @realEstate.Description 1 комнатная с евроремонтом на Троещине, 50/18/12, ул. Лаврухина 16, 14/22 этажного дома,
-                Качественный ремонт, хорошая мебель, вся бытовая техника. Двойные стеклопакеты, подогрев полов, импортный кафель и сантехника, два кондиционера, установлен бойлер, счетчики. Оборудована просторная гардеробная. Встроенная кухня со всей бытовой техникой. В квартире все остается и входит в стоимость. Цена без торга. Консьерж, три лифта, оборудован пандус.
+                @realEstate.Description
             </div>
             <div class="item-realtor">
                 РИЕЛТОР @realEstate.RealtorName ; @realEstate.RealtorEmail

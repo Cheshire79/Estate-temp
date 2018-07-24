@@ -5,8 +5,8 @@ namespace WebUI.Models
 {
     public class DataForRealtorView
     {
-        public SearchParametersForRealtorSave SearchParametersForRealtorSave;
-        public SearchParametersRealtorView SearchParameters;
-        public IEnumerable<RealEstateForRealtorView> RealEstates;
+        public ChoosenSearchParametrsForRealtorView ChoosenSearchParametersForRealtor;
+        public DataForSearchParametersRealtorView SearchParameters;
+        public List<RealEstateForRealtorView> RealEstates;
     }
 }

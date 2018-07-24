@@ -211,13 +211,14 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Mapper\IMapperFactoryWEB.cs" />
     <Compile Include="Mapper\MapperFactoryWEB.cs" />
+    <Compile Include="Models\ChoosenSearchParametrsForRealtorView.cs" />
     <Compile Include="Models\CityDistrictView.cs" />
     <Compile Include="Models\CreateRealEstateView.cs" />
     <Compile Include="Models\DataForRealtorView.cs" />
     <Compile Include="Models\RealEstateForRealtorView.cs" />
-    <Compile Include="Models\Realtor\SearchParametersRealtorView.cs" />
+    <Compile Include="Models\Realtor\DataForSearchParametersRealtorView.cs" />
+    <Compile Include="Models\Realtor\SortOrderView.cs" />
     <Compile Include="Models\RoomNumberView.cs" />
-    <Compile Include="Models\SearchParametrsForRealtorSave.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSubSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SpecifyingSkillsViewModel.cs" />

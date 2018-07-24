@@ -17,16 +17,17 @@ using KnowledgeManagement.DAL.Repository;
 using Ninject;
 using Ninject.Web.Common;
 using WebUI.Mapper;
+using KnowledgeManagement.BLL.Services.RealeEstateOrdering;
 
 namespace WebUI.Infrastructure
 {
     public class NinjectControllerFactory : DefaultControllerFactory
     {
         private IKernel _ninjectKernel;
-        private string _connectionString= "DefaultConnection";
+        private string _connectionString = "DefaultConnection";
         public NinjectControllerFactory(IKernel ninjectKernel1)
         {
-            _ninjectKernel = ninjectKernel1; 
+            _ninjectKernel = ninjectKernel1;
             AddBindings();
         }
 
@@ -34,7 +35,7 @@ namespace WebUI.Infrastructure
         {
             return controllerType == null
                 ? null
-                : (IController) _ninjectKernel.Get(controllerType);
+                : (IController)_ninjectKernel.Get(controllerType);
         }
 
         private void AddBindings()
@@ -69,9 +70,11 @@ namespace WebUI.Infrastructure
 
             _ninjectKernel.Bind<ISubSkillService>().To<SubSkillService>();
             _ninjectKernel.Bind<ISkillService>().To<SkillService>();
+            _ninjectKernel.Bind<IFactoryRealeEstateOrder>().To<FactoryRealeEstateOrder>();
+
             _ninjectKernel.Bind<IUserService>()
                 .To<UserService>();
-            _ninjectKernel.Bind<KnowledgeManagement.BLL.Interface.IMapperFactory>().To<KnowledgeManagement.BLL.Mapper.MapperFactory > ().InSingletonScope();
+            _ninjectKernel.Bind<KnowledgeManagement.BLL.Interface.IMapperFactory>().To<KnowledgeManagement.BLL.Mapper.MapperFactory>().InSingletonScope();
         }
 
         private void AddBindingsForIdentityDAL()
