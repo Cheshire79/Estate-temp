@@ -63,14 +63,15 @@ namespace WebUI.Controllers
         }
 
 
-        public ActionResult CreateRealEstate(string returnUrl)
+        public async Task<ActionResult> CreateRealEstate(string returnUrl)
         {
-            CreateRealEstateView skillViewModel = new CreateRealEstateView();
+            DataForCreateRealEstateView skillViewModel =
+                _mapper.Map<DataForCreateRealEstateDTO, DataForCreateRealEstateView>(await _realtorService.InitiateDataForRealEstateCreation());
+                //todo
             return View(skillViewModel);
         }
 
         [HttpPost]
-
         public async Task<ActionResult> CreateRealEstate(CreateRealEstateView model)
         {
             if (ModelState.IsValid)
@@ -80,6 +81,12 @@ namespace WebUI.Controllers
                 await _realtorService.Create(skillDTO);
             }
             return RedirectToAction("RealEstates"); // todo  returnUrl
+        }
+
+        public async Task<ActionResult> FillStreet(int districtId=1)
+        {
+            var cities = _mapper.Map<List<StreetDTO>, List< StreetView>>(await _realtorService.GetStreetsByDistrctId(districtId));
+            return Json(cities, JsonRequestBehavior.AllowGet);
         }
         private async Task<DataForRealtorView> PreparedRealEstates(ChoosenSearchParametrsForRealtorView choosenSearchParameters)
         {
@@ -112,6 +119,7 @@ namespace WebUI.Controllers
             };
             return dataForRealtorView;
         }
+
 
     }
 }

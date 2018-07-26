@@ -69,9 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IdentityService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Identity.DAL\Identity.DAL.csproj">
       <Project>{7a15b9f1-1da2-4651-be7b-8e3bcaa0e9c5}</Project>

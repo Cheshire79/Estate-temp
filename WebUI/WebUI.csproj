@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManagerSkillController.cs" />
     <Compile Include="Controllers\RealtorController.cs" />
     <Compile Include="Controllers\SearchForUsersController.cs" />
+    <Compile Include="Controllers\TestBookController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,17 +212,21 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Mapper\IMapperFactoryWEB.cs" />
     <Compile Include="Mapper\MapperFactoryWEB.cs" />
+    <Compile Include="Models\Book.cs" />
     <Compile Include="Models\ChoosenSearchParametrsForRealtorView.cs" />
     <Compile Include="Models\CityDistrictView.cs" />
     <Compile Include="Models\CreateRealEstateView.cs" />
     <Compile Include="Models\DataForRealtorView.cs" />
     <Compile Include="Models\RealEstateForRealtorView.cs" />
+    <Compile Include="Models\RealEstateToSaveView.cs" />
+    <Compile Include="Models\Realtor\DataForCreateRealEstateView.cs" />
     <Compile Include="Models\Realtor\DataForSearchParametersRealtorView.cs" />
     <Compile Include="Models\Realtor\SortOrderView.cs" />
     <Compile Include="Models\RoomNumberView.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSubSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SpecifyingSkillsViewModel.cs" />
+    <Compile Include="Models\StreetView.cs" />
     <Compile Include="Models\UsersAndRoles\UserLoginViewModel.cs" />
     <Compile Include="Models\UsersAndRoles\UserEditViewModel.cs" />
     <Compile Include="Models\UsersAndRoles\UserRegisterViewModel.cs" />
@@ -309,6 +314,9 @@
     <Content Include="Views\SearchForUsers\_SearchResultPartial.cshtml" />
     <Content Include="Views\Realtor\RealEstates.cshtml" />
     <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
+    <Content Include="Views\Realtor\StreetList.cshtml" />
+    <Content Include="Views\TestBook\Create.cshtml" />
+    <Content Include="Views\TestBook\FillBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

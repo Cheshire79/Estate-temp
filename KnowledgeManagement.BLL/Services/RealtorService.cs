@@ -353,8 +353,16 @@ namespace KnowledgeManagement.BLL.Services
         }
         public IQueryable<StreetDTO> GetStreets()
         {
-
             return _unitOfWork.Streets.GetAll().ProjectTo<StreetDTO>(_mapper.ConfigurationProvider);
+        }
+
+        public async Task <List<StreetDTO>> GetStreetsByDistrctId(int districtId)
+        {
+
+            List<StreetDTO> streets =(await _unitOfWork.Streets.GetAll().Where(x=>x.CityDistrictId==districtId).ProjectTo<StreetDTO>(_mapper.ConfigurationProvider).ToListAsync());
+            if (streets.Count == 0)
+                streets.Add(new StreetDTO() { Id = -1, Name = "Empty List" });
+            return streets;
         }
         public async Task Create(RealEstateDTO realEstateDTO)
         {
@@ -417,6 +425,27 @@ namespace KnowledgeManagement.BLL.Services
                     new SortOrderDTO(){Id=5,Name = "Total area (min – max)"},
                     new SortOrderDTO(){Id=6,Name = "Total area (max – min)"}
                 };
+            return searchParameters;
+        }
+        public async Task<DataForCreateRealEstateDTO> InitiateDataForRealEstateCreation()
+        {
+            var searchParameters = new DataForCreateRealEstateDTO();
+
+            searchParameters.Districts = await GetKievDistricts().OrderBy(x => x.Name).ToListAsync();
+            if (searchParameters.Districts.Count == 0)
+                searchParameters.Districts.Add(new CityDistrictDTO(){ Id = -1, Name = "Empty List" });
+            int fisrtDistrictId = searchParameters.Districts.First().Id;
+            searchParameters.Streets = await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == fisrtDistrictId).ProjectTo<StreetDTO>(_mapper.ConfigurationProvider).OrderBy(x => x.Name).ToListAsync();
+            if (searchParameters.Streets.Count==0)
+                searchParameters.Streets.Add(new StreetDTO(){Id = -1,Name="Empty List"});
+            searchParameters.RoomNumbers = new List<RoomNumberDTO>()
+            {
+                new RoomNumberDTO(){Id=1,Name = "1"},
+                new RoomNumberDTO(){Id=2,Name = "2"},
+                new RoomNumberDTO(){Id=3,Name = "3"},
+                new RoomNumberDTO(){Id=4,Name = "4"},
+                new RoomNumberDTO(){Id=5,Name = "5"}
+            };
             return searchParameters;
         }
 
