@@ -55,14 +55,14 @@ SelectdBook
         function FillBooks1() {
 
 
-            var CategoryId = $('#selected_CategoryId').val();
+            var CategoryId12 = $('#selected_CategoryId').val();
             //console.log(CategoryId);
 
             $.ajax({
                 url: 'FillBooks',
                 type: "GET",
                 dataType: "JSON",
-                data: { CategoryId: CategoryId },
+                data: { CategoryId1: CategoryId12 },
                 success: function (response) {
                     console.log(response);
                     $("#selectd_BookId1").html("");

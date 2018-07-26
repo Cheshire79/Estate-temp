@@ -29,7 +29,7 @@ namespace WebUI.Controllers
 
         }
 
-        public ActionResult FillBooks(int? CategoryId)
+        public ActionResult FillBooks(int? CategoryId1)
         {
             List<Book> Books = new List<Book>()
             {
@@ -41,7 +41,7 @@ namespace WebUI.Controllers
                 new Book() { BookId= 6, CategoryId=3, BookName = "To Kill A Mockingbird" },
             };
 
-            return Json(Books.Where(m => m.CategoryId == CategoryId), JsonRequestBehavior.AllowGet);
+            return Json(Books.Where(m => m.CategoryId == CategoryId1), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
