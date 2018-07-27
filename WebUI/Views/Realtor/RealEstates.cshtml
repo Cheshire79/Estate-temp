@@ -96,62 +96,66 @@
 
 @foreach (var realEstate in Model.RealEstates)
 {
-    <div class="realtor-itemAreaView-content">
-        <div class="image">Меню</div>
-        <div class="info">
-            <div class="column2_3">
-                <div class="item-address">
-                    @realEstate.StreetName @realEstate.Building, кв @realEstate.Appartment; @realEstate.DistrictName
-                </div>
-            </div>
-            <div class="column1_3">
-                <div class="item-price">
-                    @realEstate.Price.ToString("C0", CultureInfo.CreateSpecificCulture("en-US"))
-                </div>
-            </div>
-            <div>
-                @realEstate.RoomNumber комн, @realEstate.Floor этаж, @realEstate.Height эт.,
-            </div>
-            <div>
-                площа @realEstate.Area м²
-            </div>
-            <div class="item-description">
-                @realEstate.Description
-            </div>
-            <div class="item-realtor">
-                РИЕЛТОР @realEstate.RealtorName ; @realEstate.RealtorEmail
-            </div>
-
-            <div>
-                дата добавления @realEstate.CreationDate.ToString("d")
+<div class="realtor-itemAreaView-content">
+    <div class="image">Меню</div>
+    <div class="info">
+        <div class="column2_3">
+            <div class="item-address">
+                @realEstate.StreetName @realEstate.Building, кв @realEstate.Appartment; @realEstate.DistrictName
             </div>
         </div>
-        @if (realEstate.IsOwner && !realEstate.IsSold)
-        {
-            <!--div id="content2">Основное содержимое 2</div-->
-            <div class="span5">
-                @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
-                {
-
-                    <input type="submit" value="Edit" />
-                }
+        <div class="column1_3">
+            <div class="item-price">
+                @realEstate.Price.ToString("C0", CultureInfo.CreateSpecificCulture("en-US"))
             </div>
-            <div class="span5">
-                @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
-                {
+        </div>
+        <div>
+            @realEstate.RoomNumber комн, @realEstate.Floor этаж, @realEstate.Height эт.,
+        </div>
+        <div>
+            площа @realEstate.Area м²
+        </div>
+        <div class="item-description">
+            @realEstate.Description
+        </div>
+        <div class="item-realtor">
+            РИЕЛТОР @realEstate.RealtorName ; @realEstate.RealtorEmail
+        </div>
 
-                    <input type="submit" value="Mark as sold" />
-                }
-            </div>
-            <div class="span5">
-                @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
-                {
-
-                    <input type="submit" value="Delete" />
-                }
-            </div>
-        }
+        <div>
+            дата добавления @realEstate.CreationDate.ToString("d")
+        </div>
     </div>
+    @if (realEstate.IsOwner && !realEstate.IsSold)
+    {
+        <!--div id="content2">Основное содержимое 2</div-->
+        <div class="span5">
+            @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
+            {
+
+                <input type="submit" value="Edit" />
+            }
+        </div>
+        @if (!realEstate.IsSold)
+        {
+
+        <div class="span5">
+            @using (Html.BeginForm("MarkAsSold","", FormMethod.Post, new { onclick = "return confirm('Are sure wants to mark as sold ?');" }))
+            {
+
+                <input type="submit" value="Mark as sold" />
+}
+        </div>
+        }
+        <div class="span5">
+            @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
+            {
+
+                <input type="submit" value="Delete" />
+            }
+        </div>
+    }
+</div>
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

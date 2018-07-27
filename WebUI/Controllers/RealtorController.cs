@@ -72,18 +72,29 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateRealEstate(CreateRealEstateView model)
+        public async Task<ActionResult> CreateRealEstate(RealEstateToSaveView realEstate)
         {
             if (ModelState.IsValid)
             {
-                var skillDTO = _mapper.Map<CreateRealEstateView, RealEstateDTO>(model);
-                //   skillDTO.Id = new RealEstateDTO().Id;
-                await _realtorService.Create(skillDTO);
+                var realEstatelDTO = _mapper.Map<RealEstateToSaveView, RealEstateDTO>(realEstate);
+				//   skillDTO.Id = new RealEstateDTO().Id;
+				string realtorId = HttpContext.User.Identity.GetUserId();
+				await _realtorService.Create(realEstatelDTO,realtorId);
             }
             return RedirectToAction("RealEstates"); // todo  returnUrl
         }
-
-        public async Task<ActionResult> FillStreet(int districtId=1)
+		[HttpPost]
+		public async Task<ActionResult> MarkAsSold()
+		{
+			
+				
+				
+				await _realtorService.MarkAsSold(realEstatelDTO, realtorId);
+			
+			return RedirectToAction("RealEstates"); // todo  returnUrl
+		}
+		
+		public async Task<ActionResult> FillStreet(int districtId=1)
         {
             var cities = _mapper.Map<List<StreetDTO>, List< StreetView>>(await _realtorService.GetStreetsByDistrctId(districtId));
             return Json(cities, JsonRequestBehavior.AllowGet);

@@ -84,7 +84,14 @@ namespace WebUI.Mapper
                     o.MapFrom(s => string.IsNullOrWhiteSpace(s.PriceTo) ? true : false)
                 );
 
-                cfg.CreateMap<RealEstateForRealtor, RealEstateForRealtorView>();
+				cfg.CreateMap<RealEstateToSaveView, RealEstateDTO>()
+				.ForMember(dest => dest.Id, options => options.Ignore())
+				.ForMember(dest => dest.CreationDate, options => options.Ignore())
+				.ForMember(dest => dest.IsSold, options => options.Ignore())
+				.ForMember(dest => dest.RealtorId, options => options.Ignore()				);
+					
+
+				cfg.CreateMap<RealEstateForRealtor, RealEstateForRealtorView>();
 
                 cfg.CreateMap<DataForSearchParametersRealtorView, DataForSearchParametersDTO>();
 

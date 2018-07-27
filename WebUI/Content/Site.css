@@ -477,19 +477,17 @@ DIV#categoriesRoles a {
         vertical-align: middle;
         outline: 0 none;
     }
-.input-large-update-width {
-    max-width: 250px !important;
-    color: #aa2aee;
-}
+
 #selected_districtId {
     max-width: 250px !important;
-    color: #aa2aee;
+  
 }
 
 #textBox_description {
-    max-width: 450px !important;
-    height: 150px !important;
-    color: #aa2aee;
+	max-width: 550px !important;
+	width: 750px !important;
+	height: 150px !important;
+	color: #aa2aee;
 }
 .realtor-searchArea .span5 {
     margin-left: 0;

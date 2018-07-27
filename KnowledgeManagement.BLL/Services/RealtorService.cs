@@ -364,11 +364,14 @@ namespace KnowledgeManagement.BLL.Services
                 streets.Add(new StreetDTO() { Id = -1, Name = "Empty List" });
             return streets;
         }
-        public async Task Create(RealEstateDTO realEstateDTO)
+        public async Task Create(RealEstateDTO realEstateDTO, string realtorId)
         {
             var realEstate = _mapper.Map<RealEstateDTO, RealEstate>(realEstateDTO);
             realEstate.Id = new RealEstate().Id;
-            _unitOfWork.RealEstates.Create(realEstate);
+			realEstate.RealtorId = realtorId;
+			realEstate.IsSold = false;
+			realEstate.CreationDate = DateTime.Now;
+			_unitOfWork.RealEstates.Create(realEstate);
             await _unitOfWork.SaveAsync();
         }
 
