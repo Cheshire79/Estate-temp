@@ -477,17 +477,30 @@ DIV#categoriesRoles a {
         vertical-align: middle;
         outline: 0 none;
     }
+.input-large-update-width {
+    max-width: 250px !important;
+    color: #aa2aee;
+}
+#selected_districtId {
+    max-width: 250px !important;
+    color: #aa2aee;
+}
 
-    .realtor-searchArea .span5 {
-        margin-left: 0;
-        width: 35.42553191489362%;
-        display: block;
-        float: left;
-        min-height: 30px;
-        margin-left: 2.127659574468085%;
-        box-sizing: border-box;
-        outline: 0 none;
-    }
+#textBox_description {
+    max-width: 450px !important;
+    height: 150px !important;
+    color: #aa2aee;
+}
+.realtor-searchArea .span5 {
+    margin-left: 0;
+    width: 35.42553191489362%;
+    display: block;
+    float: left;
+    min-height: 30px;
+    margin-left: 2.127659574468085%;
+    box-sizing: border-box;
+    outline: 0 none;
+}
 
     .realtor-searchArea .span5-3 {
         margin-left: 0;

@@ -314,7 +314,6 @@
     <Content Include="Views\SearchForUsers\_SearchResultPartial.cshtml" />
     <Content Include="Views\Realtor\RealEstates.cshtml" />
     <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
-    <Content Include="Views\Realtor\StreetList.cshtml" />
     <Content Include="Views\TestBook\Create.cshtml" />
     <Content Include="Views\TestBook\FillBooks.cshtml" />
   </ItemGroup>

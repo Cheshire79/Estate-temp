@@ -13,24 +13,33 @@
     RealEstateToSaveView realEstate = new RealEstateToSaveView();
     SelectList districts = new SelectList(Model.Districts, "Id", "Name", Model.Districts.First());
     SelectList streets = new SelectList(Model.Streets, "Id", "Name", Model.Streets.First());
+    SelectList roomsNumber = new SelectList(Model.RoomNumbers, "Id", "Name", Model.RoomNumbers.First());
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>CreateRealEstateView</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
+
+            <label class="control-label col-md-2">District</label>
             <div class="col-md-10">
-                <label class="control-label col-md-2">District</label>
-                @Html.DropDownListFor(model => realEstate.DistrictId, districts as SelectList, new { @class = "form-control", @id = "selected_districtId", @onchange = "FillSreets()" })
+                
+                    @Html.DropDownListFor(model => realEstate.DistrictId, districts as SelectList, new { @class = "form-control", @id = "selected_districtId", @onchange = "FillSreets()" })
+                
             </div>
+
         </div>
 
         <div class="form-group">
+
+            <label class="control-label col-md-2">Street</label>
             <div class="col-md-10">
-                <label class="control-label col-md-2">Street</label>
-                @Html.DropDownListFor(model => realEstate.StreetId, streets as SelectList, new { @class = "form-control", @id = "selected_streetId" })
-                @Html.ValidationMessageFor(model => realEstate.StreetId, "", new { @class = "text-danger"})
+                <div class="input-large-update-width">
+                    @Html.DropDownListFor(model => realEstate.StreetId, streets as SelectList, new { @class = "form-control", @id = "selected_streetId" })
+                </div>
+
+                @Html.ValidationMessageFor(model => realEstate.StreetId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -84,7 +93,7 @@
         <div class="form-group">
             @Html.LabelFor(model => realEstate.RoomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => realEstate.RoomNumber, roomsNumber as SelectList, new { @class = "form-control"})
                 @Html.ValidationMessageFor(model => realEstate.RoomNumber, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -94,44 +103,15 @@
         <div class="form-group">
             @Html.LabelFor(model => realEstate.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => realEstate.Description, new { htmlAttributes = new { @class = "form-control", @id = "textBox_description" } })
                 @Html.ValidationMessageFor(model => realEstate.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => realEstate.StreetId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.StreetId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => realEstate.StreetId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => realEstate.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => realEstate.StreetName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => realEstate.StreetName, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => realEstate.DistrictId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => realEstate.DistrictId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => realEstate.DistrictId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => realEstate.DistrictName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => realEstate.DistrictId, new { htmlAttributes = new { @class = "form-control" } })
-
-                </div>
-            </div>*@
 
 
 
