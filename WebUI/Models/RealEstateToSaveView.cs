@@ -41,5 +41,7 @@ namespace WebUI.Models
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Streed need to be choosen!")]
         public int StreetId { get; set; }
         public int DistrictId { get; set; }
-    }
+
+		public string ImageName { get; set; }
+	}
 }

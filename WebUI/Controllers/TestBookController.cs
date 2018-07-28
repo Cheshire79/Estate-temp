@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -57,5 +58,33 @@ namespace WebUI.Controllers
             return RedirectToAction("FillBooks", "TestBook", selectdBook);
             
         }
-    }
+
+		public ActionResult CreatePic()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult CreatePic(Picture pic, HttpPostedFileBase uploadImage)
+		{
+			if (ModelState.IsValid && uploadImage != null)
+			{
+				byte[] imageData = null;
+				// считываем переданный файл в массив байтов
+				using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+				{
+					imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+				}
+				// установка массива байтов
+				pic.Image = imageData;
+
+		
+
+				return RedirectToAction("Index");
+			}
+			return View(pic);
+		}
+
+
+	}
 }

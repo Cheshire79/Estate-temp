@@ -9,8 +9,8 @@ namespace WebUI.Models
         public int SortOrder { get; set; } = -1;
 
 
-        [RegularExpression(@"^\s*\d*\s*")]
-        public string AreaFrom { get; set; }
+        [RegularExpression(@"^\d*")]
+        public int? AreaFrom { get; set; }
         [RegularExpression(@"^\s*\d*\s*")]
         public string AreaTo { get; set; }
 

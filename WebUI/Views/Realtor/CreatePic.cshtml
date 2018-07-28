@@ -2,6 +2,8 @@
 @using WebUI.Models
 @model WebUI.Models.Realtor.DataForCreateRealEstateView
 @{
+    /**/
+
     ViewBag.Title = "CreateRealEstate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,6 +12,11 @@
 
 @using (Html.BeginForm("CreatePic", "Realtor", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    
+
+
+
+
     RealEstateToSaveView realEstate = new RealEstateToSaveView();
     SelectList districts = new SelectList(Model.Districts, "Id", "Name", Model.Districts.First());
     SelectList streets = new SelectList(Model.Streets, "Id", "Name", Model.Streets.First());
@@ -107,11 +114,14 @@
                 @Html.ValidationMessageFor(model => realEstate.Description, "", new { @class = "text-danger" })
             </div>
         </div>
+
     </div>
+
+
     <fieldset>
         <legend>Добавить изображение</legend>
 
-        <div class="editor-label">Название</div>
+        <div class="editor-label">Name</div>
         <div class="editor-field">
 
         </div>
@@ -120,20 +130,14 @@
         <div class="editor-field">
             <input type="file" name="uploadImage" />
         </div>
-
-
     </fieldset>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="CreateRealEstate" class="btn btn-default" />
-        </div>
-    </div>
-
+    <p>
+        <input type="submit" value="Add">
+    </p>
 }
 
-
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к списку", "Index")
 </div>
 
 <script type="text/javascript">
@@ -161,5 +165,6 @@
 </script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
 }
+
+

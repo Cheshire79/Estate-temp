@@ -65,7 +65,7 @@
         <div class="realtor-sortArea">
             <div class="span5">
                 <label>Sort </label>
-                @Html.DropDownListFor(model => searchParametersForRealtor.SortOrder, sortedOrders as SelectList,  new { @class = "input-large",onchange = @"form.submit();"  })
+                @Html.DropDownListFor(model => searchParametersForRealtor.SortOrder, sortedOrders as SelectList, new { @class = "input-large", onchange = @"form.submit();" })
             </div>
             <div class="span-half-center">
                 <p class="createTitle">
@@ -96,66 +96,67 @@
 
 @foreach (var realEstate in Model.RealEstates)
 {
-<div class="realtor-itemAreaView-content">
-    <div class="image">Меню</div>
-    <div class="info">
-        <div class="column2_3">
-            <div class="item-address">
-                @realEstate.StreetName @realEstate.Building, кв @realEstate.Appartment; @realEstate.DistrictName
+    int Id = realEstate.Id;
+    <div class="realtor-itemAreaView-content">
+        <div class="image">Меню</div>
+        <div class="info">
+            <div class="column2_3">
+                <div class="item-address">
+                    @realEstate.StreetName @realEstate.Building, кв @realEstate.Appartment; @realEstate.DistrictName
+                </div>
+            </div>
+            <div class="column1_3">
+                <div class="item-price">
+                    @realEstate.Price.ToString("C0", CultureInfo.CreateSpecificCulture("en-US"))
+                </div>
+            </div>
+            <div>
+                @realEstate.RoomNumber комн, @realEstate.Floor этаж, @realEstate.Height эт.,
+            </div>
+            <div>
+                площа @realEstate.Area м²
+            </div>
+            <div class="item-description">
+                @realEstate.Description
+            </div>
+            <div class="item-realtor">
+                РИЕЛТОР @realEstate.RealtorName ; @realEstate.RealtorEmail
+            </div>
+
+            <div>
+                дата добавления @realEstate.CreationDate.ToString("d")
             </div>
         </div>
-        <div class="column1_3">
-            <div class="item-price">
-                @realEstate.Price.ToString("C0", CultureInfo.CreateSpecificCulture("en-US"))
-            </div>
-        </div>
-        <div>
-            @realEstate.RoomNumber комн, @realEstate.Floor этаж, @realEstate.Height эт.,
-        </div>
-        <div>
-            площа @realEstate.Area м²
-        </div>
-        <div class="item-description">
-            @realEstate.Description
-        </div>
-        <div class="item-realtor">
-            РИЕЛТОР @realEstate.RealtorName ; @realEstate.RealtorEmail
-        </div>
-
-        <div>
-            дата добавления @realEstate.CreationDate.ToString("d")
-        </div>
-    </div>
-    @if (realEstate.IsOwner && !realEstate.IsSold)
-    {
-        <!--div id="content2">Основное содержимое 2</div-->
-        <div class="span5">
-            @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
-            {
-
-                <input type="submit" value="Edit" />
-            }
-        </div>
-        @if (!realEstate.IsSold)
+        @if (realEstate.IsOwner)
         {
+            <!--div id="content2">Основное содержимое 2</div-->
+            <div class="span5">
+                @using (Html.BeginForm("DeleteRealEstate", "Realtor", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
+                {
 
-        <div class="span5">
-            @using (Html.BeginForm("MarkAsSold","", FormMethod.Post, new { onclick = "return confirm('Are sure wants to mark as sold ?');" }))
+                    <input type="submit" value="Edit" />
+                }
+            </div>
+            if (!realEstate.IsSold)
             {
 
-                <input type="submit" value="Mark as sold" />
-}
-        </div>
-        }
-        <div class="span5">
-            @using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
-            {
-
-                <input type="submit" value="Delete" />
+                <div class="span5">
+                    @using (Html.BeginForm("MarkAsSold", "Realtor", FormMethod.Post, new { onclick = "return confirm('Are sure wants to mark as sold ?');" }))
+                    {
+                        @Html.HiddenFor(model => Id)
+                        <input type="submit" value="Mark as sold" />
+                    }
+                </div>
             }
-        </div>
-    }
-</div>
+                <div class="span5">
+                    @using (Html.BeginForm("DeleteRealEstate", "Realtor", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
+                    {
+                        @Html.HiddenFor(model => Id)
+                        <input type="submit" value="Delete" />
+                    }
+                </div>
+        }
+    </div>
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

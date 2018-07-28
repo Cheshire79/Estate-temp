@@ -44,9 +44,9 @@ namespace WebUI.Mapper
                 cfg.CreateMap<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>()
 
                 .ForMember(x => x.AreaFrom, o =>
-                    o.MapFrom(s => string.IsNullOrWhiteSpace(s.AreaFrom) ? -1 : Int32.Parse(s.AreaFrom)))
+                    o.MapFrom(s => !s.AreaFrom.HasValue ? -1 : s.AreaFrom.Value))
                 .ForMember(x => x.AreaFromIgnored, o =>
-                    o.MapFrom(s => string.IsNullOrWhiteSpace(s.AreaFrom) ? true : false))
+                    o.MapFrom(s => !s.AreaFrom.HasValue ? true : false))
 
                 .ForMember(x => x.AreaTo, o =>
                     o.MapFrom(s => string.IsNullOrWhiteSpace(s.AreaTo) ? -1 : Int32.Parse(s.AreaTo)))

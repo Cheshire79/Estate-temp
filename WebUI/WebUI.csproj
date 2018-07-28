@@ -217,6 +217,7 @@
     <Compile Include="Models\CityDistrictView.cs" />
     <Compile Include="Models\CreateRealEstateView.cs" />
     <Compile Include="Models\DataForRealtorView.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\RealEstateForRealtorView.cs" />
     <Compile Include="Models\RealEstateToSaveView.cs" />
     <Compile Include="Models\Realtor\DataForCreateRealEstateView.cs" />
@@ -316,6 +317,8 @@
     <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
     <Content Include="Views\TestBook\Create.cshtml" />
     <Content Include="Views\TestBook\FillBooks.cshtml" />
+    <Content Include="Views\TestBook\CreatePic.cshtml" />
+    <Content Include="Views\Realtor\CreatePic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
