@@ -54,13 +54,14 @@
     <Compile Include="Date\RealEstateForRealtor.cs" />
     <Compile Include="Date\RoomNumberDTO.cs" />
     <Compile Include="Date\SkillDTO.cs" />
+    <Compile Include="Date\SortOrder.cs" />
     <Compile Include="Date\SortOrderDTO.cs" />
     <Compile Include="Date\SpecifyingSkillDTO.cs" />
     <Compile Include="Date\SpecifyingSkillForSearchDTO.cs" />
     <Compile Include="Date\StreetDTO.cs" />
     <Compile Include="Date\SubSkillDTO.cs" />
-    <Compile Include="IFactoryRealeEstateOrder.cs" />
     <Compile Include="IMapperFactory.cs" />
+    <Compile Include="IRealeEstateSort.cs" />
     <Compile Include="IRealtorService.cs" />
     <Compile Include="ISkillService.cs" />
     <Compile Include="ISubSkillService.cs" />

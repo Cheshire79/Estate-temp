@@ -56,13 +56,7 @@
   <ItemGroup>
     <Compile Include="Mapper\MapperBLLFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\RealeEstateOrdering\FactoryRealeEstateOrder.cs" />
-    <Compile Include="Services\RealeEstateOrdering\RealeEstateOrderAscendingArea.cs" />
-    <Compile Include="Services\RealeEstateOrdering\RealeEstateOrderAscendingDate.cs" />
-    <Compile Include="Services\RealeEstateOrdering\RealeEstateOrderAscendingPrice.cs" />
-    <Compile Include="Services\RealeEstateOrdering\RealeEstateOrderDescendingArea.cs" />
-    <Compile Include="Services\RealeEstateOrdering\RealeEstateOrderDescendingDate.cs" />
-    <Compile Include="Services\RealeEstateOrdering\RealeEstateOrderDescendingPrice.cs" />
+    <Compile Include="Services\RealeEstateOrdering\RealeEstateSort.cs" />
     <Compile Include="Services\RealtorService.cs" />
     <Compile Include="Services\SkillService.cs" />
     <Compile Include="Services\SubSkillService.cs" />

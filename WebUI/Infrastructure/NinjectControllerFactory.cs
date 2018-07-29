@@ -70,7 +70,7 @@ namespace WebUI.Infrastructure
 
             _ninjectKernel.Bind<ISubSkillService>().To<SubSkillService>();
             _ninjectKernel.Bind<ISkillService>().To<SkillService>();
-            _ninjectKernel.Bind<IFactoryRealeEstateOrder>().To<FactoryRealeEstateOrder>();
+            _ninjectKernel.Bind<IRealeEstateSort>().To<RealeEstateSort>();
 
             _ninjectKernel.Bind<IUserService>()
                 .To<UserService>();

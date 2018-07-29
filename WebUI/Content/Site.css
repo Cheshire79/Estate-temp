@@ -712,19 +712,20 @@ DIV#categoriesRoles a {
     background-color: #fffee1;
     margin-left: 185px;
     min-height: 162px;
+    padding-left: 5px 
 }
 
 .realtor-itemAreaView-content .image {
     margin: 15px;
     background-color: #ddd;
     float: left;
-    width: 163px;
-    height: 163px;
+    max-width:163px;
+    max-height:163px;
 }
 
 .column1_3 {
     margin-left: 0;
-    width: 30.0%;
+    width: 31.0%;
     display: block;
     float: left;
     margin-left: 2.127659574468085%;

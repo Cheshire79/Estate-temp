@@ -8,7 +8,7 @@
 
 <h2>CreateRealEstate</h2>
 
-@using (Html.BeginForm("CreatePic", "Realtor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("CreateRealEstate", "Realtor", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     RealEstateToSaveView realEstate = new RealEstateToSaveView();
     SelectList districts = new SelectList(Model.Districts, "Id", "Name", Model.Districts.First());

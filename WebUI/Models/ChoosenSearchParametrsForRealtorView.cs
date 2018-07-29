@@ -4,32 +4,32 @@ namespace WebUI.Models
 {
     public class ChoosenSearchParametrsForRealtorView
     {
-        public int DistrictId { get; set; } = -1;
-        public int RoomNumber { get; set; } = -1;
-        public int SortOrder { get; set; } = -1;
+        public int? DistrictId { get; set; } = null;
+        public int? RoomNumber { get; set; } = null;
+        public int SortOrder { get; set; } = 1;//todo
 
 
         [RegularExpression(@"^\d*")]
         public int? AreaFrom { get; set; }
-        [RegularExpression(@"^\s*\d*\s*")]
+        [RegularExpression(@"^\d*")]
         public string AreaTo { get; set; }
 
-        [RegularExpression(@"^\s*\d*\.?\d*\s*")]
+        [RegularExpression(@"^\d*\.?\d*")]
         public string PriceFrom { get; set; }
 
-        [RegularExpression(@"^\s*\d*\.?\d*\s*")]
+        [RegularExpression(@"^\d*\.?\d*")]
         public string PriceTo { get; set; }
 
-        [RegularExpression(@"^\s*\d*\s*")]
+        [RegularExpression(@"^\d*")]
         public string FloorFrom { get; set; }
 
-        [RegularExpression(@"^\s*\d*\s*")]
+        [RegularExpression(@"^\d*")]
         public string FloorTo { get; set; }
 
-        [RegularExpression(@"^\s*\d*\s*")]
+        [RegularExpression(@"^\d*")]
         public string HeightFrom { get; set; }
 
-        [RegularExpression(@"^\s*\d*\s*")]
+        [RegularExpression(@"^\d*")]
         public string HeightTo { get; set; }
         public bool ShowOnlyMyOwn { get; set; }
     }
