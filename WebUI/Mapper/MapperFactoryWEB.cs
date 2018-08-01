@@ -37,8 +37,8 @@ namespace WebUI.Mapper
 
                 cfg.CreateMap<LevelViewModel, LevelDTO>();
 
-                cfg.CreateMap<CityDistrictView, CityDistrictDTO>();
-                cfg.CreateMap<CityDistrictDTO, CityDistrictView>();
+                cfg.CreateMap<CityDistrictDropItemView, CityDistrictDTO>();
+                cfg.CreateMap<CityDistrictDTO, CityDistrictDropItemView>();
 
                 cfg.CreateMap<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>();
 

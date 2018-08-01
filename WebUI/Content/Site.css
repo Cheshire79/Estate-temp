@@ -489,6 +489,10 @@ DIV#categoriesRoles a {
 	height: 150px !important;
 	color: #aa2aee;
 }
+#load_imag_button {
+    max-width: 450px !important;
+    width: 750px !important;
+}
 .realtor-searchArea .span5 {
     margin-left: 0;
     width: 35.42553191489362%;
@@ -723,6 +727,13 @@ DIV#categoriesRoles a {
     max-height:163px;
 }
 
+.create_realEstate-image {
+    margin: 15px;
+    background-color: #ddd;
+    float: left;
+    max-width: 163px;
+    max-height: 163px;
+}
 .column1_3 {
     margin-left: 0;
     width: 31.0%;

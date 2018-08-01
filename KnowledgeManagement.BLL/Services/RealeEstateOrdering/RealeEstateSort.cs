@@ -6,17 +6,27 @@ using KnowledgeManagement.BLL.Interface.Date;
 
 namespace KnowledgeManagement.BLL.Services.RealeEstateOrdering
 {
+    class PairedTextMethod
+    {
+        public PairedTextMethod(string text, Sorting method)
+        {
+            Text = text ?? throw new ArgumentNullException(nameof(text));
+            Method = method ?? throw new ArgumentNullException(nameof(method));
+        }
 
+        public string Text;
+        public Sorting Method;
+    }
     public class RealeEstateSort : IRealeEstateSort
     {
-        private Dictionary<SortOrder, Tuple<string, Sorting>> _textAndFunctions = new Dictionary<SortOrder, Tuple<string, Sorting>>()
+        private Dictionary<SortOrder, PairedTextMethod> _textAndFunctions = new Dictionary<SortOrder, PairedTextMethod>()
         {
-            {SortOrder.ByDateNewOld, new Tuple<string, Sorting>("By date listed (new – old)", l => l.OrderByDescending(x => x.CreationDate))},
-            {SortOrder.ByDateOldNew, new Tuple<string, Sorting>("By date listed (old – new)", l => l.OrderBy(x => x.CreationDate))},
-            {SortOrder.ByPriceMinMax, new Tuple<string, Sorting>("By price (min – max)", l => l.OrderBy(x => x.Price))},
-            {SortOrder.ByPriceMaxMin, new Tuple<string, Sorting>("By price (max – min)", l => l.OrderByDescending(x => x.Price))},
-            {SortOrder.ByTotalAreaMinMax, new Tuple<string, Sorting>("Total area (min – max)", l => l.OrderBy(x => x.Area))},
-            {SortOrder.ByTotalAreaMaxMin, new Tuple<string, Sorting>("Total area (max – min)", l => l.OrderByDescending(x => x.Area))}
+            {SortOrder.ByDateNewOld, new PairedTextMethod("By date listed (new – old)", l => l.OrderByDescending(x => x.CreationDate))},
+            {SortOrder.ByDateOldNew, new PairedTextMethod("By date listed (old – new)", l => l.OrderBy(x => x.CreationDate))},
+            {SortOrder.ByPriceMinMax, new PairedTextMethod("By price (min – max)", l => l.OrderBy(x => x.Price))},
+            {SortOrder.ByPriceMaxMin, new PairedTextMethod("By price (max – min)", l => l.OrderByDescending(x => x.Price))},
+            {SortOrder.ByTotalAreaMinMax, new PairedTextMethod("Total area (min – max)", l => l.OrderBy(x => x.Area))},
+            {SortOrder.ByTotalAreaMaxMin, new PairedTextMethod("Total area (max – min)", l => l.OrderByDescending(x => x.Area))}
         };
 
         public List<SortOrderDTO> GetSortingOptionsName()
@@ -24,14 +34,14 @@ namespace KnowledgeManagement.BLL.Services.RealeEstateOrdering
             List<SortOrderDTO> result = new List<SortOrderDTO>();
             foreach (var item in _textAndFunctions)
             {
-                result.Add(new SortOrderDTO() { Id = item.Key, Name = item.Value.Item1 });
+                result.Add(new SortOrderDTO() { Id = item.Key, Name = item.Value.Text });
             }
             return result;
         }
 
         public Sorting Sort(SortOrder sortOrder)
         {
-            return _textAndFunctions[sortOrder].Item2;
+            return _textAndFunctions[sortOrder].Method;
         }
     }
 }

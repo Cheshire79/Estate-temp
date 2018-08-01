@@ -19,5 +19,6 @@ namespace KnowledgeManagement.BLL.Interface.Date
         public int? HeightFrom;
         public int? HeightTo;
         public bool ShowOnlyMyOwn = false;
+        public int? Page;
     }
 }

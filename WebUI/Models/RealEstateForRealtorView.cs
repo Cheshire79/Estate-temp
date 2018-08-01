@@ -18,7 +18,7 @@ namespace WebUI.Models
         public bool IsSold { get; set; }
         public int StreetId { get; set; }
         public string StreetName { get; set; }
-        public int DistrictId { get; set; }//todo
+        public int DistrictId { get; set; }
         public string DistrictName { get; set; }
         public string RealtorId { get; set; }
         public string RealtorName { get; set; }

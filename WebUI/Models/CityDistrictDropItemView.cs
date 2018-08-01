@@ -1,9 +1,9 @@
 ﻿
 namespace WebUI.Models
 {
-    public class StreetView
+    public class CityDistrictDropItemView
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
     }
 }

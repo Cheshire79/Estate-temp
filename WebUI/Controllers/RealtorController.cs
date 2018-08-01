@@ -24,8 +24,9 @@ namespace WebUI.Controllers
 		private IRealtorService _realtorService;
 		private IIdentityService _identityService;
 		private IMapper _mapper;
+	    private int _pageSize = 8;
 
-		public RealtorController(IRealtorService realtorService, IIdentityService identityService, IMapperFactoryWEB mapperFactory)
+        public RealtorController(IRealtorService realtorService, IIdentityService identityService, IMapperFactoryWEB mapperFactory)
 		{
 			_realtorService = realtorService;
 			_identityService = identityService;
@@ -44,7 +45,6 @@ namespace WebUI.Controllers
 		public async Task<ActionResult> RealEstates(ChoosenSearchParametrsForRealtorView searchParametersForRealtor)
 		{
 			DataForRealtorView dataForRealtorView;
-
 			if (ModelState.IsValid)
 			{
 				try
@@ -57,10 +57,8 @@ namespace WebUI.Controllers
 					//todo
 				}
 			}
-
 			searchParametersForRealtor = new ChoosenSearchParametrsForRealtorView();
 			dataForRealtorView = await PreparedRealEstates(searchParametersForRealtor);
-
 			return View(dataForRealtorView);
 		}
 
@@ -81,16 +79,13 @@ namespace WebUI.Controllers
 				if (uploadImage != null)
 				{ 
 					byte[] imageData = null;
-				// считываем переданный файл в массив байтов
 				using (var binaryReader = new BinaryReader(uploadImage.InputStream))
 				{
 					imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
 				}
-					// установка массива байтов
 					realEstate.Image = imageData;
 			}
 					var realEstatelDTO = _mapper.Map<RealEstateToSaveView, RealEstateDTO>(realEstate);
-				//   skillDTO.Id = new RealEstateDTO().Id;
 				string realtorId = HttpContext.User.Identity.GetUserId();
 				await _realtorService.Create(realEstatelDTO, realtorId);
 			}
@@ -109,32 +104,29 @@ namespace WebUI.Controllers
 		{
 			if (id != null)
 				await _realtorService.DeleteRealEstate(id.Value);
-
 			return RedirectToAction("RealEstates"); // todo  returnUrl
 		}
 
 		public async Task<ActionResult> FillStreet(int districtId = 1)
 		{
-			var cities = _mapper.Map<List<StreetDTO>, List<StreetView>>(await _realtorService.GetStreetsByDistrctId(districtId));
+			var cities = _mapper.Map<List<StreetDTO>, List<StreetDropItemView>>(await _realtorService.GetStreetsByDistrctId(districtId));
 			return Json(cities, JsonRequestBehavior.AllowGet);
 		}
 		private async Task<DataForRealtorView> PreparedRealEstates(ChoosenSearchParametrsForRealtorView choosenSearchParameters)
 		{
 			ChoosenSearchParametersForRealtorDTO choosenSearchParametersDTO = _mapper.Map<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>
 					   (choosenSearchParameters);
-
 			string userId = HttpContext.User.Identity.GetUserId();
 			if (!_realtorService.GetRealEstates().Any())
 			{
 				await _realtorService.SetInitialData(userId);
 			}
-
 			var users = await (from u in _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider) select u).ToListAsync();
-
-			List<RealEstateForRealtorView> realEstates = _mapper.Map<List<RealEstateForRealtor>, List<RealEstateForRealtorView>>(
-				await (_realtorService.GetRealEstates(userId, choosenSearchParametersDTO)).ToListAsync());
-
-			realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
+		    List<RealEstateForRealtorView> realEstates =
+		        _mapper.Map<List<RealEstateForRealtor>, List<RealEstateForRealtorView>>(
+		            await (_realtorService.GetRealEstates(userId, choosenSearchParametersDTO).Skip((choosenSearchParameters.Page - 1) * _pageSize)
+		                .Take(_pageSize).ToListAsync()));
+            realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
 			{
 				r.RealtorName = u.Name;
 				r.RealtorEmail = u.Email;
@@ -146,39 +138,21 @@ namespace WebUI.Controllers
 				ChoosenSearchParametersForRealtor = choosenSearchParameters,
 				RealEstates = realEstates,
 				SearchParameters = _mapper.Map<DataForSearchParametersDTO, DataForSearchParametersRealtorView>(await _realtorService.InitiateSearchParameters())
-			};
+			    ,
+			    PagingInfo = new PagingInfo
+			    {
+			        CurrentPage = choosenSearchParameters.Page,
+			        ItemsPerPage = _pageSize,
+			        TotalItems = await _realtorService.GetRealEstates(userId, choosenSearchParametersDTO).CountAsync()
+                }
+            };
 			return dataForRealtorView;
 		}
 
-
-
-		public async Task<ActionResult> CreatePic()
-		{
-			DataForCreateRealEstateView skillViewModel =
-				_mapper.Map<DataForCreateRealEstateDTO, DataForCreateRealEstateView>(await _realtorService.InitiateDataForRealEstateCreation());
-			//todo
-			return View(skillViewModel);
-		}
-
-		[HttpPost]
-		public ActionResult CreatePic( HttpPostedFileBase uploadImage)
-		{
-			if (ModelState.IsValid && uploadImage != null)
-			{
-				byte[] imageData = null;
-				// считываем переданный файл в массив байтов
-				using (var binaryReader = new BinaryReader(uploadImage.InputStream))
-				{
-					imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
-				}
-				// установка массива байтов
-				//pic.Image = imageData;
-
-
-
-				return RedirectToAction("Index");
-			}
-			return View();
-		}
-	}
+	    [HttpPost]
+	    public ActionResult Index(RoomNumberDropItemView page)
+	    {
+	        return RedirectToAction("RealEstates"); // todo  returnUrl
+        }
+    }
 }

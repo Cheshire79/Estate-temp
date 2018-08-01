@@ -32,6 +32,7 @@ namespace WebUI.Models
         [RegularExpression(@"^\d*")]
         public string HeightTo { get; set; }
         public bool ShowOnlyMyOwn { get; set; }
+        public int Page { get; set; } = 1;
     }
 
 }

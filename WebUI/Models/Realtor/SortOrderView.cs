@@ -1,7 +1,7 @@
 ﻿
 namespace WebUI.Models.Realtor
 {
-    public class SortOrderView
+    public class SortOrderDropItemView
     {
         public int Id { get; set; }
         public string Name { get; set; }

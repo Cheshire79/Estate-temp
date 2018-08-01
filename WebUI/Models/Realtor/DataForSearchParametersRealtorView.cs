@@ -4,8 +4,8 @@ namespace WebUI.Models.Realtor
 {
     public class DataForSearchParametersRealtorView
     {
-        public List<CityDistrictView> Districts;
-        public List<RoomNumberView> RoomNumbers;
-        public List<SortOrderView> SortOrders;
+        public List<CityDistrictDropItemView> Districts;
+        public List<RoomNumberDropItemView> RoomNumbers;
+        public List<SortOrderDropItemView> SortOrders;
     }
 }

@@ -4,8 +4,8 @@ namespace WebUI.Models.Realtor
 {
     public class DataForCreateRealEstateView
     {
-        public List<CityDistrictView> Districts;
-        public List<RoomNumberView> RoomNumbers;
-        public List<StreetView> Streets;
+        public List<CityDistrictDropItemView> Districts;
+        public List<RoomNumberDropItemView> RoomNumbers;
+        public List<StreetDropItemView> Streets;
     }
 }
