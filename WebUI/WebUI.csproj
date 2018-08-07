@@ -213,11 +213,11 @@
     <Compile Include="Mapper\MapperFactoryWEB.cs" />
     <Compile Include="Models\ChoosenSearchParametrsForRealtorView.cs" />
     <Compile Include="Models\CityDistrictDropItemView.cs" />
-    <Compile Include="Models\CreateRealEstateView.cs" />
     <Compile Include="Models\DataForRealtorView.cs" />
+    <Compile Include="Models\EditRealEstateView.cs" />
     <Compile Include="Models\RealEstateForRealtorView.cs" />
     <Compile Include="Models\RealEstateToSaveView.cs" />
-    <Compile Include="Models\Realtor\DataForCreateRealEstateView.cs" />
+    <Compile Include="Models\Realtor\DataForManipulateRealEstateView.cs" />
     <Compile Include="Models\Realtor\DataForSearchParametersRealtorView.cs" />
     <Compile Include="Models\Realtor\SortOrderView.cs" />
     <Compile Include="Models\RoomNumberDropItemView.cs" />
@@ -312,6 +312,8 @@
     <Content Include="Views\SearchForUsers\_SearchResultPartial.cshtml" />
     <Content Include="Views\Realtor\RealEstates.cshtml" />
     <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
+    <Content Include="Views\Realtor\EditRealEstate.cshtml" />
+    <Content Include="Views\Realtor\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

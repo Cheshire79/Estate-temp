@@ -46,11 +46,11 @@ namespace WebUI.Mapper
 				.ForMember(dest => dest.Id, options => options.Ignore())
 				.ForMember(dest => dest.CreationDate, options => options.Ignore())
 				.ForMember(dest => dest.IsSold, options => options.Ignore())
-				.ForMember(dest => dest.RealtorId, options => options.Ignore()				);
+				.ForMember(dest => dest.RealtorId, options => options.Ignore());
 					
 
 				cfg.CreateMap<RealEstateForRealtor, RealEstateForRealtorView>();
-
+                cfg.CreateMap<EditRealEstateDTO, EditRealEstateView>().ForMember(x=>x.RealEstateForRealtor,x=>x.MapFrom(m=>m.RealEstate));
                 cfg.CreateMap<DataForSearchParametersRealtorView, DataForSearchParametersDTO>();
 
             });

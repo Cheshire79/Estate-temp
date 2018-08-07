@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KnowledgeManagement.BLL.Interface.Date;
 
 namespace KnowledgeManagement.BLL.Interface
 {
-    public interface IRealtorService
+    public interface IRealtorService : IDisposable
     {
         Task SetInitialData(string realtorId);
         IQueryable<RealEstateDTO> GetRealEstates();
@@ -15,8 +16,9 @@ namespace KnowledgeManagement.BLL.Interface
         Task<List<StreetDTO>> GetStreetsByDistrctId(int districtId);
         Task Create(RealEstateDTO realEstateDTO,string realtorId);
         IQueryable<RealEstateForRealtor> GetRealEstates(string userId, ChoosenSearchParametersForRealtorDTO parameters);
+        Task<EditRealEstateDTO> GetRealEstateForEdit(int id, string userId);
         Task<DataForSearchParametersDTO> InitiateSearchParameters();
-        Task<DataForCreateRealEstateDTO> InitiateDataForRealEstateCreation();
+        Task<DataForManipulateRealEstateDTO> InitiateDataForRealEstateCreation(int? specifiedDistrictId = null, int? specifiedStreetId = null);
 		Task MarkRealEstateAsSold(int realEstateId);
 		Task DeleteRealEstate(int realEstateId);
 	}

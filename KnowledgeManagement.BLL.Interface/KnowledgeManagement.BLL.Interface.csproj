@@ -47,7 +47,8 @@
     <Compile Include="Date\ChoosenSearchParametersForRealtorDTO.cs" />
     <Compile Include="Date\CityDistrictDTO.cs" />
     <Compile Include="Date\CityDTO.cs" />
-    <Compile Include="Date\DataForCreateRealEstateDTO.cs" />
+    <Compile Include="Date\DataForManipulateRealEstateDTO.cs" />
+    <Compile Include="Date\DataForEditRealEstateDTO.cs" />
     <Compile Include="Date\DataForSearchParametersDTO.cs" />
     <Compile Include="Date\LevelDTO.cs" />
     <Compile Include="Date\RealEstateDTO.cs" />

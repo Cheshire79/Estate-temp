@@ -401,6 +401,46 @@ namespace KnowledgeManagement.BLL.Services
             return _realeEstateSort.Sort(parameters.SortOrder)(realEstates);
         }
 
+        private async Task<RealEstateForRealtor> FindRealEstateById(int id, string userId)
+        {
+            RealEstateForRealtor realEstateForRealtor = await 
+
+                (from realEstate in _unitOfWork.RealEstates.GetAll().ProjectTo<RealEstateDTO>(_mapper.ConfigurationProvider)
+                    join street in GetStreets() on realEstate.StreetId equals street.Id
+                    join district in GetKievDistricts() on street.CityDistrictId equals district.Id
+                    where realEstate.Id ==id
+                    select new RealEstateForRealtor
+                    {
+                        Id = realEstate.Id,
+                        Building = realEstate.Building,
+                        Appartment = realEstate.Appartment,
+                        Floor = realEstate.Floor,
+                        Height = realEstate.Height,
+                        Area = realEstate.Area,
+                        Price = realEstate.Price,
+                        RoomNumber = realEstate.RoomNumber,
+                        CreationDate = realEstate.CreationDate,
+                        Description = realEstate.Description,
+                        IsSold = realEstate.IsSold,
+                        RealtorId = realEstate.RealtorId,
+                        StreetName = street.Name,
+                        DistrictName = district.Name,
+                        IsOwner = (userId == realEstate.RealtorId),
+                        Image = realEstate.Image,
+                        DistrictId = district.Id.Value,//todo
+                        StreetId = street.Id.Value,
+                    }).FirstOrDefaultAsync();
+            return realEstateForRealtor;
+        }
+
+        public async Task<EditRealEstateDTO> GetRealEstateForEdit(int id, string userId)
+        {
+            EditRealEstateDTO editRealEstate = new EditRealEstateDTO();
+            editRealEstate.RealEstate = await FindRealEstateById(id, userId);
+            editRealEstate.DataForManipulateRealEstate = await InitiateDataForRealEstateCreation(editRealEstate.RealEstate.DistrictId,editRealEstate.RealEstate.StreetId);
+            return editRealEstate;
+
+        }
         public async Task MarkRealEstateAsSold(int realEstateId)
         {
             var realEstate = await _unitOfWork.RealEstates.GetByIdAsync(realEstateId);
@@ -433,23 +473,51 @@ namespace KnowledgeManagement.BLL.Services
             searchParameters.SortOrders = _realeEstateSort.GetSortingOptionsName();
             return searchParameters;
         }
-        public async Task<DataForCreateRealEstateDTO> InitiateDataForRealEstateCreation()
+        public async Task<DataForManipulateRealEstateDTO> InitiateDataForRealEstateCreation(int? specifiedDistrictId = null, int? specifiedStreetId=null)
         {
-            var searchParameters = new DataForCreateRealEstateDTO();
-
+            var searchParameters = new DataForManipulateRealEstateDTO();//todo
             searchParameters.Districts = await GetKievDistricts().OrderBy(x => x.Name).ToListAsync();
-            int? fisrtDistrictId;
-            var firstDistrict = searchParameters.Districts.FirstOrDefault();
-            if (firstDistrict == null)
+            int? choosenDistrictId;
+            if (specifiedDistrictId != null)
             {
-                searchParameters.Districts.Add(new CityDistrictDTO() {Id = null, Name = "Empty List"});
-                fisrtDistrictId = null;
+                if (searchParameters.Districts.Exists(x => x.Id == specifiedDistrictId))
+                {
+                    choosenDistrictId = specifiedDistrictId;
+                }
+                else
+                {
+                    throw new NullReferenceException(" There is no such District");
+                }
             }
             else
-                fisrtDistrictId = firstDistrict.Id;
-            searchParameters.Streets = await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == fisrtDistrictId).ProjectTo<StreetDTO>(_mapper.ConfigurationProvider).OrderBy(x => x.Name).ToListAsync();
+            {
+                var firstDistrict = searchParameters.Districts.FirstOrDefault();
+                if (firstDistrict == null)
+                {
+                    searchParameters.Districts.Add(new CityDistrictDTO() { Id = null, Name = "Empty List" });
+                    choosenDistrictId = null;
+                }
+                else
+                    choosenDistrictId = firstDistrict.Id;
+            }
+            int? choosenStreetId;
+            searchParameters.Streets = await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == choosenDistrictId).ProjectTo<StreetDTO>(_mapper.ConfigurationProvider).OrderBy(x => x.Name).ToListAsync();
             if (searchParameters.Streets.Count == 0)
                 searchParameters.Streets.Add(new StreetDTO() { Id = null, Name = "Empty List" });
+            choosenStreetId = searchParameters.Streets.First().Id;
+          
+            if (specifiedStreetId != null)
+            {
+                if (searchParameters.Streets.Exists(x => x.Id == specifiedStreetId))
+                {
+                    choosenStreetId = specifiedStreetId;
+                }
+                else
+                {
+                    throw new NullReferenceException(" There is no such Street");
+                }
+            }
+
             searchParameters.RoomNumbers = new List<RoomNumberDTO>()
             {
                 new RoomNumberDTO(){Id=1,Name = "1"},
@@ -458,6 +526,8 @@ namespace KnowledgeManagement.BLL.Services
                 new RoomNumberDTO(){Id=4,Name = "4"},
                 new RoomNumberDTO(){Id=5,Name = "5"}
             };
+            searchParameters.ChoosenDistrict = choosenDistrictId;
+            searchParameters.ChoosenStreet = choosenStreetId;
             return searchParameters;
         }
 
@@ -497,6 +567,10 @@ namespace KnowledgeManagement.BLL.Services
             if (parameters.ShowOnlyMyOwn)
                 result = result.Where(x => x.RealtorId == userId);
           return result;
+        }
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
         }
     }
 }

@@ -96,7 +96,9 @@
 <p class="createTitle">
     @Html.ActionLink("Create New", "CreateRealEstate", new { ReturnUrl = Request.Url.PathAndQuery })
 </p>
-
+<p class="createTitle">
+    @Html.ActionLink("Test New", "Test", new { ReturnUrl = Request.Url.PathAndQuery })
+</p>
 @foreach (var realEstate in Model.RealEstates)
 {
     int Id = realEstate.Id;
@@ -140,9 +142,9 @@
         {
             <!--div id="content2">Основное содержимое 2</div-->
             <div class="span5">
-                @using (Html.BeginForm("DeleteRealEstate", "Realtor", FormMethod.Post, new { onclick = "return confirm('Are sure wants to delete ?');" }))
+                @using (Html.BeginForm("EditRealEstate", "Realtor", FormMethod.Get))//, new { onclick = "return confirm('Are sure wants to edit ?');" }))
                 {
-
+                    @Html.HiddenFor(model => Id)
                     <input type="submit" value="Edit" />
                 }
             </div>

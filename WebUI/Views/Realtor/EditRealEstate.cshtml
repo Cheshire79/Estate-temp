@@ -1,6 +1,6 @@
 ﻿
 @using WebUI.Models
-@model WebUI.Models.Realtor.DataForManipulateRealEstateView
+@model WebUI.Models.EditRealEstateView
 @{
     ViewBag.Title = "CreateRealEstate";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,9 +11,9 @@
 @using (Html.BeginForm("CreateRealEstate", "Realtor", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     RealEstateToSaveView realEstate = new RealEstateToSaveView();
-    SelectList districts = new SelectList(Model.Districts, "Id", "Name", Model.ChoosenDistrict);
-    SelectList streets = new SelectList(Model.Streets, "Id", "Name", Model.ChoosenStreet);
-    SelectList roomsNumber = new SelectList(Model.RoomNumbers, "Id", "Name", Model.ChoosenRoomNumber);
+    SelectList districts = new SelectList(Model.DataForManipulateRealEstate.Districts, "Id", "Name", Model.DataForManipulateRealEstate.ChoosenDistrict);
+    SelectList streets = new SelectList(Model.DataForManipulateRealEstate.Streets, "Id", "Name", Model.DataForManipulateRealEstate.ChoosenStreet);
+    SelectList roomsNumber = new SelectList(Model.DataForManipulateRealEstate.RoomNumbers, "Id", "Name", Model.DataForManipulateRealEstate.ChoosenRoomNumber);
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -21,31 +21,26 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-
             <label class="control-label col-md-2">District</label>
             <div class="col-md-10">
-
                 @Html.DropDownListFor(model => realEstate.DistrictId, districts as SelectList, new { @class = "form-control", @id = "selected_districtId", @onchange = "FillSreets()" })
-
             </div>
-
         </div>
 
         <div class="form-group">
-
             <label class="control-label col-md-2">Street</label>
             <div class="col-md-10">
                 <div class="input-large-update-width">
                     @Html.DropDownListFor(model => realEstate.StreetId, streets as SelectList, new { @class = "form-control", @id = "selected_streetId" })
                 </div>
-
                 @Html.ValidationMessageFor(model => realEstate.StreetId, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => realEstate.Building, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => realEstate.Building,htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.Building, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => realEstate.Building, Model.RealEstateForRealtor.Building, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => realEstate.Building, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -53,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => realEstate.Appartment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.Appartment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => realEstate.Appartment, Model.RealEstateForRealtor.Appartment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => realEstate.Appartment, "", new { @class = "text-danger" })
             </div>
         </div>
