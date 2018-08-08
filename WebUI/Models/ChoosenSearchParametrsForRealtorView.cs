@@ -14,10 +14,10 @@ namespace WebUI.Models
         [RegularExpression(@"^\d*")]
         public string AreaTo { get; set; }
 
-        [RegularExpression(@"^\d*\.?\d*")]
+        [RegularExpression(@"^\d*\,?\d*")]
         public string PriceFrom { get; set; }
 
-        [RegularExpression(@"^\d*\.?\d*")]
+        [RegularExpression(@"^\d*\,?\d*")]
         public string PriceTo { get; set; }
 
         [RegularExpression(@"^\d*")]

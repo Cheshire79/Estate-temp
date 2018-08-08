@@ -112,7 +112,7 @@
             <div class="col-md-10">
                 <div class="editor-field">
                     <input type="file" id="load_imag_button" name="uploadImage" onchange="readURL(this);" />
-                    <img id="loaded-image" class="create_realEstate-image" src="#" alt="your image" />
+                    <img id="loaded-image" class="create_realEstate-image" src="" alt="your image" />
                 </div>
             </div>
         </div>
@@ -137,7 +137,7 @@
             reader.onload = function (e) {
                 $('#loaded-image').attr('src', e.target.result);
             }
-
+            //   // https://stackoverflow.com/questions/2751138/mvc-controller-is-being-called-twice
             reader.readAsDataURL(input.files[0]);
         }
     }

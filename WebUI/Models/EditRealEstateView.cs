@@ -5,7 +5,7 @@ namespace WebUI.Models
 {
     public class EditRealEstateView
     {
-        public RealEstateForRealtorView RealEstateForRealtor;
+        public RealEstateToSaveView RealEstateForRealtor;
         public DataForManipulateRealEstateView DataForManipulateRealEstate;
     }
 }

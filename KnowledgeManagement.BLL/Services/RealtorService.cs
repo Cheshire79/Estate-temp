@@ -455,6 +455,13 @@ namespace KnowledgeManagement.BLL.Services
             await _unitOfWork.SaveAsync();
         }
 
+        public async Task Save(RealEstateDTO realEstateDTO)
+        {
+            var realEstate = _mapper.Map<RealEstateDTO, RealEstate>(realEstateDTO);
+            await _unitOfWork.RealEstates.Update(realEstate);
+            await _unitOfWork.SaveAsync();
+        }
+
         public async Task<DataForSearchParametersDTO> InitiateSearchParameters()
         {
             var searchParameters = new DataForSearchParametersDTO();

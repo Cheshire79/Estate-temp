@@ -96,9 +96,7 @@
 <p class="createTitle">
     @Html.ActionLink("Create New", "CreateRealEstate", new { ReturnUrl = Request.Url.PathAndQuery })
 </p>
-<p class="createTitle">
-    @Html.ActionLink("Test New", "Test", new { ReturnUrl = Request.Url.PathAndQuery })
-</p>
+
 @foreach (var realEstate in Model.RealEstates)
 {
     int Id = realEstate.Id;

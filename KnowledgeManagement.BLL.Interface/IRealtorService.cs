@@ -15,6 +15,7 @@ namespace KnowledgeManagement.BLL.Interface
         IQueryable<StreetDTO> GetStreets();
         Task<List<StreetDTO>> GetStreetsByDistrctId(int districtId);
         Task Create(RealEstateDTO realEstateDTO,string realtorId);
+        Task Save(RealEstateDTO realEstateDTO);
         IQueryable<RealEstateForRealtor> GetRealEstates(string userId, ChoosenSearchParametersForRealtorDTO parameters);
         Task<EditRealEstateDTO> GetRealEstateForEdit(int id, string userId);
         Task<DataForSearchParametersDTO> InitiateSearchParameters();

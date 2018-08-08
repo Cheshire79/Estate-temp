@@ -27,7 +27,7 @@ namespace WebUI.Models
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Invalid Area value!")]
         public string Area { get; set; }
         [Required]
-        [RegularExpression(@"^\d*\.?\d*", ErrorMessage = "Invalid Price value!")]
+        [RegularExpression(@"^\d*\,?\d*", ErrorMessage = "Invalid Price value!")]
         public string Price { get; set; }
         [Required]
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Invalid Room Number value!")]
@@ -37,7 +37,6 @@ namespace WebUI.Models
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Streed need to be choosen!")]
         public int StreetId { get; set; }
         public int DistrictId { get; set; }
-
-		public string ImageName { get; set; }
-	}
+        public int Id { get; set; }
+    }
 }

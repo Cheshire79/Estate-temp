@@ -40,13 +40,7 @@ namespace WebUI.Controllers
             DataForRealtorView dataForRealtorView = await PreparedRealEstates(searchParameters);
             return View(dataForRealtorView);
         }
-        public //async Task<ActionResult> Test()
-            ActionResult Test()
-        {
 
-            RealEstateForRealtorView realEstate = new RealEstateForRealtorView();
-            return View(realEstate);
-        }
         [HttpPost]
         public async Task<ActionResult> RealEstates(ChoosenSearchParametrsForRealtorView searchParametersForRealtor)
         {
@@ -129,10 +123,12 @@ namespace WebUI.Controllers
             }
             //	var users = await (from u in _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider) select u).ToListAsync();
             var users = await _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+            var list = await(_realtorService.GetRealEstates(userId, choosenSearchParametersDTO)
+                .Skip((choosenSearchParameters.Page - 1) * _pageSize)
+                .Take(_pageSize).ToListAsync());
             List<RealEstateForRealtorView> realEstates =
                 _mapper.Map<List<RealEstateForRealtor>, List<RealEstateForRealtorView>>(
-                    await (_realtorService.GetRealEstates(userId, choosenSearchParametersDTO).Skip((choosenSearchParameters.Page - 1) * _pageSize)
-                        .Take(_pageSize).ToListAsync()));
+                    list);
             realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
             {
                 r.RealtorName = u.Name;
@@ -183,12 +179,14 @@ namespace WebUI.Controllers
                     {
                         imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                     }
+
                     realEstate.Image = imageData;
                 }
+
                 var realEstatelDTO = _mapper.Map<RealEstateToSaveView, RealEstateDTO>(realEstate);
-                string realtorId = HttpContext.User.Identity.GetUserId();
-                await _realtorService.Create(realEstatelDTO, realtorId);
+                await _realtorService.Save(realEstatelDTO);
             }
+
             return RedirectToAction("RealEstates"); // todo  returnUrl
         }
 
