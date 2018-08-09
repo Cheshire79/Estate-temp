@@ -29,12 +29,12 @@ namespace KnowledgeManagement.BLL.Services.RealeEstateOrdering
             {SortOrder.ByTotalAreaMaxMin, new PairedTextMethod("Total area (max – min)", l => l.OrderByDescending(x => x.Area))}
         };
 
-        public List<SortOrderDTO> GetSortingOptionsName()
+        public List<SortOrderDropDownDTO> GetSortingOptionsName()
         {
-            List<SortOrderDTO> result = new List<SortOrderDTO>();
+            List<SortOrderDropDownDTO> result = new List<SortOrderDropDownDTO>();
             foreach (var item in _textAndFunctions)
             {
-                result.Add(new SortOrderDTO() { Id = item.Key, Name = item.Value.Text });
+                result.Add(new SortOrderDropDownDTO() { Id = item.Key, Name = item.Value.Text });
             }
             return result;
         }

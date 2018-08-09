@@ -353,12 +353,12 @@ namespace KnowledgeManagement.BLL.Services
             return _unitOfWork.Streets.GetAll().ProjectTo<StreetDTO>(_mapper.ConfigurationProvider);
         }
 
-        public async Task<List<StreetDTO>> GetStreetsByDistrctId(int districtId)
+        public async Task<List<StreetDropDownItemDTO>> GetStreetsForDropDownByDistrctId(int districtId)
         {
 
-            List<StreetDTO> streets = (await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == districtId).ProjectTo<StreetDTO>(_mapper.ConfigurationProvider).ToListAsync());
+            List<StreetDropDownItemDTO> streets = (await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == districtId).ProjectTo<StreetDropDownItemDTO>(_mapper.ConfigurationProvider).ToListAsync());
             if (streets.Count == 0)
-                streets.Add(new StreetDTO() { Id = null, Name = "Empty List" });
+                streets.Add(new StreetDropDownItemDTO() { Id = null, Name = "Empty List" });
             return streets;
         }
         public async Task Create(RealEstateDTO realEstateDTO, string realtorId)
@@ -427,8 +427,8 @@ namespace KnowledgeManagement.BLL.Services
                         DistrictName = district.Name,
                         IsOwner = (userId == realEstate.RealtorId),
                         Image = realEstate.Image,
-                        DistrictId = district.Id.Value,//todo
-                        StreetId = street.Id.Value,
+                        DistrictId = district.Id,
+                        StreetId = street.Id
                     }).FirstOrDefaultAsync();
             return realEstateForRealtor;
         }
@@ -465,16 +465,16 @@ namespace KnowledgeManagement.BLL.Services
         public async Task<DataForSearchParametersDTO> InitiateSearchParameters()
         {
             var searchParameters = new DataForSearchParametersDTO();
-            searchParameters.Districts = new List<CityDistrictDTO>() { new CityDistrictDTO() { Id = null, Name = "No matter" } };
-            searchParameters.Districts.AddRange(await GetKievDistricts().OrderBy(x => x.Name).ToListAsync());
+            searchParameters.Districts = new List<CityDistrictDropDownItemDTO>() { new CityDistrictDropDownItemDTO() { Id = null, Name = "No matter" } };
+            searchParameters.Districts.AddRange(await GetKievDistricts().OrderBy(x => x.Name).Select(x=> new CityDistrictDropDownItemDTO{Id=x.Id, Name = x.Name}).ToListAsync());
 
-            searchParameters.RoomNumbers = new List<RoomNumberDTO>()
-                { new RoomNumberDTO() { Id = null, Name = "No matter" },
-                    new RoomNumberDTO(){Id=1,Name = "1"},
-                    new RoomNumberDTO(){Id=2,Name = "2"},
-                    new RoomNumberDTO(){Id=3,Name = "3"},
-                    new RoomNumberDTO(){Id=4,Name = "4"},
-                    new RoomNumberDTO(){Id=5,Name = "5"}
+            searchParameters.RoomNumbers = new List<RoomNumberDownItemDTO>()
+                { new RoomNumberDownItemDTO() { Id = null, Name = "No matter" },
+                    new RoomNumberDownItemDTO(){Id=1,Name = "1"},
+                    new RoomNumberDownItemDTO(){Id=2,Name = "2"},
+                    new RoomNumberDownItemDTO(){Id=3,Name = "3"},
+                    new RoomNumberDownItemDTO(){Id=4,Name = "4"},
+                    new RoomNumberDownItemDTO(){Id=5,Name = "5"}
                 };
 
             searchParameters.SortOrders = _realeEstateSort.GetSortingOptionsName();
@@ -483,7 +483,7 @@ namespace KnowledgeManagement.BLL.Services
         public async Task<DataForManipulateRealEstateDTO> InitiateDataForRealEstateCreation(int? specifiedDistrictId = null, int? specifiedStreetId=null)
         {
             var searchParameters = new DataForManipulateRealEstateDTO();//todo
-            searchParameters.Districts = await GetKievDistricts().OrderBy(x => x.Name).ToListAsync();
+            searchParameters.Districts = await GetKievDistricts().OrderBy(x => x.Name).Select(x=> new CityDistrictDropDownItemDTO{Id=x.Id,Name = x.Name}).ToListAsync();
             int? choosenDistrictId;
             if (specifiedDistrictId != null)
             {
@@ -501,16 +501,16 @@ namespace KnowledgeManagement.BLL.Services
                 var firstDistrict = searchParameters.Districts.FirstOrDefault();
                 if (firstDistrict == null)
                 {
-                    searchParameters.Districts.Add(new CityDistrictDTO() { Id = null, Name = "Empty List" });
+                    searchParameters.Districts.Add(new CityDistrictDropDownItemDTO() { Id = null, Name = "Empty List" });
                     choosenDistrictId = null;
                 }
                 else
                     choosenDistrictId = firstDistrict.Id;
             }
             int? choosenStreetId;
-            searchParameters.Streets = await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == choosenDistrictId).ProjectTo<StreetDTO>(_mapper.ConfigurationProvider).OrderBy(x => x.Name).ToListAsync();
+            searchParameters.Streets = await _unitOfWork.Streets.GetAll().Where(x => x.CityDistrictId == choosenDistrictId).ProjectTo<StreetDropDownItemDTO>(_mapper.ConfigurationProvider).OrderBy(x => x.Name).ToListAsync();
             if (searchParameters.Streets.Count == 0)
-                searchParameters.Streets.Add(new StreetDTO() { Id = null, Name = "Empty List" });
+                searchParameters.Streets.Add(new StreetDropDownItemDTO() { Id = null, Name = "Empty List" });
             choosenStreetId = searchParameters.Streets.First().Id;
           
             if (specifiedStreetId != null)
@@ -525,13 +525,13 @@ namespace KnowledgeManagement.BLL.Services
                 }
             }
 
-            searchParameters.RoomNumbers = new List<RoomNumberDTO>()
+            searchParameters.RoomNumbers = new List<RoomNumberDownItemDTO>()
             {
-                new RoomNumberDTO(){Id=1,Name = "1"},
-                new RoomNumberDTO(){Id=2,Name = "2"},
-                new RoomNumberDTO(){Id=3,Name = "3"},
-                new RoomNumberDTO(){Id=4,Name = "4"},
-                new RoomNumberDTO(){Id=5,Name = "5"}
+                new RoomNumberDownItemDTO(){Id=1,Name = "1"},
+                new RoomNumberDownItemDTO(){Id=2,Name = "2"},
+                new RoomNumberDownItemDTO(){Id=3,Name = "3"},
+                new RoomNumberDownItemDTO(){Id=4,Name = "4"},
+                new RoomNumberDownItemDTO(){Id=5,Name = "5"}
             };
             searchParameters.ChoosenDistrict = choosenDistrictId;
             searchParameters.ChoosenStreet = choosenStreetId;

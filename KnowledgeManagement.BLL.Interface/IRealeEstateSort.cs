@@ -7,7 +7,7 @@ namespace KnowledgeManagement.BLL.Interface
     public delegate IQueryable<RealEstateForRealtor> Sorting(IQueryable<RealEstateForRealtor> realEstates);
     public interface IRealeEstateSort
     {
-        List<SortOrderDTO> GetSortingOptionsName();
+        List<SortOrderDropDownDTO> GetSortingOptionsName();
         Sorting Sort(SortOrder sortOrder);
     }
 }

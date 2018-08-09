@@ -4,9 +4,9 @@ namespace KnowledgeManagement.BLL.Interface.Date
 {
     public class DataForSearchParametersDTO
     {
-        public List<CityDistrictDTO> Districts;
-        public List<RoomNumberDTO> RoomNumbers;
-        public List<SortOrderDTO> SortOrders;
+        public List<CityDistrictDropDownItemDTO> Districts;
+        public List<RoomNumberDownItemDTO> RoomNumbers;
+        public List<SortOrderDropDownDTO> SortOrders;
     }
 }
 

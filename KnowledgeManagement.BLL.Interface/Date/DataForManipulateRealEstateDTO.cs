@@ -4,9 +4,9 @@ namespace KnowledgeManagement.BLL.Interface.Date
 {
     public class DataForManipulateRealEstateDTO
     {
-        public List<CityDistrictDTO> Districts;
-        public List<RoomNumberDTO> RoomNumbers;
-        public List<StreetDTO> Streets;
+        public List<CityDistrictDropDownItemDTO> Districts;
+        public List<RoomNumberDownItemDTO> RoomNumbers;
+        public List<StreetDropDownItemDTO> Streets;
         public int? ChoosenDistrict;
         public int ChoosenRoomNumber;
         public int? ChoosenStreet;

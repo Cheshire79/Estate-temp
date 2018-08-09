@@ -1,10 +1,9 @@
 ﻿
 namespace KnowledgeManagement.BLL.Interface.Date
 {
-    public class CityDistrictDTO
+    public class StreetDropDownItemDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
-        public int CityId { get; set; }
     }
 }

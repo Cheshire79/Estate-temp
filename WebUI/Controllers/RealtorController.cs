@@ -109,7 +109,7 @@ namespace WebUI.Controllers
 
         public async Task<ActionResult> FillStreet(int districtId = 1)
         {
-            var cities = _mapper.Map<List<StreetDTO>, List<StreetDropItemView>>(await _realtorService.GetStreetsByDistrctId(districtId));
+            var cities = _mapper.Map<List<StreetDropDownItemDTO>, List<StreetDropItemView>>(await _realtorService.GetStreetsForDropDownByDistrctId(districtId));
             return Json(cities, JsonRequestBehavior.AllowGet);
         }
         private async Task<DataForRealtorView> PreparedRealEstates(ChoosenSearchParametrsForRealtorView choosenSearchParameters)
