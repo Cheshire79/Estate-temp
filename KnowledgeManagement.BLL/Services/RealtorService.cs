@@ -37,7 +37,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "33/30",
-                    Appartment = "24",
+                    Appartment = 24,
                     Floor = 6,
                     Height = 9,
                     Area = 54,
@@ -53,7 +53,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "3",
-                    Appartment = "4",
+                    Appartment = 4,
                     Floor = 2,
                     Height = 19,
                     Area = 154,
@@ -73,7 +73,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "30",
-                    Appartment = "14",
+                    Appartment = 14,
                     Floor = 2,
                     Height = 4,
                     Area = 74,
@@ -89,7 +89,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "123",
-                    Appartment = "94",
+                    Appartment = 94,
                     Floor = 12,
                     Height = 19,
                     Area = 154,
@@ -109,7 +109,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "26",
-                    Appartment = "9",
+                    Appartment = 9,
                     Floor = 4,
                     Height = 5,
                     Area = 30,
@@ -129,7 +129,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "5б",
-                    Appartment = "223",
+                    Appartment = 223,
                     Floor = 10,
                     Height = 34,
                     Area = 44,
@@ -145,7 +145,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "26",
-                    Appartment = "9",
+                    Appartment = 9,
                     Floor = 18,
                     Height = 32,
                     Area = 44,
@@ -161,7 +161,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "67",
-                    Appartment = "78",
+                    Appartment = 78,
                     Floor = 2,
                     Height = 16,
                     Area = 48,
@@ -177,7 +177,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "127",
-                    Appartment = "23",
+                    Appartment = 23,
                     Floor = 8,
                     Height = 9,
                     Area = 58,
@@ -197,7 +197,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "28",
-                    Appartment = "123",
+                    Appartment = 123,
                     Floor = 19,
                     Height = 26,
                     Area = 68,
@@ -213,7 +213,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "28",
-                    Appartment = "9",
+                    Appartment = 9,
                     Floor = 19,
                     Height = 26,
                     Area = 115,
@@ -234,7 +234,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "32/2",
-                    Appartment = "83",
+                    Appartment = 83,
                     Floor = 5,
                     Height = 5,
                     Area = 64,
@@ -251,7 +251,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "39",
-                    Appartment = "19",
+                    Appartment = 19,
                     Floor = 3,
                     Height = 4,
                     Area = 43,
@@ -274,7 +274,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "12Б",
-                    Appartment = "13",
+                    Appartment = 13,
                     Floor = 2,
                     Height = 5,
                     Area = 41,
@@ -290,7 +290,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "8А",
-                    Appartment = "29",
+                    Appartment = 29,
                     Floor = 1,
                     Height = 5,
                     Area = 49,
@@ -306,7 +306,7 @@ namespace KnowledgeManagement.BLL.Services
                 _unitOfWork.RealEstates.Create(new RealEstate()
                 {
                     Building = "11",
-                    Appartment = "49",
+                    Appartment = 49,
                     Floor = 2,
                     Height = 5,
                     Area = 49,

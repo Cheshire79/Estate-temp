@@ -8,7 +8,7 @@ namespace WebUI.Models.Realtor
         public List<RoomNumberDropItemView> RoomNumbers;
         public List<StreetDropItemView> Streets;
         public int ChoosenDistrict;
-        public int ChoosenRoomNumber;
+        public byte ChoosenRoomNumber;
         public int ChoosenStreet;
     }
 }

@@ -7,10 +7,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Kiev international realty</h2>
 @using (Html.BeginForm("RealEstates", "Realtor", FormMethod.Post, new { id = "searchForm" }))
 {
-  
+
     ChoosenSearchParametrsForRealtorView searchParametersForRealtor = new ChoosenSearchParametrsForRealtorView();
     SelectList districts = new SelectList(Model.SearchParameters.Districts, "Id", "Name", Model.ChoosenSearchParametersForRealtor.DistrictId);
     SelectList roomsNumber = new SelectList(Model.SearchParameters.RoomNumbers, "Id", "Name", Model.ChoosenSearchParametersForRealtor.RoomNumber);
@@ -41,7 +41,7 @@
                 <div class="span3">
                     <label class="input-mini-text">Area</label>
                     <!--input name="flrfrom" value="" class="input-mini" type="text"-->
-                    @Html.TextBoxFor(model => searchParametersForRealtor.AreaFrom, new { @class = "input-mini",  @id = "searchFormArea"  })
+                    @Html.TextBoxFor(model => searchParametersForRealtor.AreaFrom, new { @class = "input-mini", @id = "searchFormArea" })
                     <!--input name="flrto" value="" class="input-mini" type="text"-->
                     @Html.TextBoxFor(model => searchParametersForRealtor.AreaTo, new { @class = "input-mini" })
                 </div>
@@ -75,24 +75,19 @@
                 </p>
             </div>
         </div>
-    </div>
-    <div class="span5">
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Search" class="btn btn-default" />
+
+        <div class="span-submit">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Search" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>
-
-    <a href="javascript:PagerClick();">Test</a>
-  
     <div class="pager">
         @Html.PageLinksUsingSubmitForm(Model.PagingInfo, "javascript:PagerClick")
     </div>
 }
-<div class="realtor-ItemsArea">
-    For list
-</div>
 <p class="createTitle">
     @Html.ActionLink("Create New", "CreateRealEstate", new { ReturnUrl = Request.Url.PathAndQuery })
 </p>
@@ -105,7 +100,7 @@
         @if (realEstate.Image.Length > 0)
         {
             @Html.Raw("<img class='image' src=\"data:image/jpeg;base64,"
-                                               + Convert.ToBase64String(realEstate.Image) + "\" />")
+                                                    + Convert.ToBase64String(realEstate.Image) + "\" />")
         }
 
         <div class="info">
@@ -173,11 +168,11 @@
 <script type="text/javascript">
     function PagerClick(page) {
         $('#searchPage').val(page);
-        
+
         $("#searchForm").submit();
     }
     @*function PagerClick2(index) {
-       
+
         var p = {
             Id: 1,
             Name: 'Smith'

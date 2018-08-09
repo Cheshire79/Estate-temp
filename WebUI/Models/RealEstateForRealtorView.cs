@@ -6,10 +6,10 @@ namespace WebUI.Models
     {
         public int Id { get; set; }
         public string Building { get; set; }
-        public string Appartment { get; set; }
+        public Int16 Appartment { get; set; }
         public Int16 Floor { get; set; }
         public Int16 Height { get; set; }
-        public float Area { get; set; }
+        public Int16 Area { get; set; }
         public Decimal Price { get; set; }
         public byte RoomNumber { get; set; }
         public DateTime CreationDate { get; set; }

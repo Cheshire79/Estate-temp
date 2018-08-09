@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebUI.Models
 {
@@ -10,32 +11,36 @@ namespace WebUI.Models
         public string Building { get; set; }
 
         [Required]
-        [StringLength(4, MinimumLength = 1, ErrorMessage= "Appartment must be between 1 and 4 characters")]
         [RegularExpression(@"^[1-9]+\d*",ErrorMessage= "Invalid Appartment value!")]
-        public string Appartment { get; set; }
+        public Int16 Appartment { get; set; }
 
         [Required]
-        [StringLength(4,  ErrorMessage = "Invalid Floor value!")]
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Invalid Floor value!")]
-        public string Floor { get; set; }
+        public Int16 Floor { get; set; }
 
         [Required]
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Invalid Height value!")]
-        public string Height { get; set; }
+        public Int16 Height { get; set; }
 
         [Required]
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Invalid Area value!")]
-        public string Area { get; set; }
+        public Int16 Area { get; set; }
+
         [Required]
-        [RegularExpression(@"^\d*\,?\d*", ErrorMessage = "Invalid Price value!")]
-        public string Price { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        [RegularExpression(@"^\d*\.?\d*", ErrorMessage = "Invalid Price value!")]
+        public Decimal Price { get; set; }
+
         [Required]
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Invalid Room Number value!")]
-        public string RoomNumber { get; set; }
+        public byte RoomNumber { get; set; }
+
         public string Description { get; set; }
         public byte[] Image { get; set; }
+
         [RegularExpression(@"^[1-9]+\d*", ErrorMessage = "Streed need to be choosen!")]
         public int StreetId { get; set; }
+
         public int DistrictId { get; set; }
         public int Id { get; set; }
     }

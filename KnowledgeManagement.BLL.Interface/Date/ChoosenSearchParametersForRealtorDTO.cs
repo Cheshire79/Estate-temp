@@ -1,23 +1,25 @@
 ﻿
+using System;
+
 namespace KnowledgeManagement.BLL.Interface.Date
 {
     public class ChoosenSearchParametersForRealtorDTO
     {
         public int? DistrictId = null;
-        public int? RoomNumber = null;
+        public byte? RoomNumber = null;
         public SortOrder SortOrder;
 
-        public int? AreaFrom;
-        public int? AreaTo;
+        public Int16? AreaFrom;
+        public Int16? AreaTo;
 
         public decimal? PriceFrom;
         public decimal? PriceTo;
 
-        public int? FloorFrom;
-        public int? FloorTo;
+        public Int16? FloorFrom;
+        public Int16? FloorTo;
 
-        public int? HeightFrom;
-        public int? HeightTo;
+        public Int16? HeightFrom;
+        public Int16? HeightTo;
         public bool ShowOnlyMyOwn = false;
         public int? Page;
     }

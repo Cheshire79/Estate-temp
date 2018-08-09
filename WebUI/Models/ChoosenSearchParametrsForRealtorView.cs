@@ -1,36 +1,38 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebUI.Models
 {
     public class ChoosenSearchParametrsForRealtorView
     {
         public int? DistrictId { get; set; } = null;
-        public int? RoomNumber { get; set; } = null;
-        public int SortOrder { get; set; } = 1;//todo
-
-
-        [RegularExpression(@"^\d*")]
-        public int? AreaFrom { get; set; }
-        [RegularExpression(@"^\d*")]
-        public string AreaTo { get; set; }
-
-        [RegularExpression(@"^\d*\,?\d*")]
-        public string PriceFrom { get; set; }
-
-        [RegularExpression(@"^\d*\,?\d*")]
-        public string PriceTo { get; set; }
+        public byte? RoomNumber { get; set; } = null;
+        public int SortOrder { get; set; } = 1;
 
         [RegularExpression(@"^\d*")]
-        public string FloorFrom { get; set; }
+        public Int16? AreaFrom { get; set; }
 
         [RegularExpression(@"^\d*")]
-        public string FloorTo { get; set; }
+        public Int16? AreaTo { get; set; }
+
+        [RegularExpression(@"^\d*\.?\d*")]
+        public decimal? PriceFrom { get; set; }
+
+        [RegularExpression(@"^\d*\.?\d*")]
+        public decimal? PriceTo { get; set; }
 
         [RegularExpression(@"^\d*")]
-        public string HeightFrom { get; set; }
+        public Int16? FloorFrom { get; set; }
 
         [RegularExpression(@"^\d*")]
-        public string HeightTo { get; set; }
+        public Int16? FloorTo { get; set; }
+
+        [RegularExpression(@"^\d*")]
+        public Int16? HeightFrom { get; set; }
+
+        [RegularExpression(@"^\d*")]
+        public Int16? HeightTo { get; set; }
+
         public bool ShowOnlyMyOwn { get; set; }
         public int Page { get; set; } = 1;
     }

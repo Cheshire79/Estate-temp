@@ -6,7 +6,7 @@ namespace KnowledgeManagement.BLL.Interface.Date
     {
         public int Id { get; set; }
         public string Building { get; set; }
-        public string Appartment { get; set; }
+        public Int16 Appartment { get; set; }
         public Int16 Floor { get; set; }
         public Int16 Height { get; set; }
         public Int16 Area { get; set; }

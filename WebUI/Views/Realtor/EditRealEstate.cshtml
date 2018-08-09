@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => realEstate.Building, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.Building, Model.RealEstateForRealtor.Building, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => realEstate.Building,  new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => realEstate.Building, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => realEstate.Appartment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => realEstate.Appartment, Model.RealEstateForRealtor.Appartment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => realEstate.Appartment,  new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => realEstate.Appartment, "", new { @class = "text-danger" })
             </div>
         </div>
