@@ -3,7 +3,7 @@ namespace KnowledgeManagement.BLL.Interface.Date
 {
     public class EditRealEstateDTO
     {
-        public RealEstateForRealtor RealEstate;
+        public RealEstateForRealtorDTO RealEstate;
         public DataForManipulateRealEstateDTO DataForManipulateRealEstate;
     }
 }

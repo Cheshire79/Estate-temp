@@ -213,7 +213,7 @@
     <Compile Include="Mapper\MapperFactoryWEB.cs" />
     <Compile Include="Models\ChoosenSearchParametrsForRealtorView.cs" />
     <Compile Include="Models\CityDistrictDropItemView.cs" />
-    <Compile Include="Models\DataForRealtorView.cs" />
+    <Compile Include="Models\DataAboutRealEstatesForRealtorView.cs" />
     <Compile Include="Models\EditRealEstateView.cs" />
     <Compile Include="Models\RealEstateForRealtorView.cs" />
     <Compile Include="Models\RealEstateToSaveView.cs" />

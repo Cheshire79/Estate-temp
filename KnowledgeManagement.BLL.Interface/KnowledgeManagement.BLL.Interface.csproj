@@ -53,7 +53,7 @@
     <Compile Include="Date\DataForSearchParametersDTO.cs" />
     <Compile Include="Date\LevelDTO.cs" />
     <Compile Include="Date\RealEstateDTO.cs" />
-    <Compile Include="Date\RealEstateForRealtor.cs" />
+    <Compile Include="Date\RealEstateForRealtorDTO.cs" />
     <Compile Include="Date\RoomNumberDownItemDTO.cs" />
     <Compile Include="Date\SkillDTO.cs" />
     <Compile Include="Date\SortOrder.cs" />

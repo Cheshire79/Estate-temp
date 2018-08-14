@@ -10,16 +10,13 @@ namespace KnowledgeManagement.BLL.Interface
     {
         Task SetInitialData(string realtorId);
         IQueryable<RealEstateDTO> GetRealEstates();
-        IQueryable<RealEstateDTO> GetRealEstates(ChoosenSearchParametersForRealtorDTO parameters);
-        IQueryable<CityDistrictDTO> GetKievDistricts();
-        IQueryable<StreetDTO> GetStreets();
         Task<List<StreetDropDownItemDTO>> GetStreetsForDropDownByDistrctId(int districtId);
         Task Create(RealEstateDTO realEstateDTO,string realtorId);
         Task Save(RealEstateDTO realEstateDTO);
-        IQueryable<RealEstateForRealtor> GetRealEstates(string userId, ChoosenSearchParametersForRealtorDTO parameters);
-        Task<EditRealEstateDTO> GetRealEstateForEdit(int id, string userId);
+        IQueryable<RealEstateForRealtorDTO> GetRealEstates(string userId, ChoosenSearchParametersForRealtorDTO parameters);
+        Task<EditRealEstateDTO> GetDataForRealEstateEditing(int id, string userId);
         Task<DataForSearchParametersDTO> InitiateSearchParameters();
-        Task<DataForManipulateRealEstateDTO> InitiateDataForRealEstateCreation(int? specifiedDistrictId = null, int? specifiedStreetId = null);
+        Task<DataForManipulateRealEstateDTO> GetDataForRealEstateCreation(int? specifiedDistrictId = null, int? specifiedStreetId = null);
 		Task MarkRealEstateAsSold(int realEstateId);
 		Task DeleteRealEstate(int realEstateId);
 	}

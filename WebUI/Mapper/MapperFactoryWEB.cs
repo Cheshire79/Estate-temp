@@ -47,7 +47,7 @@ namespace WebUI.Mapper
                 .ForMember(dest => dest.IsSold, options => options.Ignore())
                 .ForMember(dest => dest.RealtorId, options => options.Ignore());
 
-                cfg.CreateMap<RealEstateForRealtor, RealEstateToSaveView>();
+                cfg.CreateMap<RealEstateForRealtorDTO, RealEstateToSaveView>();
 
                 cfg.CreateMap<EditRealEstateDTO, EditRealEstateView>()
                     .ForMember(x => x.RealEstateForRealtor, x => x.MapFrom(m => m.RealEstate))

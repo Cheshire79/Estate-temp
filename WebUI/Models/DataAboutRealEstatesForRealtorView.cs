@@ -3,7 +3,7 @@ using WebUI.Models.Realtor;
 
 namespace WebUI.Models
 {
-    public class DataForRealtorView
+    public class DataAboutRealEstatesForRealtorView
     {
         public ChoosenSearchParametrsForRealtorView ChoosenSearchParametersForRealtor;
         public DataForSearchParametersRealtorView SearchParameters;

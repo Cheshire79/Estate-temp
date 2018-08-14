@@ -4,7 +4,7 @@ namespace KnowledgeManagement.BLL.Interface.Date
 {
     public abstract class RealeEstateOrder
     {
-        public abstract IQueryable<RealEstateForRealtor> Order(IQueryable<RealEstateForRealtor> realEstates);
+        public abstract IQueryable<RealEstateForRealtorDTO> Order(IQueryable<RealEstateForRealtorDTO> realEstates);
     }
 }
 

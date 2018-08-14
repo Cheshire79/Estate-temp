@@ -7,7 +7,7 @@ namespace WebUI.Models
     {
         [Required]
         [StringLength(7, MinimumLength = 1, ErrorMessage = "Building must be between 1 and 7 characters")]
-        [RegularExpression(@"^[1-9]+\d*\w?(\/?[1-9]+\d*\w?)?", ErrorMessage = "Invalid Building value!")]
+        [RegularExpression(@"^[1-9]+\d*[\u0400-\u04FF]?(\/?[1-9]+\d*[\u0400-\u04FF]?)?", ErrorMessage = "Invalid Building value!")]
         public string Building { get; set; }
 
         [Required]
@@ -27,7 +27,6 @@ namespace WebUI.Models
         public Int16 Area { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         [RegularExpression(@"^\d*\.?\d*", ErrorMessage = "Invalid Price value!")]
         public Decimal Price { get; set; }
 

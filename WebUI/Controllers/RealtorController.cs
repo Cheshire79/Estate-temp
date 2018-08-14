@@ -37,20 +37,20 @@ namespace WebUI.Controllers
         public async Task<ActionResult> RealEstates()
         {
             ChoosenSearchParametrsForRealtorView searchParameters = new ChoosenSearchParametrsForRealtorView();
-            DataForRealtorView dataForRealtorView = await PreparedRealEstates(searchParameters);
-            return View(dataForRealtorView);
+			DataAboutRealEstatesForRealtorView dataForRealtor= await PreparedRealEstates(searchParameters);
+            return View(dataForRealtor);
         }
 
         [HttpPost]
         public async Task<ActionResult> RealEstates(ChoosenSearchParametrsForRealtorView searchParametersForRealtor)
         {
-            DataForRealtorView dataForRealtorView;
+			DataAboutRealEstatesForRealtorView dataForRealtor;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    dataForRealtorView = await PreparedRealEstates(searchParametersForRealtor);
-                    return View(dataForRealtorView);
+                    dataForRealtor = await PreparedRealEstates(searchParametersForRealtor);
+                    return View(dataForRealtor);
                 }
                 catch (Exception ex)
                 {
@@ -58,18 +58,18 @@ namespace WebUI.Controllers
                 }
             }
             searchParametersForRealtor = new ChoosenSearchParametrsForRealtorView();
-            dataForRealtorView = await PreparedRealEstates(searchParametersForRealtor);
-            return View(dataForRealtorView);
+            dataForRealtor = await PreparedRealEstates(searchParametersForRealtor);
+            return View(dataForRealtor);
         }
 
 
         public async Task<ActionResult> CreateRealEstate(string returnUrl)
         {
-            DataForManipulateRealEstateView skillViewModel =
-                _mapper.Map<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>(await _realtorService.InitiateDataForRealEstateCreation());
-            skillViewModel.ReturnUrl =
+            DataForManipulateRealEstateView dataForManipulateRealEstate =
+                _mapper.Map<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>(await _realtorService.GetDataForRealEstateCreation());
+            dataForManipulateRealEstate.ReturnUrl =
                 string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
-            return View(skillViewModel);
+            return View(dataForManipulateRealEstate);
         }
 
         [HttpPost]
@@ -113,7 +113,7 @@ namespace WebUI.Controllers
             var cities = _mapper.Map<List<StreetDropDownItemDTO>, List<StreetDropItemView>>(await _realtorService.GetStreetsForDropDownByDistrctId(districtId));
             return Json(cities, JsonRequestBehavior.AllowGet);
         }
-        private async Task<DataForRealtorView> PreparedRealEstates(ChoosenSearchParametrsForRealtorView choosenSearchParameters)
+        private async Task<DataAboutRealEstatesForRealtorView> PreparedRealEstates(ChoosenSearchParametrsForRealtorView choosenSearchParameters)
         {
             ChoosenSearchParametersForRealtorDTO choosenSearchParametersDTO = _mapper.Map<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>
                        (choosenSearchParameters);
@@ -122,14 +122,16 @@ namespace WebUI.Controllers
             {
                 await _realtorService.SetInitialData(userId);
             }
-            //	var users = await (from u in _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider) select u).ToListAsync();
+            
             var users = await _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider).ToListAsync();
-            var list = await(_realtorService.GetRealEstates(userId, choosenSearchParametersDTO)
+
+			List<RealEstateForRealtorDTO> realEstatesDTO = await(_realtorService.GetRealEstates(userId, choosenSearchParametersDTO)
                 .Skip((choosenSearchParameters.Page - 1) * _pageSize)
                 .Take(_pageSize).ToListAsync());
+
             List<RealEstateForRealtorView> realEstates =
-                _mapper.Map<List<RealEstateForRealtor>, List<RealEstateForRealtorView>>(
-                    list);
+                _mapper.Map<List<RealEstateForRealtorDTO>, List<RealEstateForRealtorView>>(realEstatesDTO);
+
             realEstates= realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
             {
                 r.RealtorName = u.Name;
@@ -137,12 +139,11 @@ namespace WebUI.Controllers
                 return r;
             }).ToList();
 
-            DataForRealtorView dataForRealtorView = new DataForRealtorView
-            {
+			DataAboutRealEstatesForRealtorView dataForRealtor = new DataAboutRealEstatesForRealtorView
+			{
                 ChoosenSearchParametersForRealtor = choosenSearchParameters,
                 RealEstates = realEstates,
-                SearchParameters = _mapper.Map<DataForSearchParametersDTO, DataForSearchParametersRealtorView>(await _realtorService.InitiateSearchParameters())
-                ,
+                SearchParameters = _mapper.Map<DataForSearchParametersDTO, DataForSearchParametersRealtorView>(await _realtorService.InitiateSearchParameters()),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = choosenSearchParameters.Page,
@@ -150,15 +151,14 @@ namespace WebUI.Controllers
                     TotalItems = await _realtorService.GetRealEstates(userId, choosenSearchParametersDTO).CountAsync()
                 }
             };
-            return dataForRealtorView;
+            return dataForRealtor;
         }
-
 
         public async Task<ActionResult> EditRealEstate(int? id, string returnUrl)
         {
             string realtorId = HttpContext.User.Identity.GetUserId();
             EditRealEstateView skillViewModel =
-                _mapper.Map<EditRealEstateDTO, EditRealEstateView>(await _realtorService.GetRealEstateForEdit(id.Value, realtorId));
+                _mapper.Map<EditRealEstateDTO, EditRealEstateView>(await _realtorService.GetDataForRealEstateEditing(id.Value, realtorId));
             skillViewModel.ReturnUrl =
                 string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
             return View(skillViewModel);
