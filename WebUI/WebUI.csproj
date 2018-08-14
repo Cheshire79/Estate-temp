@@ -313,6 +313,9 @@
     <Content Include="Views\Realtor\RealEstates.cshtml" />
     <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
     <Content Include="Views\Realtor\EditRealEstate.cshtml" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

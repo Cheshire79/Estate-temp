@@ -67,7 +67,8 @@ namespace WebUI.Controllers
         {
             DataForManipulateRealEstateView skillViewModel =
                 _mapper.Map<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>(await _realtorService.InitiateDataForRealEstateCreation());
-            //todo
+            skillViewModel.ReturnUrl =
+                string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
             return View(skillViewModel);
         }
 
@@ -129,12 +130,12 @@ namespace WebUI.Controllers
             List<RealEstateForRealtorView> realEstates =
                 _mapper.Map<List<RealEstateForRealtor>, List<RealEstateForRealtorView>>(
                     list);
-            realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
+            realEstates= realEstates.Join(users, (r) => r.RealtorId, (u) => u.Id, (r, u) =>
             {
                 r.RealtorName = u.Name;
                 r.RealtorEmail = u.Email;
                 return r;
-            });
+            }).ToList();
 
             DataForRealtorView dataForRealtorView = new DataForRealtorView
             {
@@ -152,18 +153,14 @@ namespace WebUI.Controllers
             return dataForRealtorView;
         }
 
-        [HttpPost]
-        public ActionResult Index(RoomNumberDropItemView page)
-        {
-            return RedirectToAction("RealEstates"); // todo  returnUrl
-        }
 
         public async Task<ActionResult> EditRealEstate(int? id, string returnUrl)
         {
             string realtorId = HttpContext.User.Identity.GetUserId();
             EditRealEstateView skillViewModel =
                 _mapper.Map<EditRealEstateDTO, EditRealEstateView>(await _realtorService.GetRealEstateForEdit(id.Value, realtorId));
-            //todo
+            skillViewModel.ReturnUrl =
+                string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
             return View(skillViewModel);
         }
 

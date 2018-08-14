@@ -10,5 +10,6 @@ namespace WebUI.Models.Realtor
         public int ChoosenDistrict;
         public byte ChoosenRoomNumber;
         public int ChoosenStreet;
+        public string ReturnUrl { get; set; }
     }
 }

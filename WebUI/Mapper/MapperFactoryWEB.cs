@@ -42,15 +42,21 @@ namespace WebUI.Mapper
 
                 cfg.CreateMap<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>();
 
-				cfg.CreateMap<RealEstateToSaveView, RealEstateDTO>()
-				.ForMember(dest => dest.CreationDate, options => options.Ignore())
-				.ForMember(dest => dest.IsSold, options => options.Ignore())
-				.ForMember(dest => dest.RealtorId, options => options.Ignore());
+                cfg.CreateMap<RealEstateToSaveView, RealEstateDTO>()
+                .ForMember(dest => dest.CreationDate, options => options.Ignore())
+                .ForMember(dest => dest.IsSold, options => options.Ignore())
+                .ForMember(dest => dest.RealtorId, options => options.Ignore());
 
                 cfg.CreateMap<RealEstateForRealtor, RealEstateToSaveView>();
 
-                cfg.CreateMap<EditRealEstateDTO, EditRealEstateView>().ForMember(x=>x.RealEstateForRealtor,x=>x.MapFrom(m=>m.RealEstate));
+                cfg.CreateMap<EditRealEstateDTO, EditRealEstateView>()
+                    .ForMember(x => x.RealEstateForRealtor, x => x.MapFrom(m => m.RealEstate))
+                    .ForMember(dest => dest.ReturnUrl, options => options.Ignore()); 
+
                 cfg.CreateMap<DataForSearchParametersRealtorView, DataForSearchParametersDTO>();
+
+
+                cfg.CreateMap<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>().ForMember(dest => dest.ReturnUrl, options => options.Ignore());
 
             });
             _mapper = config.CreateMapper();

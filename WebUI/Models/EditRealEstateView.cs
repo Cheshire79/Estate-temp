@@ -7,5 +7,6 @@ namespace WebUI.Models
     {
         public RealEstateToSaveView RealEstateForRealtor;
         public DataForManipulateRealEstateView DataForManipulateRealEstate;
+        public string ReturnUrl { get; set; }
     }
 }
