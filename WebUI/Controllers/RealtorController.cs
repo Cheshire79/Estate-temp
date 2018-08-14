@@ -36,10 +36,19 @@ namespace WebUI.Controllers
         // GET: Realtor
         public async Task<ActionResult> RealEstates()
         {
-            ChoosenSearchParametrsForRealtorView searchParameters = new ChoosenSearchParametrsForRealtorView();
-			DataAboutRealEstatesForRealtorView dataForRealtor= await PreparedRealEstates(searchParameters);
-            return View(dataForRealtor);
-        }
+			try
+			{
+				ChoosenSearchParametrsForRealtorView searchParameters = new ChoosenSearchParametrsForRealtorView();
+				DataAboutRealEstatesForRealtorView dataForRealtor = await PreparedRealEstates(searchParameters);
+				return View(dataForRealtor);
+			}
+			catch  (Exception e)
+			{
+				ViewBag.Error = e.Message;
+				return View("NotFound");
+				//return HttpNotFound();
+			}
+		}
 
         [HttpPost]
         public async Task<ActionResult> RealEstates(ChoosenSearchParametrsForRealtorView searchParametersForRealtor)
@@ -118,14 +127,13 @@ namespace WebUI.Controllers
             ChoosenSearchParametersForRealtorDTO choosenSearchParametersDTO = _mapper.Map<ChoosenSearchParametrsForRealtorView, ChoosenSearchParametersForRealtorDTO>
                        (choosenSearchParameters);
             string userId = HttpContext.User.Identity.GetUserId();
-            if (!_realtorService.GetRealEstates().Any())
-            {
-                await _realtorService.SetInitialData(userId);
-            }
+ 
+            await _realtorService.SetInitialData(userId);
+ 
             
             var users = await _identityService.GetUsers().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider).ToListAsync();
 
-			List<RealEstateForRealtorDTO> realEstatesDTO = await(_realtorService.GetRealEstates(userId, choosenSearchParametersDTO)
+			List<RealEstateForRealtorDTO> realEstatesDTO = await(_realtorService.GetRealEstatesForRealtor(userId, choosenSearchParametersDTO)
                 .Skip((choosenSearchParameters.Page - 1) * _pageSize)
                 .Take(_pageSize).ToListAsync());
 
@@ -148,7 +156,7 @@ namespace WebUI.Controllers
                 {
                     CurrentPage = choosenSearchParameters.Page,
                     ItemsPerPage = _pageSize,
-                    TotalItems = await _realtorService.GetRealEstates(userId, choosenSearchParametersDTO).CountAsync()
+                    TotalItems = await _realtorService.GetRealEstatesForRealtor(userId, choosenSearchParametersDTO).CountAsync()
                 }
             };
             return dataForRealtor;
