@@ -24,7 +24,7 @@ namespace KnowledgeManagement.BLL.Services
 			_unitOfWork = unitOfWork;
 			_mapper = mapperFactory.CreateMapper();
 			_realeEstateSort = realeEstateSort;
-			var cityKiev = _unitOfWork.Cities.GetAll().FirstOrDefault(x => x.Name == "Киев1");
+			var cityKiev = _unitOfWork.Cities.GetAll().FirstOrDefault(x => x.Name == "Киев");
 			if (cityKiev != null)
 				_cityKievId = cityKiev.Id;
 		}
