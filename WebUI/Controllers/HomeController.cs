@@ -8,8 +8,8 @@ namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        protected override void OnException(ExceptionContext filterContext)
-        {
+      //  protected override void OnException(ExceptionContext filterContext)
+     //   {
             //if (filterContext.ExceptionHandled)
             //{
             //    return;
@@ -28,38 +28,38 @@ namespace WebUI.Controllers
             //filterContext.ExceptionHandled = true;
 
 
-            string action;
-            action = "Forbidden";
-            HttpException httpException = filterContext.Exception as HttpException;
+        //    string action;
+        //    action = "Forbidden";
+        //    HttpException httpException = filterContext.Exception as HttpException;
 
-            if (httpException != null)
-                switch (httpException.GetHttpCode())
-                {
-                    case 400:
-                        // page not found
-                        action = "BadRequest";
-                        break;
-                    case 404:
-                        // server error
-                        action = "NotFound";
-                        break;
-                    default:
-                        action = "Forbidden";
-                        break;
-                }
+        //    if (httpException != null)
+        //        switch (httpException.GetHttpCode())
+        //        {
+        //            case 400:
+        //                // page not found
+        //                action = "BadRequest";
+        //                break;
+        //            case 404:
+        //                // server error
+        //                action = "NotFound";
+        //                break;
+        //            default:
+        //                action = "Forbidden";
+        //                break;
+        //        }
 
-            // clear error on server
-            Server.ClearError();
-            filterContext.ExceptionHandled = true;
-            Response.Redirect(String.Format("~/Error/{0}/?message={1}", action, filterContext.Exception.Message));
+        //    // clear error on server
+        //    Server.ClearError();
+        //    filterContext.ExceptionHandled = true;
+        //    Response.Redirect(String.Format("~/Error/{0}/?message={1}", action, filterContext.Exception.Message));
            
-        }
+        //}
         public ActionResult Index()
         {
 
-            throw new HttpException(404,"Mine");
-            int x = 0;
-            int y = 8 / x;
+            //throw new HttpException(404,"Mine");
+            //int x = 0;
+            //int y = 8 / x;
             return View();
         }
 

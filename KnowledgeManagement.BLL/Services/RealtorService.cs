@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using KnowledgeManagement.BLL.Interface;
@@ -27,6 +28,10 @@ namespace KnowledgeManagement.BLL.Services
 			var cityKiev = _unitOfWork.Cities.GetAll().FirstOrDefault(x => x.Name == "Киев");
 			if (cityKiev != null)
 				_cityKievId = cityKiev.Id;
+			else
+			{
+				throw new HttpException(404,"Cannot find Kiev. Working just for area of Kiev city.");
+			}
 		}
 
 		public async Task SetInitialData(string realtorId)
@@ -328,10 +333,6 @@ namespace KnowledgeManagement.BLL.Services
 
 		private IQueryable<CityDistrictDTO> GetKievDistricts()// just for Kiev city
 		{
-			if (_cityKievId == 0)
-			{
-				throw new ArgumentException("Cannot find Kiev. Working just for area of Kiev city.");
-			}
 			return _unitOfWork.CityDistricts.GetAll().Where(x => x.CityId == _cityKievId).ProjectTo<CityDistrictDTO>(_mapper.ConfigurationProvider);
 		}
 
