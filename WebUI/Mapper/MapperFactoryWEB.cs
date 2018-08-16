@@ -5,6 +5,7 @@ using KnowledgeManagement.BLL.Interface.Date;
 using WebUI.Models;
 using WebUI.Models.KnowledgeManagement;
 using WebUI.Models.Realtor;
+using WebUI.Models.Realtor.ForManipulate;
 using WebUI.Models.UsersAndRoles;
 using WebUI.Models.UsersSearch;
 
@@ -50,8 +51,7 @@ namespace WebUI.Mapper
                 cfg.CreateMap<RealEstateForRealtorDTO, RealEstateToSaveView>();
 
                 cfg.CreateMap<EditRealEstateDTO, EditRealEstateView>()
-                    .ForMember(x => x.RealEstateForRealtor, x => x.MapFrom(m => m.RealEstate))
-                    .ForMember(dest => dest.ReturnUrl, options => options.Ignore()); 
+                    .ForMember(x => x.RealEstateForRealtor, x => x.MapFrom(m => m.RealEstate)); 
 
                 cfg.CreateMap<DataForSearchParametersRealtorView, DataForSearchParametersDTO>();
 

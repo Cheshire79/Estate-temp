@@ -1,5 +1,5 @@
 ﻿
-namespace WebUI.Models.Realtor
+namespace WebUI.Models.Realtor.ForManipulate
 {
     public class SortOrderDropItemView
     {

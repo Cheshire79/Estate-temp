@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using WebUI.Models.Realtor;
 
-namespace WebUI.Models
+namespace WebUI.Models.Realtor
 {
     public class DataAboutRealEstatesForRealtorView
     {

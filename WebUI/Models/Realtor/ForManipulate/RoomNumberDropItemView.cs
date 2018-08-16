@@ -1,5 +1,5 @@
 ﻿
-namespace WebUI.Models
+namespace WebUI.Models.Realtor.ForManipulate
 {
     public class RoomNumberDropItemView
     {

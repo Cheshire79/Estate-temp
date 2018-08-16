@@ -1,6 +1,6 @@
 ﻿
-@using WebUI.Models
-@model WebUI.Models.EditRealEstateView
+@using WebUI.Models.Realtor
+@model EditRealEstateView
 @{
     ViewBag.Title = "CreateRealEstate";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -133,7 +133,7 @@
 
 
     <div>
-        <a href=@Model.ReturnUrl>Back to real estate list</a>
+        <a href=@Model.DataForManipulateRealEstate.ReturnUrl>Back to real estate list</a>
     </div>
 
 <script type="text/javascript">

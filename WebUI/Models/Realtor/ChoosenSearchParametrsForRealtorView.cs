@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebUI.Models
+namespace WebUI.Models.Realtor
 {
     public class ChoosenSearchParametrsForRealtorView
     {

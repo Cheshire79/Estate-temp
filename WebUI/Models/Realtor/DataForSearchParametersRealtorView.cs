@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WebUI.Models.Realtor.ForManipulate;
 
 namespace WebUI.Models.Realtor
 {

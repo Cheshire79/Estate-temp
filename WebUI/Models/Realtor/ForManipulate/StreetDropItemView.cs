@@ -1,7 +1,7 @@
 ﻿
-namespace WebUI.Models
+namespace WebUI.Models.Realtor.ForManipulate
 {
-    public class CityDistrictDropItemView
+    public class StreetDropItemView
     {
         public int? Id { get; set; }
         public string Name { get; set; }

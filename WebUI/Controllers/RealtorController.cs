@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity;
 using WebUI.Mapper;
 using WebUI.Models;
 using WebUI.Models.Realtor;
+using WebUI.Models.Realtor.ForManipulate;
 using WebUI.Models.UsersAndRoles;
 
 namespace WebUI.Controllers
@@ -173,7 +174,7 @@ namespace WebUI.Controllers
                 string realtorId = HttpContext.User.Identity.GetUserId();
                 EditRealEstateView editRealEstate =
                     _mapper.Map<EditRealEstateDTO, EditRealEstateView>(await _realtorService.GetDataForRealEstateEditing(id.Value, realtorId));
-                editRealEstate.ReturnUrl =
+                editRealEstate.DataForManipulateRealEstate.ReturnUrl =
                     string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
                 return View(editRealEstate);
             }

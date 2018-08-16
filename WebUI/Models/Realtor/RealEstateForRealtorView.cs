@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebUI.Models
+namespace WebUI.Models.Realtor
 {
     public class RealEstateForRealtorView
     {
