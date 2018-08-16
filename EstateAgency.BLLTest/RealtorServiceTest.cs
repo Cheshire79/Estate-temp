@@ -6,8 +6,8 @@ using EstateAgency.BLL.Interface.Date;
 using EstateAgency.BLL.Mapper;
 using EstateAgency.BLL.Services;
 using EstateAgency.BLL.Services.RealeEstateOrdering;
-using EstateAgencyt.DAL.Interface;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface;
+using EstateAgency.DAL.Interface.Date;
 using Moq;
 using NUnit.Framework;
 

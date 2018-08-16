@@ -1,9 +1,9 @@
-using EstateAgencyt.DAL.Interface;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface;
+using EstateAgency.DAL.Interface.Date;
 using Ninject;
 using Ninject.Parameters;
 
-namespace EstateAgencyt.DAL.Infrastructure
+namespace EstateAgency.DAL.Infrastructure
 {
     public class FactoryRepositor : IFactoryRepository
     {

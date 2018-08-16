@@ -9,8 +9,8 @@ using AutoMapper.QueryableExtensions;
 using EstateAgency.BLL.Interface;
 using EstateAgency.BLL.Interface.Date;
 using EstateAgency.BLL.Interface.Date.ForManipulate;
-using EstateAgencyt.DAL.Interface;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface;
+using EstateAgency.DAL.Interface.Date;
 
 namespace EstateAgency.BLL.Services
 {

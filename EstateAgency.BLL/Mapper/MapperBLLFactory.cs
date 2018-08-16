@@ -1,7 +1,7 @@
 using AutoMapper;
 using EstateAgency.BLL.Interface;
 using EstateAgency.BLL.Interface.Date;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface.Date;
 
 namespace EstateAgency.BLL.Mapper
 {

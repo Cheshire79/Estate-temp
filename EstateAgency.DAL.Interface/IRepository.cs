@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EstateAgencyt.DAL.Interface
+namespace EstateAgency.DAL.Interface
 {
     public interface IRepository<T> where T : class
     {

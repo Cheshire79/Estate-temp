@@ -1,9 +1,9 @@
 using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface.Date;
 
-namespace EstateAgencyt.DAL.Interface
+namespace EstateAgency.DAL.Interface
 {
     public interface IDataContext : IDisposable
     {

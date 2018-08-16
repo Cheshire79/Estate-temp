@@ -1,4 +1,4 @@
-﻿
+
 using AutoMapper;
 using EstateAgency.BLL.Interface.Date;
 using EstateAgency.BLL.Interface.Date.ForManipulate;

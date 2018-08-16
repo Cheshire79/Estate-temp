@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EstateAgencyt.DAL.Interface;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface;
+using EstateAgency.DAL.Interface.Date;
 
-namespace EstateAgencyt.DAL.Repository
+namespace EstateAgency.DAL.Repository
 {
     public class CityReadOnlyRepository : IReadOnlyRepository<City>
     {

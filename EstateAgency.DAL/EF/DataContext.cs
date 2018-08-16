@@ -1,9 +1,9 @@
 using System.Data.Entity;
 using System.Linq;
-using EstateAgencyt.DAL.Interface;
-using EstateAgencyt.DAL.Interface.Date;
+using EstateAgency.DAL.Interface;
+using EstateAgency.DAL.Interface.Date;
 
-namespace EstateAgencyt.DAL.EF
+namespace EstateAgency.DAL.EF
 {
     public class DataContext : DbContext, IDataContext
     {

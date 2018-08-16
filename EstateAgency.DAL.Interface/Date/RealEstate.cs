@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EstateAgencyt.DAL.Interface.Date
+namespace EstateAgency.DAL.Interface.Date
 {
     public class RealEstate
     {
