@@ -53,13 +53,17 @@ namespace KnowledgeManagement.BLL.Services
 
         public async Task Update(SubSkillDTO subSkillDTO)
         {
-            await _unitOfWork.SubSkills.Update(_mapper.Map<SubSkillDTO, SubSkill>(subSkillDTO));
+             _unitOfWork.SubSkills.Update(_mapper.Map<SubSkillDTO, SubSkill>(subSkillDTO));
             await _unitOfWork.SaveAsync();
         }
 
         public async Task Delete(int id)
         {
-            await _unitOfWork.SubSkills.Delete(id);
+              SubSkill subSkill = await _unitOfWork.SubSkills.GetByIdAsync(id);
+              if (subSkill == null)
+                  throw new ArgumentException("Subskill was not deleted. Cannot find subskill with indicated ID");
+
+             _unitOfWork.SubSkills.Delete(subSkill);
             await _unitOfWork.SaveAsync();
         }
         public async Task<IQueryable<SubSkillDTO>> GetSubSkillBySkillsId(int id)

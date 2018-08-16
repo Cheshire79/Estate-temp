@@ -32,13 +32,13 @@ namespace KnowledgeManagement.DAL.Repository
             _db.SubSkills.Add(subskill);
         }
 
-        public async Task Update(SubSkill subskill)
+        public void Update(SubSkill subskill)
         {
-
-            var originSubSkill = await _db.SubSkills.FindAsync(subskill.Id);
+            //todo
+            var originSubSkill =  _db.SubSkills.Find(subskill.Id);
             if (originSubSkill == null)
                 throw new ArgumentException("SubSkill was not updated. Cannot find subskill with Id = " + originSubSkill.Id);
-              Skill skill = await _db.Skills.FindAsync(originSubSkill.SkillId);
+              Skill skill = _db.Skills.Find(originSubSkill.SkillId);
             if (skill != null)
             {
                 originSubSkill.Name = subskill.Name;
@@ -50,12 +50,12 @@ namespace KnowledgeManagement.DAL.Repository
             }
         }
 
-        public async Task Delete(int id)
+        public void Delete(SubSkill subSkill)
         {                                                        
-            SubSkill subSkill = await _db.SubSkills.FindAsync(id);
-            if (subSkill == null)
-                throw new ArgumentException("Subskill was not deleted. Cannot find subskill with indicated ID");
-            Skill skill = await _db.Skills.FindAsync(subSkill.SkillId);
+          //  SubSkill subSkill = await _db.SubSkills.FindAsync(id);
+          //  if (subSkill == null)
+          //      throw new ArgumentException("Subskill was not deleted. Cannot find subskill with indicated ID");
+            Skill skill =  _db.Skills.Find(subSkill.SkillId);
             if (skill != null)
             {
                 _db.SubSkills.Remove(subSkill);

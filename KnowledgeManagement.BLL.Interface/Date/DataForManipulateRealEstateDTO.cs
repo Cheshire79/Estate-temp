@@ -7,8 +7,8 @@ namespace KnowledgeManagement.BLL.Interface.Date
         public List<CityDistrictDropDownItemDTO> Districts;
         public List<RoomNumberDownItemDTO> RoomNumbers;
         public List<StreetDropDownItemDTO> Streets;
-        public int? ChoosenDistrict;
+        public int? ChoosenDistrictId;
         public byte ChoosenRoomNumber;
-        public int? ChoosenStreet;
+        public int? ChoosenStreetId;
     }
 }

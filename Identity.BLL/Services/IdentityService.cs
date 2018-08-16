@@ -115,7 +115,7 @@ namespace Identity.BLL.Services
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Cannot add user with id=" + userId + " to role with id=" + roleId);
+                throw new ArgumentException("Cannot add user with id=" + userId + " to role with id=" + roleId);//todo
             }
 
             if (added.Succeeded)
@@ -130,7 +130,7 @@ namespace Identity.BLL.Services
 
         public async Task SetInitialData()
         {
-            var roleList = new List<string> { "user", "admin", "manager" };
+            var roleList = new List<string> { "user", "admin", "manager","realtor" };
             foreach (string roleName in roleList)
             {
                 var role = await _unitOfWork.RoleManager.FindByNameAsync(roleName);

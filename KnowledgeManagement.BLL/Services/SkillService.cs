@@ -44,13 +44,16 @@ namespace KnowledgeManagement.BLL.Services
 
         public async Task Update(SkillDTO skillDTO)
         {
-            await _unitOfWork.Skills.Update(_mapper.Map<SkillDTO, Skill>(skillDTO));
+             _unitOfWork.Skills.Update(_mapper.Map<SkillDTO, Skill>(skillDTO));
             await _unitOfWork.SaveAsync();
         }
 
         public async Task Delete(int id)
         {
-            await _unitOfWork.Skills.Delete(id);
+             Skill skill = await _unitOfWork.Skills.GetByIdAsync(id);
+            if (skill == null)
+                throw new ArgumentException("Skill was not deleted. Cannot find skill with indicated ID");
+            _unitOfWork.Skills.Delete(skill);
             await _unitOfWork.SaveAsync();
         }
         public void Dispose()

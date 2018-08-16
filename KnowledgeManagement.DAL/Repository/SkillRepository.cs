@@ -32,21 +32,21 @@ namespace KnowledgeManagement.DAL.Repository
             _db.Skills.Add(skill);
         }
 
-        public async Task Update(Skill skill)
+        public void Update(Skill skill)
         {
-            var originSkill = await _db.Skills.FindAsync(skill.Id);
+            var originSkill =  _db.Skills.Find(skill.Id);
             if (originSkill == null)
                 throw new ArgumentException("Skill was not updated. Cannot find skill with Id = " + skill.Id);
             originSkill.Name = skill.Name;
         }
 
-        public async Task Delete(int id)
+        public void Delete(Skill skill)
         {
-            Skill skill = await _db.Skills.FindAsync(id);
-            if (skill == null)
-                throw new ArgumentException("Skill was not deleted. Cannot find skill with indicated ID");
+            //Skill skill =  _db.Skills.Find(id);
+            //if (skill == null)
+            //    throw new ArgumentException("Skill was not deleted. Cannot find skill with indicated ID");
 
-            var subSkills = await _db.SubSkills.Where(x => x.SkillId == id).ToListAsync();
+            var subSkills =  _db.SubSkills.Where(x => x.SkillId == skill.Id).ToList();
             foreach (var items in subSkills) // todo is it possible to use async here            
                 _db.SubSkills.Remove(items);
             _db.Skills.Remove(skill);

@@ -30,18 +30,21 @@ namespace WebUI.Controllers
             _realtorService = realtorService;
             _identityService = identityService;
             _mapper = mapperFactory.CreateMapperWEB();
-            string userId = HttpContext.User.Identity.GetUserId();
-            _realtorService.SetInitialData(userId);
         }
 
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> RealEstates()
         {
+            string userId = HttpContext.User.Identity.GetUserId();
+            await _realtorService.SetInitialData(userId);
+
             ChoosenSearchParametrsForRealtorView searchParameters = new ChoosenSearchParametrsForRealtorView();
             DataAboutRealEstatesForRealtorView dataForRealtor = await PreparedRealEstates(searchParameters);
             return View(dataForRealtor);
         }
 
         [HttpPost]
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> RealEstates(ChoosenSearchParametrsForRealtorView searchParametersForRealtor)
         {
             DataAboutRealEstatesForRealtorView dataForRealtor;
@@ -55,16 +58,18 @@ namespace WebUI.Controllers
             return View(dataForRealtor);
         }
 
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> CreateRealEstate(string returnUrl)
         {
             DataForManipulateRealEstateView dataForManipulateRealEstate =
-                _mapper.Map<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>(await _realtorService.GetDataForRealEstateCreation());
+                _mapper.Map<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>(await _realtorService.GetDataForRealEstateManipulate());
             dataForManipulateRealEstate.ReturnUrl =
                 string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
             return View(dataForManipulateRealEstate);
         }
 
         [HttpPost]
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> CreateRealEstate(RealEstateToSaveView realEstate, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
@@ -86,6 +91,7 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> MarkAsSold(int? id)
         {
             if (id != null)
@@ -98,6 +104,7 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> DeleteRealEstate(int? id)
         {
             if (id != null)
@@ -109,6 +116,7 @@ namespace WebUI.Controllers
             return RedirectToAction("RealEstates");
         }
 
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> FillStreet(int? districtId)
         {
             List<StreetDropItemView> cities;
@@ -157,21 +165,23 @@ namespace WebUI.Controllers
             return dataForRealtor;
         }
 
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> EditRealEstate(int? id, string returnUrl)
         {
             if (id != null)
             {
                 string realtorId = HttpContext.User.Identity.GetUserId();
-                EditRealEstateView skillViewModel =
+                EditRealEstateView editRealEstate =
                     _mapper.Map<EditRealEstateDTO, EditRealEstateView>(await _realtorService.GetDataForRealEstateEditing(id.Value, realtorId));
-                skillViewModel.ReturnUrl =
+                editRealEstate.ReturnUrl =
                     string.IsNullOrWhiteSpace(returnUrl) ? Url.Action("RealEstates") : returnUrl;
-                return View(skillViewModel);
+                return View(editRealEstate);
             }
             throw new HttpException(400, "Invalid value of reale estate Id");
         }
 
         [HttpPost]
+        [Authorize(Roles = "realtor")]
         public async Task<ActionResult> EditRealEstate(RealEstateToSaveView realEstate, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)

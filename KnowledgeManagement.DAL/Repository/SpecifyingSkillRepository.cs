@@ -31,15 +31,15 @@ namespace KnowledgeManagement.DAL.Repository
             _db.SpecifyingSkills.Add(specifyingSkill);
         }
 
-        public Task Update(SpecifyingSkill specifyingSkill)
+        public void Update(SpecifyingSkill specifyingSkill)
         {
             throw new NotImplementedException();
         }
 
-        public async Task Delete(int id)
+        public void Delete(SpecifyingSkill specifyingSkill)
         {
-            SpecifyingSkill specifyingSkill = await _db.SpecifyingSkills.FindAsync(id);
-            if (specifyingSkill != null)
+          //  SpecifyingSkill specifyingSkill = await _db.SpecifyingSkills.FindAsync(id);
+           // if (specifyingSkill != null)
                 _db.SpecifyingSkills.Remove(specifyingSkill);
         }
 

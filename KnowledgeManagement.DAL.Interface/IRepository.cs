@@ -8,7 +8,7 @@ namespace KnowledgeManagement.DAL.Interface
         IQueryable<T> GetAll();
         Task<T> GetByIdAsync(int id);
         void Create(T item);
-        Task Update(T item);
-        Task Delete(int id);
+        void Update(T item);
+        void Delete(T item);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using KnowledgeManagement.DAL.Interface;
@@ -31,22 +30,13 @@ namespace KnowledgeManagement.DAL.Repository
             _db.RealEstates.Add(realEstate);
         }
 
-
-        public async Task Delete(int id)
+        public void Delete(RealEstate realEstate)
         {
-            var realEstate = await _db.RealEstates.FindAsync(id);
-            if (realEstate == null)
-                throw new ArgumentException("Real estate was not updated. Cannot find Real estate with Id = " + id);
             _db.RealEstates.Remove(realEstate);
         }
 
-        public async Task Update(RealEstate realEstate)
+        public void Update(RealEstate realEstate)
         {
-            var originRealEstate = await _db.RealEstates.FindAsync(realEstate.Id);
-            if (originRealEstate == null)
-                throw new ArgumentException("Real estate was not updated. Cannot find Real estate with Id = " + realEstate.Id);
-            realEstate.RealtorId = originRealEstate.RealtorId;
-            realEstate.CreationDate = originRealEstate.CreationDate;
             _db.RealEstates.AddOrUpdate(realEstate);
         }
     }

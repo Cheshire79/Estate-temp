@@ -57,7 +57,7 @@ namespace KnowledgeManagement.BLL.Services
             var toDelete = _unitOfWork.SpecifyingSkills.GetAll().Where(x => x.UserId == userId).ToList();
             foreach (var item in toDelete)
             {
-                await _unitOfWork.SpecifyingSkills.Delete(item.Id);
+                 _unitOfWork.SpecifyingSkills.Delete(item);
             }
             await _unitOfWork.SaveAsync();
             int min = _unitOfWork.Levels.GetAll().Min(x => x.Order); // todoAsync
