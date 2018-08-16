@@ -17,7 +17,7 @@ namespace Identity.BLL.Services
 {
     public class IdentityService : IIdentityService
     {
-        private string adminRoleName = "admin";
+        private readonly string adminRoleName = "admin";
         private IIdentityUnitOfWork<ApplicationUserManager, ApplicationRoleManager> _unitOfWork { get; set; }
         private IMapper _mapper;
 
@@ -130,7 +130,7 @@ namespace Identity.BLL.Services
 
         public async Task SetInitialData()
         {
-            var roleList = new List<string> { "user", "admin", "manager","realtor" };
+            var roleList = new List<string> { "client", "admin","realtor" };
             foreach (string roleName in roleList)
             {
                 var role = await _unitOfWork.RoleManager.FindByNameAsync(roleName);

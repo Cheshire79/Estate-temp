@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using AutoMapper;
 using EstateAgency.BLL.Interface;
 using EstateAgency.BLL.Interface.Date;
@@ -14,13 +13,6 @@ namespace EstateAgency.BLL.Mapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                Debug.WriteLine("Mapper KnowledgeManagement");
-                cfg.CreateMap<Skill, SkillDTO>();
-                cfg.CreateMap<SkillDTO, Skill>();
-                cfg.CreateMap<SubSkill, SubSkillDTO>();
-                cfg.CreateMap<SubSkillDTO, SubSkill>();
-
-
                 cfg.CreateMap<City, CityDTO>();
                 cfg.CreateMap<CityDTO, City>();
                 cfg.CreateMap<CityDistrict, CityDistrictDTO>();
@@ -29,7 +21,6 @@ namespace EstateAgency.BLL.Mapper
                 cfg.CreateMap<StreetDTO, Street>();
                 cfg.CreateMap<RealEstate, RealEstateDTO>();
                 cfg.CreateMap<RealEstateDTO, RealEstate>();
-
             });
             _mapper = config.CreateMapper();
         }

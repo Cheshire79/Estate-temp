@@ -56,24 +56,14 @@ namespace WebUI.Infrastructure
             _ninjectKernel.Bind<IReadOnlyRepository<CityDistrict>>().To<CityDistrictReadOnlyRepository>();
             _ninjectKernel.Bind<IReadOnlyRepository<Street>>().To<StreetReadOnlyRepository>();
 
-            _ninjectKernel.Bind<IRepository<Skill>>().To<SkillRepository>();
-            _ninjectKernel.Bind<IRepository<SubSkill>>().To<SubSkillRepository>();
             _ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             _ninjectKernel.Bind<IFactoryRepository>().To<FactoryRepositor>();
-            _ninjectKernel.Bind<IReadOnlyRepository<Level>>().To<LevelReadOnlyRepository>();
-            _ninjectKernel.Bind<IRepository<SpecifyingSkill>>().To<SpecifyingSkillRepository>();
         }
 
         private void AddBindingsForKnowledgeManagementBLL()
         {
             _ninjectKernel.Bind<IRealtorService>().To<RealtorService>();
-
-            _ninjectKernel.Bind<ISubSkillService>().To<SubSkillService>();
-            _ninjectKernel.Bind<ISkillService>().To<SkillService>();
             _ninjectKernel.Bind<IRealeEstateSort>().To<RealeEstateSort>();
-
-            _ninjectKernel.Bind<IUserService>()
-                .To<UserService>();
             _ninjectKernel.Bind<EstateAgency.BLL.Interface.IMapperFactory>().To<EstateAgency.BLL.Mapper.MapperFactory>().InSingletonScope();
         }
 

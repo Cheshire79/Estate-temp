@@ -26,16 +26,8 @@
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Administrating", "Users", "Admin")</li>
-                    }
-                    @if (User.IsInRole("manager"))
-                    {
-                        <li>@Html.ActionLink("Manager", "Skills", "ManagerSkill")</li>
-                    }
-                    @if (User.IsInRole("user"))
-                    {
-                        <li>@Html.ActionLink("Specify Skills", "Index", "User")</li>
-                    }
-                    @if (true)
+                    }                   
+                    @if (User.IsInRole("realtor"))
                     {
                         <li>@Html.ActionLink("Realtor", "RealEstates", "Realtor")</li>
                     }

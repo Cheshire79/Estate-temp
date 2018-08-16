@@ -19,7 +19,7 @@ namespace WebUI.Controllers
     {
         private IIdentityService _identityService;
         private IMapper _mapper;
-
+        private readonly string roleByDefault = "client";
         public AccountController(IIdentityService identityService, IMapperFactoryWEB mapperFactory)
         {
             _identityService = identityService;
@@ -76,7 +76,7 @@ namespace WebUI.Controllers
             if (ModelState.IsValid)
             {
                 User userDto=_mapper.Map<UserRegisterViewModel, User>(model);
-                userDto.RoleByDefault = "user";                
+                userDto.RoleByDefault = roleByDefault;
                 OperationDetails operationDetails = await _identityService.Create(userDto);
                 if (operationDetails.Succedeed)
                 {

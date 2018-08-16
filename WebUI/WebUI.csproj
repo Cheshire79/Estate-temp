@@ -196,15 +196,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Binders\UsersSearchResultBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManagerSkillController.cs" />
     <Compile Include="Controllers\RealtorController.cs" />
-    <Compile Include="Controllers\SearchForUsersController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,9 +218,6 @@
     <Compile Include="Models\Realtor\DataForSearchParametersRealtorView.cs" />
     <Compile Include="Models\Realtor\ForManipulate\SortOrderDropItemView.cs" />
     <Compile Include="Models\Realtor\ForManipulate\RoomNumberDropItemView.cs" />
-    <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillSaveViewModel.cs" />
-    <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSubSkillSaveViewModel.cs" />
-    <Compile Include="Models\SpecifyingSkills\SpecifyingSkillsViewModel.cs" />
     <Compile Include="Models\Realtor\ForManipulate\StreetDropItemView.cs" />
     <Compile Include="Models\UsersAndRoles\UserLoginViewModel.cs" />
     <Compile Include="Models\UsersAndRoles\UserEditViewModel.cs" />
@@ -235,22 +228,7 @@
     <Compile Include="Models\UsersAndRoles\UsersForAddingIntoRoleViewModel.cs" />
     <Compile Include="Models\UsersAndRoles\UsersInRoleViewModel.cs" />
     <Compile Include="Models\UsersAndRoles\UsersViewModel.cs" />
-    <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillsSaveViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
-    <Compile Include="Models\UsersSearch\SpecifyingSkillForSearchSaveModel.cs" />
-    <Compile Include="Models\UsersSearch\SpecifyingSkillForSearchViewModel.cs" />
-    <Compile Include="Models\UsersSearch\SpecifyingSkillsForSearchViewModel.cs" />
-    <Compile Include="Models\UsersSearch\SpecifyingSubSkillForSearchViewModel.cs" />
-    <Compile Include="Models\UsersSearch\UserSearchResultViewModel.cs" />
-    <Compile Include="Models\UsersSearch\UsersSearchResult.cs" />
-    <Compile Include="Models\UsersSearch\UsersSearchResultViewModel.cs" />
-    <Compile Include="Models\KnowledgeManagement\LevelViewModel.cs" />
-    <Compile Include="Models\KnowledgeManagement\SkillsViewModelTest.cs" />
-    <Compile Include="Models\KnowledgeManagement\SkillViewModel.cs" />
-    <Compile Include="Models\SpecifyingSkills\SpecifyingSkillViewModel.cs" />
-    <Compile Include="Models\SpecifyingSkills\SpecifyingSubSkillViewModel.cs" />
-    <Compile Include="Models\KnowledgeManagement\SubSkillsViewModel.cs" />
-    <Compile Include="Models\KnowledgeManagement\SubSkillViewModel.cs" />
     <Compile Include="Models\UsersAndRoles\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -307,17 +285,6 @@
     <Content Include="Views\Admin\Roles.cshtml" />
     <Content Include="Views\Admin\RolesMenu.cshtml" />
     <Content Include="Views\Admin\AddUsersForRole.cshtml" />
-    <Content Include="Views\ManagerSkill\Skills.cshtml" />
-    <Content Include="Views\ManagerSkill\CreateSkill.cshtml" />
-    <Content Include="Views\ManagerSkill\EditSkill.cshtml" />
-    <Content Include="Views\ManagerSkill\EditSubSkills.cshtml" />
-    <Content Include="Views\ManagerSkill\CreateSubSkill.cshtml" />
-    <Content Include="Views\ManagerSkill\_LayoutManagerSkill.cshtml" />
-    <Content Include="Views\ManagerSkill\EditSubSkill.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\SearchForUsers\Index.cshtml" />
-    <Content Include="Views\SearchForUsers\SearchResult.cshtml" />
-    <Content Include="Views\SearchForUsers\_SearchResultPartial.cshtml" />
     <Content Include="Views\Realtor\RealEstates.cshtml" />
     <Content Include="Views\Realtor\CreateRealEstate.cshtml" />
     <Content Include="Views\Realtor\EditRealEstate.cshtml" />

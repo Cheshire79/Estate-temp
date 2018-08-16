@@ -12,10 +12,6 @@ namespace EstateAgencyt.DAL.Interface
         DbSet<Street> Streets { get; set; }
         DbSet<RealEstate> RealEstates { get; set; }
 
-        DbSet<SubSkill> SubSkills { get; set; }
-        DbSet<Skill> Skills { get; set; }
-        DbSet<Level> Levels { get; set; }
-        DbSet<SpecifyingSkill> SpecifyingSkills { get; set; }
         int SaveChanges();
         Task<int> SaveChangesAsync();
     }

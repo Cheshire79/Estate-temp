@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -51,12 +51,8 @@
   <ItemGroup>
     <Compile Include="Date\City.cs" />
     <Compile Include="Date\CityDistrict.cs" />
-    <Compile Include="Date\Level.cs" />
     <Compile Include="Date\RealEstate.cs" />
-    <Compile Include="Date\Skill.cs" />
-    <Compile Include="Date\SpecifyingSkill.cs" />
     <Compile Include="Date\Street.cs" />
-    <Compile Include="Date\SubSkill.cs" />
     <Compile Include="IDataContext.cs" />
     <Compile Include="IFactoryRepository.cs" />
     <Compile Include="IReadOnlyRepository.cs" />

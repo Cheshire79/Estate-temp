@@ -3,11 +3,9 @@ using AutoMapper;
 using EstateAgency.BLL.Interface.Date;
 using EstateAgency.BLL.Interface.Date.ForManipulate;
 using Identity.BLL.Interface.Data;
-using WebUI.Models.KnowledgeManagement;
 using WebUI.Models.Realtor;
 using WebUI.Models.Realtor.ForManipulate;
 using WebUI.Models.UsersAndRoles;
-using WebUI.Models.UsersSearch;
 
 namespace WebUI.Mapper
 {
@@ -19,8 +17,7 @@ namespace WebUI.Mapper
             var config = new MapperConfiguration(cfg =>
             {
                 // source , destination
-                // when do i need directly set up mapping ? (because sometime i cam miss and it still works)
-                cfg.CreateMap<SpecifyingSkillForSearchSaveModel, SpecifyingSkillForSearchDTO>();
+
                 cfg.CreateMap<User, UserViewModel>();
                 cfg.CreateMap<Role, RoleViewModel>();
 
@@ -31,12 +28,6 @@ namespace WebUI.Mapper
                 cfg.CreateMap<UserRegisterViewModel, User>().ForMember(x => x.Name,
                     x => x.MapFrom(m => m.UserName)).ForMember(x => x.Password,
                     x => x.MapFrom(m => m.Password));
-                cfg.CreateMap<SkillDTO, SkillViewModel>();
-                cfg.CreateMap<SkillViewModel, SkillDTO>();
-                cfg.CreateMap<SubSkillDTO, SubSkillViewModel>();
-                cfg.CreateMap<SubSkillViewModel, SubSkillDTO>();
-
-                cfg.CreateMap<LevelViewModel, LevelDTO>();
 
                 cfg.CreateMap<CityDistrictDropItemView, CityDistrictDTO>();
                 cfg.CreateMap<CityDistrictDTO, CityDistrictDropItemView>();
@@ -54,8 +45,6 @@ namespace WebUI.Mapper
                     .ForMember(x => x.RealEstateForRealtor, x => x.MapFrom(m => m.RealEstate)); 
 
                 cfg.CreateMap<DataForSearchParametersRealtorView, DataForSearchParametersDTO>();
-
-
                 cfg.CreateMap<DataForManipulateRealEstateDTO, DataForManipulateRealEstateView>().ForMember(dest => dest.ReturnUrl, options => options.Ignore());
 
             });

@@ -139,222 +139,14 @@ DIV#categoriesRoles a {
 /*----------------------*/
 
 
-/*---------------------- manager*/
 
+/*---------------------- realtor*/
 
 .createTitle {
     margin-top: 10px;
 }
 
 
-
-/* */
-.headerSkills {
-    font-weight: bold;
-    font-family: 'Oswald Regular',Tahoma,sans-serif;
-    letter-spacing: .5px;
-    color: #464547;
-    font-size: 24px;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    padding-left: 25px;
-    background-color: #dddddd;
-}
-
-
-.manager-search-skill {
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-    .manager-search-skill .title {
-        font-weight: bold;
-        font-family: 'Oswald Regular',Tahoma,sans-serif;
-        letter-spacing: .5px;
-        color: #464547;
-        font-size: 24px;
-        padding-top: 15px;
-        padding-bottom: 10px;
-        padding-left: 25px;
-        background-color: #dddddd;
-    }
-
-    .manager-search-skill .skill-scope {
-        border-bottom: 1px solid #464547;
-        border-top: 1px solid #464547;
-        padding-top: 1em;
-        padding-bottom: 1em;
-    }
-
-    .manager-search-skill .subtitle {
-        font-weight: bold;
-        font-family: 'Oswald Regular',Tahoma,sans-serif;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-        color: #464547;
-        font-size: 24px;
-        margin-top: 15px;
-        margin-bottom: 10px;
-        margin-left: 25px;
-        text-transform: none;
-    }
-
-    .manager-search-skill .skill-scope .skill-title {
-        float: left;
-        /* font:  1.1em "Arial Narrow","Franklin Gothic Medium",Arial;*/
-        font: 1.1em 'Source Sans Pro Regular',Tahoma,sans-serif;
-        color: #464547;
-    }
-
-    .manager-search-skill .skill-scope .skill-Rating {
-        margin-left: 68.5%;
-        padding: 0.1em;
-    }
-
-
-
-
-
-/*---------------------- user*/
-.input-skill-name {
-    max-width: 750px;
-    width: 700px;
-}
-
-
-
-.user-specifying-skill {
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-    .user-specifying-skill .title {
-        font-weight: bold;
-        font-family: 'Oswald Regular',Tahoma,sans-serif;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-        color: #464547;
-        font-size: 24px;
-        padding-top: 15px;
-        padding-bottom: 10px;
-        padding-left: 25px;
-        background-color: #dddddd;
-    }
-
-    .user-specifying-skill .skill-scope {
-        border: 1px solid #464547;
-        padding-top: 1em;
-        padding-bottom: 1em;
-    }
-
-    .user-specifying-skill .subtitle {
-        font-weight: bold;
-        font-family: 'Oswald Regular',Tahoma,sans-serif;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-        color: #464547;
-        font-size: 24px;
-        margin-top: 15px;
-        margin-bottom: 10px;
-        margin-left: 25px;
-        text-transform: none;
-    }
-
-    .user-specifying-skill .skill-scope .skill-title {
-        float: left;
-        /* font:  1.1em "Arial Narrow","Franklin Gothic Medium",Arial;*/
-        font: 1.1em 'Source Sans Pro Regular',Tahoma,sans-serif;
-        color: #464547;
-    }
-
-    .user-specifying-skill .skill-scope .skill-Rating {
-        margin-left: 68.5%;
-        padding: 0.1em;
-    }
-
-.user-search-result .title {
-    text-align: center;
-    font-size: 24px;
-}
-
-.user-search-result .user-item {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border-color: #000000;
-    border: 1px solid;
-    border-radius: 4px;
-    background-color: #e6e6fa;
-}
-
-    .user-search-result .user-item .user-info {
-        text-align: center;
-    }
-
-.user-search-result .subtitle {
-    font-weight: bold;
-    font-family: 'Oswald Regular',Tahoma,sans-serif;
-    color: #464547;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 55px;
-}
-
-.user-search-result .skill-scope {
-    margin-left: 15px;
-}
-
-    .user-search-result .skill-scope .skill-title {
-        float: left;
-        font: 1.0em 'Source Sans Pro Regular',Tahoma,sans-serif;
-        color: #464547;
-    }
-
-    .user-search-result .skill-scope .skill-Rating {
-        margin-left: 68.5%;
-        padding: 0.1em;
-    }
-
-    .user-search-result .skill-scope .strong-match {
-        font-weight: bold;
-        font-style: italic;
-        color: #000000;
-    }
-
-    .user-search-result .skill-scope .soft-match {
-        font-weight: bold;
-        font-style: italic;
-        color: #1001ff;
-    }
-
-    .user-search-result .skill-scope .the-rest-match {
-        font-style: italic;
-        color: #4169e1;
-    }
-
-.user-search-result .preview-strong-match {
-    margin-bottom: 10px;
-    margin-left: 10px;
-    font-style: italic;
-    font-weight: bold;
-    color: #000000;
-}
-
-.user-search-result .preview-soft-match {
-    margin-bottom: 10px;
-    margin-left: 10px;
-    font-style: italic;
-    font-weight: bold;
-    color: #1001ff;
-}
-
-.user-search-result .preview-the-rest-match {
-    margin-bottom: 10px;
-    margin-left: 10px;
-    font-style: italic;
-    color: #4169e1;
-}
-
-/*---------------------- realtor*/
 .realtor-searchArea {
     width: 900px;
     background-color: #fafafa;
@@ -366,37 +158,9 @@ DIV#categoriesRoles a {
     background-color: #e6e6fa;
 }
 
-    /*
-    .realtor-searchArea .title-main3 {
-        margin: 15px;
-        background-color: #eee;
-        margin-left: 230px;
-        margin-right: 230px;
-    }
-    .realtor-searchArea .title-left3 {
-        margin: 15px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 30px;
-        background-color: #ddd;
-        float: left;
-        width: 150px;
-    }
-    .realtor-searchArea .title-right3 {
-        margin: 15px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: 30px;
-        float: right;
-        width: 170px;
-
-    
-*/
-
 
     .realtor-searchArea .title-main {
         margin: 15px;
-        background-color: #aa2aee;
         margin-left: 100px;
         width: 150px;
     }
@@ -415,7 +179,6 @@ DIV#categoriesRoles a {
         margin: 15px;
         float: right;
         width: 270px;
-        background-color: #add;
         margin-right: 100px;
     }
 
@@ -442,14 +205,14 @@ DIV#categoriesRoles a {
             height: 90px;
             width: 100%;
             padding: 20px;
-            background-color: #2774c9;
+            background-color: #6495ed;
         }
 
         .realtor-searchArea .content01 .group02 {
             height: 90px;
             width: 100%;
             padding: 20px;
-            background-color: #fffee1;
+            background-color: #6495ed;
         }
 
     .realtor-searchArea .span3 {
@@ -682,8 +445,6 @@ DIV#categoriesRoles a {
 
 
 
-
-
 .realtor-itemAreaView-content {
     margin: 10px;
     background-color: #fafafa;
@@ -709,10 +470,7 @@ DIV#categoriesRoles a {
     }
 
 .info .item-description {
-    /*max-height: 100px;
-    overflow: hidden;
-        overflow-y: hidden;
-    */
+
     margin-bottom: 5px;
     max-width: 90%;
     height: 55px;

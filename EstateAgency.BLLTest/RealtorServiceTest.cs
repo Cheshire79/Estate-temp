@@ -14,68 +14,12 @@ using NUnit.Framework;
 namespace EstateAgency.BLLTest
 {
     [TestFixture]
-    public class SkillsTest
+    public class RealtorServiceTest
     {
-        private ISkillService _skillService;
-        private ISubSkillService _subSkillService;
         private IRealtorService _realtorService;
         [SetUp]
         public void SetUp()
         {
-            var listSkills = new Skill[]
-            {
-                new Skill() {Id = 1, Name = "Nokia Lumia 630"},
-                new Skill() {Id = 2, Name = "Programming languages"},
-                new Skill() {Id = 3, Name = "Databases"}
-            };
-
-            Mock<IRepository<Skill>> skillRepositoy = new Mock<IRepository<Skill>>();
-            skillRepositoy.Setup(m => m.GetAll()).Returns(listSkills.AsQueryable());
-            skillRepositoy.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(
-                (int id) => { return skillRepositoy.Object.GetAll().FirstOrDefault(x => x.Id == id); });
-
-
-            Mock<IRepository<SubSkill>> subSkillRepositoy = new Mock<IRepository<SubSkill>>();
-            var listSubSkills = new List<SubSkill>();
-            var skill1 = skillRepositoy.Object.GetAll().FirstOrDefault(x => x.Name == "Programming languages");
-            int subskillId = 1;
-            if (skill1 != null)
-            {
-                listSubSkills.Add(new SubSkill()
-                {
-                    SkillId = skill1.Id,
-                    Name = "C/C++",
-                    Id = subskillId++
-                });
-                listSubSkills.Add(new SubSkill()
-                {
-                    SkillId = skill1.Id,
-                    Name = "JavaScript / HTML / CSS"
-                });
-                listSubSkills.Add(new SubSkill()
-                {
-                    SkillId = skill1.Id,
-                    Name = "Delphi",
-                    Id = subskillId++
-                });
-            }
-            var skill2 = skillRepositoy.Object.GetAll().FirstOrDefault(x => x.Name == "Databases");
-            if (skill2 != null)
-            {
-                listSubSkills.Add(new SubSkill()
-                {
-                    SkillId = skill2.Id,
-                    Name = "Microsoft SQL Server",
-                    Id = subskillId++
-                });
-                listSubSkills.Add(new SubSkill()
-                {
-                    SkillId = skill2.Id,
-                    Name = "Oracle",
-                    Id = subskillId++
-                });
-            }
-            //----------------
 
             var listCitis = new City[]
             {
@@ -298,30 +242,15 @@ namespace EstateAgency.BLLTest
                     return realEstateRepository.Object.GetAll().FirstOrDefault(x => x.Id == id);
                 });
 
-
-            //------------------
-
-            subSkillRepositoy.Setup(m => m.GetAll()).Returns(listSubSkills.AsQueryable());
-            subSkillRepositoy.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(
-                (int id) => { return subSkillRepositoy.Object.GetAll().FirstOrDefault(x => x.Id == id); });
-
             var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.Setup(x => x.Skills).Returns(skillRepositoy.Object);
-            unitOfWork.Setup(x => x.SubSkills).Returns(subSkillRepositoy.Object);
 
-            //------------------
             unitOfWork.Setup(x => x.Cities).Returns(cityReadOnlyRepository.Object);
             unitOfWork.Setup(x => x.CityDistricts).Returns(cityDistrictReadOnlyRepository.Object);
             unitOfWork.Setup(x => x.Streets).Returns(streetReadOnlyRepository.Object);
             unitOfWork.Setup(x => x.RealEstates).Returns(realEstateRepository.Object);
 
-            //------------------
-
-            _skillService = new SkillService(unitOfWork.Object, new MapperFactory());
-            _subSkillService = new SubSkillService(unitOfWork.Object, new MapperFactory());
-
+ 
             _realtorService = new RealtorService(unitOfWork.Object, new MapperFactory(), new RealeEstateSort());
-
 
         }
 
@@ -332,8 +261,6 @@ namespace EstateAgency.BLLTest
             var realEstate = _realtorService.GetRealEstatesForRealtor("", new ChoosenSearchParametersForRealtorDTO())
                 .ToList();
             Assert.IsTrue(realEstate.Count == realEstateAmount);
-            //Assert.AreEqual(_skillService.GetAll().ToList()[0].Name, "Nokia Lumia 630");
-            //Assert.AreEqual(_skillService.GetByIdAsync(1).Result.Name, "Nokia Lumia 630");
         }
 
         [Test]
@@ -341,43 +268,17 @@ namespace EstateAgency.BLLTest
         {
             int filteredRealEstateAmount = 1;
             var searchParameters = new ChoosenSearchParametersForRealtorDTO() {PriceFrom = 50.000M, PriceTo = 60.000M};
-
             var realEstate = _realtorService.GetRealEstatesForRealtor("", searchParameters).ToList();
             Assert.IsTrue(realEstate.Count == filteredRealEstateAmount);
-            //Assert.AreEqual(_skillService.GetAll().ToList()[0].Name, "Nokia Lumia 630");
-            //Assert.AreEqual(_skillService.GetByIdAsync(1).Result.Name, "Nokia Lumia 630");
         }
+
         [Test]
         public void RealEstatePriceFilterWithEquelsBorderValue()
         {
             int filteredRealEstateAmount = 3;
             var searchParameters = new ChoosenSearchParametersForRealtorDTO() { PriceFrom = 36.000M, PriceTo = 56.000M };
-
             var realEstate = _realtorService.GetRealEstatesForRealtor("", searchParameters).ToList();
             Assert.IsTrue(realEstate.Count == filteredRealEstateAmount);
-            //Assert.AreEqual(_skillService.GetAll().ToList()[0].Name, "Nokia Lumia 630");
-            //Assert.AreEqual(_skillService.GetByIdAsync(1).Result.Name, "Nokia Lumia 630");
-        }
-
-        [Test]
-        public void GetAll()
-        {
-            var skill = _skillService.GetAll().ToList();
-            Assert.IsTrue(skill.Count == 3);
-            Assert.AreEqual(_skillService.GetAll().ToList()[0].Name, "Nokia Lumia 630");
-            Assert.AreEqual(_skillService.GetByIdAsync(1).Result.Name, "Nokia Lumia 630");
-        }
-
-        [Test]
-        public void GetByIdAsync()
-        {
-            Assert.AreEqual(_skillService.GetByIdAsync(1).Result.Name, "Nokia Lumia 630");
-        }
-        [Test]
-        public void GetSubSkillBySkillId()
-        {
-            Assert.IsTrue(_subSkillService.GetSubSkillBySkillsId(2).Result.Count() == 3);
-            Assert.ThrowsAsync<ArgumentException>(() => _subSkillService.GetSubSkillBySkillsId(4));
         }
     }
 }

@@ -11,7 +11,6 @@ namespace EstateAgencyt.DAL.Repository
 
         public UnitOfWork(IFactoryRepository factoryRepository, IDataContext db)
         {
-            // Debug.WriteLine("Create  UnitOfWork KM");
             _factoryRepository = factoryRepository;
             _db = db;
         }
@@ -39,30 +38,6 @@ namespace EstateAgencyt.DAL.Repository
             get { return _streetRepository ?? (_streetRepository = _factoryRepository.CreateStreetRepository(_db)); }
         }
 
-        private IRepository<Skill> _skillRepository;
-        private IRepository<SubSkill> _subSkillRepository;
-        public IRepository<Skill> Skills
-        {
-            get { return _skillRepository ?? (_skillRepository = _factoryRepository.CreateSkillRepository(_db)); }
-        }
-
-        public IRepository<SubSkill> SubSkills
-        {
-            get { return _subSkillRepository ?? (_subSkillRepository = _factoryRepository.CreateSubSkillRepository(_db)); }
-        }
-
-        private IReadOnlyRepository<Level> _levelRepository;
-        private IRepository<SpecifyingSkill> _specifyingSkillRepository;
-
-        public IReadOnlyRepository<Level> Levels
-        {
-            get { return _levelRepository ?? (_levelRepository = _factoryRepository.CreateLevelRepository(_db)); }
-        }
-        public IRepository<SpecifyingSkill> SpecifyingSkills
-        {
-            get { return _specifyingSkillRepository ?? (_specifyingSkillRepository = _factoryRepository.CreateSpecifyingSkillRepository(_db)); }
-        }
-
         public async Task SaveAsync()
         {
             await _db.SaveChangesAsync();
@@ -70,7 +45,6 @@ namespace EstateAgencyt.DAL.Repository
 
         public void Dispose()
         {
-            // Debug.WriteLine("dispose  UnitOfWork KM");
             _db.Dispose();
         }
     }
