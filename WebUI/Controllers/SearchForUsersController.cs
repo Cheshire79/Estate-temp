@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using EstateAgency.BLL.Interface;
+using EstateAgency.BLL.Interface.Date;
 using Identity.BLL.Interface;
-using KnowledgeManagement.BLL.Interface;
-using KnowledgeManagement.BLL.Interface.Date;
 using Rotativa.MVC;
 using WebUI.Mapper;
 using WebUI.Models.KnowledgeManagement;

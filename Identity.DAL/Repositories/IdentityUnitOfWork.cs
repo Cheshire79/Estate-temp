@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Identity.DAL.EF;
 using Identity.DAL.Interface;
 

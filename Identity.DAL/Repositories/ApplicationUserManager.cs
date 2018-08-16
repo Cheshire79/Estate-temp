@@ -1,4 +1,4 @@
-﻿using Identity.DAL.Entities;
+using Identity.DAL.Entities;
 using Microsoft.AspNet.Identity;
 
 namespace Identity.DAL.Repositories

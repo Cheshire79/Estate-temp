@@ -1,4 +1,4 @@
-﻿
+
 namespace Identity.BLL.Interface.Data
 {
    public class Role

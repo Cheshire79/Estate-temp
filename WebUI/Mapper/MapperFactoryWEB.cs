@@ -1,8 +1,8 @@
 ﻿
 using AutoMapper;
+using EstateAgency.BLL.Interface.Date;
+using EstateAgency.BLL.Interface.Date.ForManipulate;
 using Identity.BLL.Interface.Data;
-using KnowledgeManagement.BLL.Interface.Date;
-using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
 using WebUI.Models.KnowledgeManagement;
 using WebUI.Models.Realtor;
 using WebUI.Models.Realtor.ForManipulate;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Identity.DAL.EF;
 using Identity.DAL.Entities;
 using Identity.DAL.Repositories;

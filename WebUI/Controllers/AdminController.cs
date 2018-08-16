@@ -1,4 +1,4 @@
-﻿// how to rename classes so the changes accepted in viewes files
+// how to rename classes so the changes accepted in viewes files
 //   await Task.Run(() => todo what is the sence of this ?
 using System.Collections.Generic;
 using System.Data.Entity;

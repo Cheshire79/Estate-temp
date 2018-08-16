@@ -1,4 +1,4 @@
-﻿namespace Identity.DAL.Interface
+namespace Identity.DAL.Interface
 {
     public interface IFactoryEntitiesManager<TApplicationUserManager, TApplicationRoleManager, TApplicationContext> where TApplicationUserManager : class where TApplicationRoleManager : class where TApplicationContext : class
     {

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Identity.BLL.Interface;
 using Identity.BLL.Interface.Data;
 using Identity.DAL.Entities;

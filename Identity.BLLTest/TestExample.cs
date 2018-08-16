@@ -1,4 +1,4 @@
-﻿//https://msdn.microsoft.com/en-us/data/dn314429#async
+//https://msdn.microsoft.com/en-us/data/dn314429#async
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;

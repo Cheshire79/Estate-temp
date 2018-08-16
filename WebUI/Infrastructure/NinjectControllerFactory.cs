@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Identity.BLL.Interface;
@@ -7,17 +7,17 @@ using Identity.DAL.Infrastructure;
 using Identity.DAL.Repositories;
 using Identity.BLL.Services;
 using Identity.DAL.Interface;
-using KnowledgeManagement.BLL.Interface;
-using KnowledgeManagement.BLL.Services;
-using KnowledgeManagement.DAL.EF;
-using KnowledgeManagement.DAL.Infrastructure;
-using KnowledgeManagement.DAL.Interface;
-using KnowledgeManagement.DAL.Interface.Date;
-using KnowledgeManagement.DAL.Repository;
+using EstateAgency.BLL.Interface;
+using EstateAgency.BLL.Services;
+using EstateAgencyt.DAL.EF;
+using EstateAgencyt.DAL.Infrastructure;
+using EstateAgencyt.DAL.Interface;
+using EstateAgencyt.DAL.Interface.Date;
+using EstateAgencyt.DAL.Repository;
 using Ninject;
 using Ninject.Web.Common;
 using WebUI.Mapper;
-using KnowledgeManagement.BLL.Services.RealeEstateOrdering;
+using EstateAgency.BLL.Services.RealeEstateOrdering;
 
 namespace WebUI.Infrastructure
 {
@@ -74,7 +74,7 @@ namespace WebUI.Infrastructure
 
             _ninjectKernel.Bind<IUserService>()
                 .To<UserService>();
-            _ninjectKernel.Bind<KnowledgeManagement.BLL.Interface.IMapperFactory>().To<KnowledgeManagement.BLL.Mapper.MapperFactory>().InSingletonScope();
+            _ninjectKernel.Bind<EstateAgency.BLL.Interface.IMapperFactory>().To<EstateAgency.BLL.Mapper.MapperFactory>().InSingletonScope();
         }
 
         private void AddBindingsForIdentityDAL()

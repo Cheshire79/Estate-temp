@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
@@ -15,19 +15,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj
 		{7A15B9F1-1DA2-4651-BE7B-8E3BCAA0E9C5} = {7A15B9F1-1DA2-4651-BE7B-8E3BCAA0E9C5}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeManagement.DAL", "KnowledgeManagement.DAL\KnowledgeManagement.DAL.csproj", "{617C1EE5-38A0-4D11-9BDF-07D22538B9E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstateAgencyt.DAL", "EstateAgencyt.DAL\EstateAgencyt.DAL.csproj", "{617C1EE5-38A0-4D11-9BDF-07D22538B9E4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{023D0AB6-EB6C-4D39-A45A-3CC1606DE8F6} = {023D0AB6-EB6C-4D39-A45A-3CC1606DE8F6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeManagement.BLL", "KnowledgeManagement.BLL\KnowledgeManagement.BLL.csproj", "{88188321-5931-42E3-A0E2-5FA928B06E69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstateAgency.BLL", "EstateAgency.BLL\EstateAgency.BLL.csproj", "{88188321-5931-42E3-A0E2-5FA928B06E69}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8A1528DF-A8A7-4253-B1D1-145ECB504D87} = {8A1528DF-A8A7-4253-B1D1-145ECB504D87}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{9A3AF945-30E9-4CF0-955D-D63A82D525A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeManagement.BLLTest", "KnowledgeManagement.BLLTest\KnowledgeManagement.BLLTest.csproj", "{5B8D9786-02CD-47D9-9F79-9E7222C6A29F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstateAgency.BLLTest", "EstateAgency.BLLTest\EstateAgency.BLLTest.csproj", "{5B8D9786-02CD-47D9-9F79-9E7222C6A29F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{88188321-5931-42E3-A0E2-5FA928B06E69} = {88188321-5931-42E3-A0E2-5FA928B06E69}
 	EndProjectSection
@@ -38,9 +38,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.BLLTest", "Identit
 		{7A15B9F1-1DA2-4651-BE7B-8E3BCAA0E9C5} = {7A15B9F1-1DA2-4651-BE7B-8E3BCAA0E9C5}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeManagement.DAL.Interface", "KnowledgeManagement.DAL.Interface\KnowledgeManagement.DAL.Interface.csproj", "{023D0AB6-EB6C-4D39-A45A-3CC1606DE8F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstateAgency.DAL.Interface", "EstateAgency.DAL.Interface\EstateAgency.DAL.Interface.csproj", "{023D0AB6-EB6C-4D39-A45A-3CC1606DE8F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeManagement.BLL.Interface", "KnowledgeManagement.BLL.Interface\KnowledgeManagement.BLL.Interface.csproj", "{8A1528DF-A8A7-4253-B1D1-145ECB504D87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstateAgency.BLL.Interface", "EstateAgency.BLL.Interface\EstateAgency.BLL.Interface.csproj", "{8A1528DF-A8A7-4253-B1D1-145ECB504D87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterfaceHolder", "InterfaceHolder", "{D34D6B6C-FBD4-4CB1-81F3-3C362E01F438}"
 EndProject
