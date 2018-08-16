@@ -2,7 +2,7 @@
 using AutoMapper;
 using Identity.BLL.Interface.Data;
 using KnowledgeManagement.BLL.Interface.Date;
-using WebUI.Models;
+using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
 using WebUI.Models.KnowledgeManagement;
 using WebUI.Models.Realtor;
 using WebUI.Models.Realtor.ForManipulate;

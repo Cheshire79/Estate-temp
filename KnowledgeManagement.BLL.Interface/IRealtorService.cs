@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KnowledgeManagement.BLL.Interface.Date;
+using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
 
 namespace KnowledgeManagement.BLL.Interface
 {

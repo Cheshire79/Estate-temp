@@ -10,6 +10,7 @@ using AutoMapper.QueryableExtensions;
 using Identity.BLL.Interface;
 using KnowledgeManagement.BLL.Interface;
 using KnowledgeManagement.BLL.Interface.Date;
+using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
 using Microsoft.AspNet.Identity;
 using WebUI.Mapper;
 using WebUI.Models;

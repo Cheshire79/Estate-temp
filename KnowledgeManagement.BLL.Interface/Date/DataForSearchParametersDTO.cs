@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
 
 namespace KnowledgeManagement.BLL.Interface.Date
 {

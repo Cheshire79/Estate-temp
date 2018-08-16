@@ -45,22 +45,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Date\ChoosenSearchParametersForRealtorDTO.cs" />
-    <Compile Include="Date\CityDistrictDropDownItemDTO.cs" />
+    <Compile Include="Date\ForManipulate\CityDistrictDropDownItemDTO.cs" />
     <Compile Include="Date\CityDistrictDTO.cs" />
     <Compile Include="Date\CityDTO.cs" />
-    <Compile Include="Date\DataForManipulateRealEstateDTO.cs" />
+    <Compile Include="Date\ForManipulate\DataForManipulateRealEstateDTO.cs" />
     <Compile Include="Date\DataForEditRealEstateDTO.cs" />
     <Compile Include="Date\DataForSearchParametersDTO.cs" />
     <Compile Include="Date\LevelDTO.cs" />
     <Compile Include="Date\RealEstateDTO.cs" />
     <Compile Include="Date\RealEstateForRealtorDTO.cs" />
-    <Compile Include="Date\RoomNumberDownItemDTO.cs" />
+    <Compile Include="Date\ForManipulate\RoomNumberDownItemDTO.cs" />
     <Compile Include="Date\SkillDTO.cs" />
     <Compile Include="Date\SortOrder.cs" />
-    <Compile Include="Date\SortOrderDropDownDTO.cs" />
+    <Compile Include="Date\ForManipulate\SortOrderDropDownDTO.cs" />
     <Compile Include="Date\SpecifyingSkillDTO.cs" />
     <Compile Include="Date\SpecifyingSkillForSearchDTO.cs" />
-    <Compile Include="Date\StreetDropDownItemDTO.cs" />
+    <Compile Include="Date\ForManipulate\StreetDropDownItemDTO.cs" />
     <Compile Include="Date\StreetDTO.cs" />
     <Compile Include="Date\SubSkillDTO.cs" />
     <Compile Include="IMapperFactory.cs" />

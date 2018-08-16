@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KnowledgeManagement.BLL.Interface.Date
+namespace KnowledgeManagement.BLL.Interface.Date.ForManipulate
 {
     public class DataForManipulateRealEstateDTO
     {

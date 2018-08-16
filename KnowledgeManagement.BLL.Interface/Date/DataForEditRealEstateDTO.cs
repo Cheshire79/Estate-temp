@@ -1,4 +1,6 @@
 ﻿
+using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
+
 namespace KnowledgeManagement.BLL.Interface.Date
 {
     public class EditRealEstateDTO

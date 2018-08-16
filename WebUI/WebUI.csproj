@@ -220,7 +220,7 @@
     <Compile Include="Models\Realtor\RealEstateToSaveView.cs" />
     <Compile Include="Models\Realtor\ForManipulate\DataForManipulateRealEstateView.cs" />
     <Compile Include="Models\Realtor\DataForSearchParametersRealtorView.cs" />
-    <Compile Include="Models\Realtor\ForManipulate\SortOrderView.cs" />
+    <Compile Include="Models\Realtor\ForManipulate\SortOrderDropItemView.cs" />
     <Compile Include="Models\Realtor\ForManipulate\RoomNumberDropItemView.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSkillSaveViewModel.cs" />
     <Compile Include="Models\SpecifyingSkills\SaveViewModel\SpecifyingSubSkillSaveViewModel.cs" />

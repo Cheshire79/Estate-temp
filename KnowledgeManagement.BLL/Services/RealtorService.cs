@@ -8,6 +8,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using KnowledgeManagement.BLL.Interface;
 using KnowledgeManagement.BLL.Interface.Date;
+using KnowledgeManagement.BLL.Interface.Date.ForManipulate;
 using KnowledgeManagement.DAL.Interface;
 using KnowledgeManagement.DAL.Interface.Date;
 
